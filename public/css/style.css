@@ -151,7 +151,7 @@
     width: 300px;
     left: 50% !important;
     transform: translateX(-50%);
-    padding-left: 10px;
+    padding-left: 12px;
   }
   .carousel-caption h1 {
     font-size: 1.8rem !important;
