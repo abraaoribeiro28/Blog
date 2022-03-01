@@ -151,7 +151,7 @@
     width: 300px;
     left: 50% !important;
     transform: translateX(-50%);
-    padding-left: 12px;
+    padding-left: 10px;
   }
   .carousel-caption h1 {
     font-size: 1.8rem !important;
@@ -190,3 +190,45 @@
   }
 }
 
+@media (max-width: 365px){
+  .carousel-caption{
+    width: 300px;
+    left: 50% !important;
+    transform: translateX(-50%);
+    padding-left: 22px;
+    bottom: 9rem !important;
+  }
+  .carousel-caption h1 {
+    font-size: 1.6rem !important;
+    padding-left: 36px;
+    margin-bottom: -3px;
+    margin-top: -3px;
+    text-align: left !important;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem !important;
+    margin-top: 8px;
+    text-align: left;
+    padding: 0 20px 0px 6px;
+  }
+  .bg-bolha{
+    background: var(--color-principal) url(../images/blob.svg) no-repeat;
+    background-size: 26rem;
+    background-position-x: -1.3rem;
+    background-position-y: 3.5rem;
+    max-width: 350px;
+  }
+
+  .carousel-caption .e-title {
+    font-size: 4rem !important;
+    padding: 0;
+    position: absolute;
+    top: 9px;
+    left: 24px;
+  }
+  #palestrante{
+    padding-top: 150px;
+    margin-top: -130px;
+  }
+}
