@@ -23,7 +23,7 @@
                 <a class="nav-link active" aria-current="page" href="/index.html">Início</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Galeria</a>
+                <a class="nav-link" href="#palestrante">Galeria</a>
               </li>
               <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Contato</a>
@@ -34,69 +34,57 @@
       </nav>
   </header>
   <main style="margin-top: 8px;">
-    <!-- <div id="myCarousel" class="carousel slide mb-0" data-bs-ride="carousel" style="background: #0099ff  url(public/images/menina-coracoes.svg) no-repeat; background-size: contain; background-position-x: -143px; background-position-y: 100%;"> -->
-    <div id="myCarousel" class="carousel slide bg-bolha mb-0" data-bs-ride="carousel">
-        
-        <div class="carousel-indicators">    
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <!-- <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
-        </div>
+    <div id="myCarousel" class="carousel slide bg-principal mb-0" data-bs-ride="carousel">
+      <!-- <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div> -->
+      <div class="bg-bolha">
         <div class="carousel-inner">
           <div class="carousel-item active">              
-              <div class="container">
-                  <div class="carousel-caption">
-                      <h1 class="">Eu te entendo, <br> eu te quero vivo(a)!</h1>
-                      <!-- <p>Some representative placeholder content for the first slide of the carousel.</p> -->
-                      <p >O fardo pesado que levas deságua na força que tens.</p>
-                      <!-- <p><a class="btn btn-lg" style="background-color: #008fee;" href="#">Lorem ipsum</a></p> -->
-                  </div>
-              </div>
-          </div>
-          <div class="carousel-item">
-              <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
-      
-              <div class="container">
+            <div class="container">
               <div class="carousel-caption">
-                  <h1>Título exemplo 2</h1>
-                  <p>Some representative placeholder content for the first slide of the carousel.</p>
-                  <!-- <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p> -->
+                <h1 class="e-title">E</h1>
+                <h1>u te entendo,</h1>
+                <h1>u te quero vivo(a)!</h1>
+                <p >O fardo pesado que levas deságua na força que tens.</p>
               </div>
-              </div>
+            </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      </div><!--Bg-bolha-->
+        
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: -2px;">
       <path fill="#008fee" fill-opacity="1" d="M0,128L48,133.3C96,139,192,149,288,144C384,139,480,117,576,128C672,139,768,181,864,170.7C960,160,1056,96,1152,80C1248,64,1344,96,1392,112L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
       </path>
     </svg>
 
-    <!-- Perfil Palestrante -->
-    <div class="container marketing">
+    
+    <div class="container marketing" id="palestrante">
+      <!-- Perfil Palestrante -->
       <div div class="row">
         <div class="offset-lg-4 col-lg-4">
-            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
-            <img class="bd-placeholder-img rounded-circle" src="public/images/palestrante-foto.jpeg" alt="palestrante" width="140" height="140">
-            <h2>Raquel França</h2>
-            <p>
-              Palestrante e idealizadora do projeto, faz lives semanais com temas diferentes,
-              as lives ficam salvas em seu perfil do
-              <a href="#" class="text-primary text-decoration-none">instagram.</a>
-            </p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          <img class="bd-placeholder-img rounded-circle" src="public/images/palestrante-foto.jpeg" alt="palestrante" width="140" height="140">
+          <h2>Raquel França</h2>
+          <p>
+            Palestrante e idealizadora do projeto, faz lives semanais com temas diferentes,
+            as lives ficam salvas em seu perfil do
+            <a href="#" class="color-blue text-decoration-none">Instagram.</a>
+          </p>
+          <p><a class="btn text-light bg-principal" href="#">Mais detalhes &raquo;</a></p>
         </div>
       </div>
   
-
       <hr class="featurette-divider">
   
       <div class="row featurette">
@@ -137,10 +125,10 @@
     </div><!-- Perfil Palestrante -->
   
     <!-- FOOTER -->
-    <footer class="container">
+    <!-- <footer class="container">
         <p class="float-end"><a href="#" class="text-decoration-none text-body">Ir para o topo</a></p>
-        <!-- <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p> -->
-    </footer>
+        <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer> -->
   </main>
 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
