@@ -11,3 +11,32 @@
       font-size: 3.5rem;
     }
   }
+
+  .bg-blue{
+    background: #008fee;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-bolha{
+    /*background-position-x: 15px;
+    background-position-y: 84%; */
+    background: #008fee url(../images/blob.svg) no-repeat;
+    background-size: contain;
+    background-position-x: 22px;
+    background-position-y: 81%;
+  }
+
+  .carousel-caption {
+    bottom: 6rem !important;
+}
+
+.navbar-nav{
+  padding: 6px;
+}
+.navbar-nav .nav-item .nav-link{
+  color: #fff;
+  padding: 3px 5px;
+}
+.navbar-nav .nav-item .nav-link.active{
+  border-bottom: 2px solid #9cd6fd;
+}
