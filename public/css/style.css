@@ -151,6 +151,7 @@
     width: 300px;
     left: 50% !important;
     transform: translateX(-50%);
+    padding-left: 10px;
   }
   .carousel-caption h1 {
     font-size: 1.8rem !important;
@@ -181,7 +182,7 @@
     padding: 0;
     position: absolute;
     top: 0;
-    left: -4px;
+    left: 5px;
   }
   #palestrante{
     padding-top: 150px;
