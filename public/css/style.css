@@ -191,6 +191,7 @@
     /* position: absolute;
     top: 0;
     left: 5px; */
+    margin-bottom: -2px;
   }
   #palestrante{
     padding-top: 150px;
@@ -241,6 +242,7 @@
     /* position: absolute;
     top: 12px;
     left: 22px; */
+    margin-bottom: -2px;
   }
   #palestrante{
     padding-top: 150px;
