@@ -187,9 +187,10 @@
   .carousel-caption .e-title {
     font-size: 5rem !important;
     padding: 0;
-    position: absolute;
+    margin: 0;
+    /* position: absolute;
     top: 0;
-    left: 5px;
+    left: 5px; */
   }
   #palestrante{
     padding-top: 150px;
@@ -205,11 +206,18 @@
     padding-left: 22px;
     bottom: 9rem !important;
   }
-  .carousel-caption h1 {
+  /* .carousel-caption h1 {
     font-size: 1.6rem !important;
     padding-left: 36px;
     margin-bottom: -3px;
     margin-top: -3px;
+    text-align: left !important;
+  } */
+  .carousel-caption h1 {
+    font-size: 1.6rem !important;
+    /* padding-left: 36px; */
+    /* margin-bottom: 0; */
+    margin-top: -10px;
     text-align: left !important;
   }
 
@@ -230,9 +238,9 @@
   .carousel-caption .e-title {
     font-size: 4rem !important;
     padding: 0;
-    position: absolute;
+    /* position: absolute;
     top: 12px;
-    left: 22px;
+    left: 22px; */
   }
   #palestrante{
     padding-top: 150px;
