@@ -186,10 +186,14 @@
   }
 
   .carousel-caption .e-title {
-    font-size: 5rem !important;
+    /* font-size: 5rem !important;
     padding: 0;
     margin: 0;
-    /* margin-bottom: -3px; */
+    line-height: 1; */
+    font-size: 4.9rem !important;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -2px;
     line-height: 1;
   }
   #palestrante{
