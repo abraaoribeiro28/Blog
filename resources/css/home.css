@@ -1,0 +1,227 @@
+/* --- Variables --- */
+:root {
+    --dark-blue: #000C31;
+    --light-blue: #B4D6ED;
+    --white: #fff;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.body {
+    background-color: var(--white);
+    font-family: Inter, sans-serif;
+    color: var(--dark-blue);
+    font-size: 18px;
+    line-height: 160%;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* --- Header --- */
+
+.container {
+    max-width: 1250px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.navbar {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: transparent;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/*.navbar:before, .navbar:after {*/
+/*    content: " ";*/
+/*    display: table;*/
+/*    grid-column-start: 1;*/
+/*    grid-row-start: 1;*/
+/*    grid-column-end: 2;*/
+/*    grid-row-end: 2;*/
+/*}*/
+
+/*.nav-link{*/
+/*    color: #fff;*/
+/*}*/
+
+.menu-grid {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 80px;
+    grid-row-gap: 80px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+}
+
+.w-layout-grid {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+}
+
+.grid-halves {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+}
+
+
+
+
+/* --- Main Section --- */
+.main-section {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 30vw;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: var(--light-blue);
+    color: var(--dark-blue)
+}
+
+.small-container {
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2.3rem;
+    line-height: 44px;
+    font-weight: 800;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+
+
+.w-input,
+.w-select {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+.w-button {
+    display: inline-block;
+    padding: 9px 15px;
+    background-color: #3898ec;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0;
+}
+input.w-button {
+    -webkit-appearance: button;
+}
+
+
+
+
+.form-2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.text-field-2 {
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 0px solid #000;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -webkit-transition: padding 200ms ease;
+    transition: padding 200ms ease;
+    font-size: 18px;
+}
+
+.text-field-2:focus {
+    padding-left: 18px;
+    border: 0px solid #000;
+}
+
+.w-input:focus, .w-select:focus {
+    border-color: #3898EC;
+    outline: 0;
+}
+
+
+.text-field-2:focus {
+    padding-left: 18px;
+    border: 0px solid #000;
+}
+
+.submit-button {
+    height: 50px;
+    padding-top: 11px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #3b207a;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.submit-button:hover {
+    background-color: #482794;
+    color: #fff;
+}
+
+.email-sign-up.padding-top {
+    max-width: 400px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    border-radius: 6px;
+    box-shadow: 0 18px 40px -10px #3b207a;
+}
