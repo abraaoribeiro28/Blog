@@ -1,5 +1,5 @@
 <header style="background: #000C31;">
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark py-md-4">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/images/logo.jpg') }}" loading="lazy" alt="logo" />
