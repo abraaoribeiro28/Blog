@@ -1,0 +1,28 @@
+/* --- Variables --- */
+:root {
+    --dark-blue: #000C31;
+    --light-blue: #B4D6ED;
+    --white: #fff;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.bg-dark-blue{
+    background-color: var(--dark-blue);
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+
+.line-2{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}

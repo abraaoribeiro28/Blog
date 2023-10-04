@@ -1,8 +1,5 @@
 @import url('~bootstrap/css/bootstrap.min.css');
+@import url('~bootstrap-icons/bootstrap-icons.css');
 
-.line-2{
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-}
+@import url('./custom.css');
+
