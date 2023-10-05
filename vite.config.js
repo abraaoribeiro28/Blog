@@ -6,9 +6,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
-                'resources/css/home.css',
-                'resources/js/app.js',
+                "resources/css/app.css",
+                "resources/css/home.css",
+                "resources/js/app.js",
             ],
             refresh: true,
         }),
@@ -16,14 +16,20 @@ export default defineConfig({
 
     resolve: {
         alias: {
-            '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap/dist'),
-            '~bootstrap-icons': path.resolve(__dirname, 'node_modules/bootstrap-icons/font'),
+            "~bootstrap": path.resolve(
+                __dirname,
+                "node_modules/bootstrap/dist"
+            ),
+            "~bootstrap-icons": path.resolve(
+                __dirname,
+                "node_modules/bootstrap-icons/font"
+            ),
         },
     },
 
     server: {
         hmr: {
-            host: 'localhost',
+            host: "localhost",
         },
     },
 });
