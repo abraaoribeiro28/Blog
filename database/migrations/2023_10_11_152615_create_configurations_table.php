@@ -108,7 +108,7 @@ return new class extends Migration
         // Opções
         DB::table('configurations')->insert([
             'key' => 'manutencao',
-            'title' => 'Ativar página de manutenção',
+            'title' => 'Modo de manutenção',
             'value' => false,
         ]);
 

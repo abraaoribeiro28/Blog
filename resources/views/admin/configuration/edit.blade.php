@@ -8,78 +8,69 @@
                         <p>Bem-vindo ao painel de administração.</p>
                     </div>
                 </div>
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-info">
+                                <i class="icon bi bi-info-circle"></i>
+                                <span>Informações</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-incorp">
+                                <i class="icon bi bi-code-slash"></i>
+                                <span>Incorporação</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-img">
+                                <i class="icon bi bi-images"></i>
+                                <span>Imagens</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-option">
+                                <i class="icon bi bi-gear"></i>
+                                <span>Opções</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+
         <div class="card card-bordered">
             <div class="card-inner">
                 <form action="#" class="gy-3">
-                    <div class="row g-3 align-center">
-                        <div class="col-lg-5">
-                            <div class="form-group">
-                                <label class="form-label" for="titulo">Título do site</label>
-                                <span class="form-note">Especifique o título do seu site.</span>
-                            </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-info">
+                            <x-admin.forms.configuration.input-text  id="titulo" label="Título do site" description="Especifique o título do seu site."/>
+                            <x-admin.forms.configuration.textarea id="descricao" label="Descrição" description="Especifique uma descrição para seu site."/>
+                            <x-admin.forms.configuration.input-text id="copyright" label="Direitos autorais do site (Copyright)" description="Informações de direitos autorais do seu site."/>
+                            <x-admin.forms.configuration.input-text id="cep" label="CEP" description="Informe o CEP da sua cidade."/>
+                            <x-admin.forms.configuration.input-text id="logradouro" label="Logradouro" description="Informe o logradouro."/>
+                            <x-admin.forms.configuration.input-text id="numero" label="Número" description="Informe o Número."/>
+                            <x-admin.forms.configuration.input-text id="bairro" label="Bairro" description="Informe o nome do bairro."/>
+                            <x-admin.forms.configuration.input-text id="cidade" label="Cidade" description="Informe o nome da cidade."/>
+                            <x-admin.forms.configuration.input-text id="estado" label="Estado" description="Informe qual o estado."/>
+                            <x-admin.forms.configuration.input-text id="email" label="E-mail" description="E-mail para contato."/>
+                            <x-admin.forms.configuration.input-text id="telefone" label="Telefone" description="Telefone para contato."/>
                         </div>
-                        <div class="col-lg-7">
-                            <div class="form-group">
-                                <div class="form-control-wrap">
-                                    <input type="text" class="form-control" id="titulo" name="titulo" value="{{old('titulo')}}">
-                                </div>
-                            </div>
+                        <div class="tab-pane" id="tab-incorp">
+                            <x-admin.forms.configuration.textarea id="incorporacao_cabecalho" label="Incorporação de cabeçalho" description="Adiocione o código de incorporação do cabeçalho (header)"/>
+                            <x-admin.forms.configuration.textarea id="incorporacao_rodape" label="Incorporação de rodapé" description="Adiocione o código de incorporação do rodapé (footer)"/>
                         </div>
-                    </div>
-                    <div class="row g-3 align-center">
-                        <div class="col-lg-5">
-                            <div class="form-group">
-                                <label class="form-label" for="descricao">Descrição</label>
-                                <span class="form-note">Especifique uma descrição para seu site.</span>
-                            </div>
+                        <div class="tab-pane" id="tab-img">
+                            <p>Imagens em desenvolvimento</p>
                         </div>
-                        <div class="col-lg-7">
-                            <div class="form-group">
-                                <div class="form-control-wrap">
-                                    <textarea class="form-control" id="descricao"></textarea>
-                                </div>
-                            </div>
+                        <div class="tab-pane" id="tab-option">
+                            <x-admin.forms.configuration.input-switch id="manutencao" label="Modo de manutenção" description="Ative para tornar o site offline para os visitantes."/>
+                            <x-admin.forms.configuration.input-switch id="exibir_versao" label="Exibir número da versão do site" description="Ative para exibir a versão do site no rodapé."/>
                         </div>
                     </div>
-                    <div class="row g-3 align-center">
-                        <div class="col-lg-5">
-                            <div class="form-group">
-                                <label class="form-label" for="copyright">Direitos autorais do site (Copyright &copy;)</label>
-                                <span class="form-note">Informações de direitos autorais do seu site.</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="form-group">
-                                <div class="form-control-wrap">
-                                    <input type="text" class="form-control" id="copyright" name="copyright" value="{{ old('copyright') }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 align-center">
-                        <div class="col-lg-5">
-                            <div class="form-group">
-                                <label class="form-label" for="manutencao">Modo de manutenção</label>
-                                <span class="form-note">Ative para tornar o site offline para os visitantes.</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="form-group">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" name="manutencao" id="manutencao">
-                                    <label class="custom-control-label" for="manutencao"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-lg-7 offset-lg-5">
-                            <div class="form-group mt-2">
-                                <button type="submit" class="btn btn-lg btn-primary">Update</button>
-                            </div>
-                        </div>
+
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-lg btn-primary">Atualizar</button>
                     </div>
                 </form>
             </div>
