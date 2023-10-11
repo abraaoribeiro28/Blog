@@ -3,108 +3,24 @@
         <div class="nk-header-wrap">
             <div class="nk-header-brand">
                 <a href="{{ route('dashboard') }}" class="logo-link">
-                    {{-- <img class="logo-dark logo-img" src="{{ url('assets/images/logo.jpg') }}" alt="logo-dark"> --}}
+{{--                     <img class="logo-dark logo-img" src="{{ url('assets/images/logo.jpg') }}" alt="logo-dark">--}}
                     <span class="text-center d-block h6">
                         Eu te entendo,<br>
                         eu te quero vivo(a)!
                     </span>
                 </a>
-            </div><!-- .nk-header-brand -->
-            <div class="nk-header-menu">
-                <ul class="nk-menu nk-menu-main">
-                    <li class="nk-menu-item active current-page">
-                        <a href="html/index.html" class="nk-menu-link">
-                            <span class="nk-menu-text">Overview</span>
-                        </a>
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-text">Apps</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="html/apps-messages.html" class="nk-menu-link"><span
-                                        class="nk-menu-text">Messages</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/apps-inbox.html" class="nk-menu-link"><span class="nk-menu-text">Inbox /
-                                        Mail</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/apps-file-manager.html" class="nk-menu-link"><span
-                                        class="nk-menu-text">File Manager</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/apps-chats.html" class="nk-menu-link"><span class="nk-menu-text">Chats /
-                                        Messenger</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/apps-calendar.html" class="nk-menu-link"><span
-                                        class="nk-menu-text">Calendar</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/apps-kanban.html" class="nk-menu-link"><span class="nk-menu-text">Kanban
-                                        Board</span></a>
-                            </li>
-                        </ul><!-- .nk-menu-sub -->
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item">
-                        <a href="html/components.html" class="nk-menu-link">
-                            <span class="nk-menu-text">Components</span>
-                        </a>
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item">
-                        <a href="html/support-kb.html" class="nk-menu-link">
-                            <span class="nk-menu-text">Support</span>
-                        </a>
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item">
-                        <a href="html/pages/contact.html" class="nk-menu-link">
-                            <span class="nk-menu-text">Contact</span>
-                        </a>
-                    </li><!-- .nk-menu-item -->
-                </ul><!-- .nk-menu -->
-            </div><!-- .nk-header-menu -->
+            </div>
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
-                    <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                            <div class="quick-icon border border-light">
-                                <img class="icon" src="{{ url('theme/src/images/flags/english-sq.png') }}" alt="">
-                            </div>
+                    <li>
+                        <a href="{{ route('portal.home') }}" class="nk-menu-link px-0" style="color: #526484;">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            Acessar portal
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
-                            <ul class="language-list">
-                                <li>
-                                    <a href="#" class="language-item">
-                                        <img src="./images/flags/english.png" alt="" class="language-flag">
-                                        <span class="language-name">English</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="language-item">
-                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
-                                        <span class="language-name">Español</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="language-item">
-                                        <img src="./images/flags/french.png" alt="" class="language-flag">
-                                        <span class="language-name">Français</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="language-item">
-                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
-                                        <span class="language-name">Türkçe</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li><!-- .dropdown -->
+                    </li>
                     <li class="dropdown notification-dropdown">
                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                            <div class="icon-status icon-status-info"><i class="icon ni bi bi-bell"></i></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
                             <div class="dropdown-head">
@@ -179,7 +95,7 @@
                                 <a href="#">View All</a>
                             </div>
                         </div>
-                    </li><!-- .dropdown -->
+                    </li>
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle me-lg-n1" data-bs-toggle="dropdown">
                             <div class="user-toggle">
@@ -195,8 +111,8 @@
                                         <span>AB</span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                        <span class="sub-text">info@softnio.com</span>
+                                        <span class="lead-text">{{ auth()->user()->name }}</span>
+                                        <span class="sub-text">{{ auth()->user()->email }}</span>
                                     </div>
                                     <div class="user-action">
                                         <a class="btn btn-icon me-n2" href="html/user-profile-setting.html"><em
@@ -220,17 +136,25 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a onclick="event.preventDefault(); this.closest('form').submit();">
+                                                <em class="icon ni ni-signout"></em>
+                                                <span>Sair</span>
+                                            </a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                    </li><!-- .dropdown -->
+                    </li>
                     <li class="d-lg-none">
                         <a href="#" class="toggle nk-quick-nav-icon me-n1" data-target="sideNav"><em
                                 class="icon ni ni-menu"></em></a>
                     </li>
-                </ul><!-- .nk-quick-nav -->
-            </div><!-- .nk-header-tools -->
-        </div><!-- .nk-header-wrap -->
-    </div><!-- .container-fliud -->
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

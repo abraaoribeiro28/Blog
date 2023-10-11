@@ -1,15 +1,15 @@
 "use strict";
 
 !function (NioApp, $) {
-  "use strict"; //////// for developer - User Balance //////// 
-  // Avilable options to pass from outside 
+  "use strict"; //////// for developer - User Balance ////////
+  // Avilable options to pass from outside
   // labels: array,
   // legend: false - boolean,
-  // dataUnit: string, (Used in tooltip or other section for display) 
+  // dataUnit: string, (Used in tooltip or other section for display)
   // datasets: [{label : string, color: string (color code with # or other format), data: array}]
 
   var salesRevenue = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Oot", "Nov", "Dez"],
     dataUnit: 'USD',
     stacked: true,
     datasets: [{
@@ -19,7 +19,7 @@
     }]
   };
   var activeSubscription = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
     dataUnit: 'USD',
     stacked: true,
     datasets: [{
@@ -29,7 +29,7 @@
     }]
   };
   var totalSubscription = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
     dataUnit: 'USD',
     stacked: true,
     datasets: [{

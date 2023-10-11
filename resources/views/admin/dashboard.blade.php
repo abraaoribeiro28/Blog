@@ -1,38 +1,15 @@
 <x-app-layout>
-    {{-- <div class="nk-content-body"> --}}
         <div class="nk-content-wrap">
             <div class="nk-block-head nk-block-head-sm">
                 <div class="nk-block-between">
                     <div class="nk-block-head-content">
-                        <h3 class="nk-block-title page-title">Overview</h3>
+                        <h3 class="nk-block-title page-title">Visão geral</h3>
                         <div class="nk-block-des text-soft">
-                            <p>Welcome to DashLite Dashboard Template.</p>
+                            <p>Bem-vindo ao painel de administração.</p>
                         </div>
-                    </div><!-- .nk-block-head-content -->
-                    <div class="nk-block-head-content">
-                        <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                            <div class="toggle-expand-content" data-content="pageMenu">
-                                <ul class="nk-block-tools g-3">
-                                    <li>
-                                        <div class="drodown">
-                                            <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <ul class="link-list-opt no-bdr">
-                                                    <li><a href="#"><span>Last 30 Days</span></a></li>
-                                                    <li><a href="#"><span>Last 6 Months</span></a></li>
-                                                    <li><a href="#"><span>Last 1 Years</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .nk-block-head-content -->
-                </div><!-- .nk-block-between -->
-            </div><!-- .nk-block-head -->
+                    </div>
+                </div>
+            </div>
             <div class="nk-block">
                 <div class="row g-gs">
                     <div class="col-sm-6">
@@ -40,7 +17,7 @@
                             <div class="card-inner">
                                 <div class="card-title-group align-start mb-2">
                                     <div class="card-title">
-                                        <h6 class="title">Active Subscriptions</h6>
+                                        <h6 class="title">Assinaturas ativas</h6>
                                     </div>
                                     <div class="card-tools">
                                         <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="Total active subscription"></em>
@@ -49,21 +26,21 @@
                                 <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
                                     <div class="nk-sale-data">
                                         <span class="amount">9.69K</span>
-                                        <span class="sub-title"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>1.93%</span>since last month</span>
+                                        <span class="sub-title"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>1.93%</span>desde o mês passado</span>
                                     </div>
                                     <div class="nk-sales-ck">
                                         <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
+                        </div>
+                    </div>
                     <div class="col-sm-6">
                         <div class="card card-bordered">
                             <div class="card-inner">
                                 <div class="card-title-group align-start mb-2">
                                     <div class="card-title">
-                                        <h6 class="title">Avg Subscriptions</h6>
+                                        <h6 class="title">Média de assinaturas</h6>
                                     </div>
                                     <div class="card-tools">
                                         <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="Daily Avg. subscription"></em>
@@ -72,7 +49,7 @@
                                 <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
                                     <div class="nk-sale-data">
                                         <span class="amount">346.2</span>
-                                        <span class="sub-title"><span class="change up text-success"><em class="icon ni ni-arrow-long-up"></em>2.45%</span>since last week</span>
+                                        <span class="sub-title"><span class="change up text-success"><em class="icon ni ni-arrow-long-up"></em>2.45%</span>desde a semana passada</span>
                                     </div>
                                     <div class="nk-sales-ck">
                                         <canvas class="sales-bar-chart" id="totalSubscription"></canvas>
@@ -86,8 +63,8 @@
                             <div class="card-inner">
                                 <div class="card-title-group align-start mb-2">
                                     <div class="card-title">
-                                        <h6 class="title">Sales Revenue</h6>
-                                        <p>In last 30 days revenue from subscription.</p>
+                                        <h6 class="title">Receita das vendas</h6>
+                                        <p>Receita de assinatura nos últimos 30 dias.</p>
                                     </div>
                                     <div class="card-tools">
                                         <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="Revenue from subscription"></em>
@@ -116,8 +93,8 @@
                             <div class="card-inner">
                                 <div class="card-title-group align-start gx-3 mb-3">
                                     <div class="card-title">
-                                        <h6 class="title">Sales Overview</h6>
-                                        <p>In 30 days sales of product subscription.</p>
+                                        <h6 class="title">Visão geral de vendas</h6>
+                                        <p>Em 30 dias de vendas de assinatura de produtos.</p>
                                     </div>
                                     <div class="card-tools">
                                         <div class="dropdown">
@@ -153,7 +130,7 @@
                             <div class="card-inner">
                                 <div class="card-title-group">
                                     <div class="card-title">
-                                        <h6 class="title"><span class="me-2">Invoices</span> <a href="html/history-payment.html" class="link d-none d-sm-inline">See History</a></h6>
+                                        <h6 class="title"><span class="me-2">Faturas</span> <a href="html/history-payment.html" class="link d-none d-sm-inline">Ver Histórico</a></h6>
                                     </div>
                                     <div class="card-tools">
                                         <ul class="card-tools-nav">
@@ -374,14 +351,14 @@
                             <div class="card-inner-sm border-top text-center d-sm-none">
                                 <a href="#" class="btn btn-link btn-block">See History</a>
                             </div>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="card card-bordered card-full">
                             <div class="card-inner border-bottom">
                                 <div class="card-title-group">
                                     <div class="card-title">
-                                        <h6 class="title">Recent Activities</h6>
+                                        <h6 class="title">Atividades recentes</h6>
                                     </div>
                                     <div class="card-tools">
                                         <ul class="card-tools-nav">
@@ -435,14 +412,14 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="card card-bordered h-100">
                             <div class="card-inner border-bottom">
                                 <div class="card-title-group">
                                     <div class="card-title">
-                                        <h6 class="title">Support Requests</h6>
+                                        <h6 class="title">Solicitações de suporte</h6>
                                     </div>
                                     <div class="card-tools">
                                         <a href="#" class="link">All Tickets</a>
@@ -487,53 +464,9 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .nk-block -->
-        </div>
-        <!-- footer @s -->
-        {{-- <div class="nk-footer">
-            <div class="container wide-xl">
-                <div class="nk-footer-wrap g-2">
-                    <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="#">Softnio</a>
-                    </div>
-                    <div class="nk-footer-links">
-                        <ul class="nav nav-sm">
-                            <li class="nav-item dropup">
-                                <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,10"><span>English</span></a>
-                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                    <ul class="language-list">
-                                        <li>
-                                            <a href="#" class="language-item">
-                                                <span class="language-name">English</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="language-item">
-                                                <span class="language-name">Español</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="language-item">
-                                                <span class="language-name">Français</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="language-item">
-                                                <span class="language-name">Türkçe</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a data-bs-toggle="modal" href="#region" class="nav-link"><em class="icon ni ni-globe"></em><span class="ms-1">Select Region</span></a>
-                            </li>
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
 </x-app-layout>
