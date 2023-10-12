@@ -47,12 +47,6 @@
                             <x-admin.forms.configuration.input-text  id="titulo" label="Título do site" description="Especifique o título do seu site."/>
                             <x-admin.forms.configuration.textarea id="descricao" label="Descrição" description="Especifique uma descrição para seu site."/>
                             <x-admin.forms.configuration.input-text id="copyright" label="Direitos autorais do site (Copyright)" description="Informações de direitos autorais do seu site."/>
-                            <x-admin.forms.configuration.input-text id="cep" label="CEP" description="Informe o CEP da sua cidade."/>
-                            <x-admin.forms.configuration.input-text id="logradouro" label="Logradouro" description="Informe o logradouro."/>
-                            <x-admin.forms.configuration.input-text id="numero" label="Número" description="Informe o Número."/>
-                            <x-admin.forms.configuration.input-text id="bairro" label="Bairro" description="Informe o nome do bairro."/>
-                            <x-admin.forms.configuration.input-text id="cidade" label="Cidade" description="Informe o nome da cidade."/>
-                            <x-admin.forms.configuration.input-text id="estado" label="Estado" description="Informe qual o estado."/>
                             <x-admin.forms.configuration.input-text id="email" label="E-mail" description="E-mail para contato."/>
                             <x-admin.forms.configuration.input-text id="telefone" label="Telefone" description="Telefone para contato."/>
                         </div>

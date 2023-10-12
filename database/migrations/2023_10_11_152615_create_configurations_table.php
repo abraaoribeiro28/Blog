@@ -39,36 +39,6 @@ return new class extends Migration
         ]);
 
         DB::table('configurations')->insert([
-            'key' => 'cep',
-            'title' => 'CEP',
-        ]);
-
-        DB::table('configurations')->insert([
-            'key' => 'logradouro',
-            'title' => 'Logradouro',
-        ]);
-
-        DB::table('configurations')->insert([
-            'key' => 'numero',
-            'title' => 'Número',
-        ]);
-
-        DB::table('configurations')->insert([
-            'key' => 'bairro',
-            'title' => 'Bairro',
-        ]);
-
-        DB::table('configurations')->insert([
-            'key' => 'cidade',
-            'title' => 'Cidade',
-        ]);
-
-        DB::table('configurations')->insert([
-            'key' => 'estado',
-            'title' => 'Estado',
-        ]);
-
-        DB::table('configurations')->insert([
             'key' => 'email',
             'title' => 'E-mail',
         ]);
