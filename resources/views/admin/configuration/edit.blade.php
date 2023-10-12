@@ -44,28 +44,28 @@
                 <form action="#" class="gy-3">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-info">
-                            <x-admin.forms.configuration.input-text  id="titulo" label="Título do site" description="Especifique o título do seu site."/>
-                            <x-admin.forms.configuration.textarea id="descricao" label="Descrição" description="Especifique uma descrição para seu site."/>
-                            <x-admin.forms.configuration.input-text id="copyright" label="Direitos autorais do site (Copyright)" description="Informações de direitos autorais do seu site."/>
-                            <x-admin.forms.configuration.input-text id="email" label="E-mail" description="E-mail para contato."/>
-                            <x-admin.forms.configuration.input-text id="telefone" label="Telefone" description="Telefone para contato."/>
+                            <x-admin.forms.configuration.input-text id="titulo" :dataArray="$config['titulo']"/>
+                            <x-admin.forms.configuration.textarea id="descricao" :dataArray="$config['descricao']"/>
+                            <x-admin.forms.configuration.input-text id="copyright" :dataArray="$config['copyright']"/>
+                            <x-admin.forms.configuration.input-text id="email" :dataArray="$config['email']"/>
+                            <x-admin.forms.configuration.input-text id="telefone" :dataArray="$config['telefone']"/>
                         </div>
                         <div class="tab-pane" id="tab-incorp">
-                            <x-admin.forms.configuration.textarea id="incorporacao_cabecalho" label="Incorporação de cabeçalho" description="Adiocione o código de incorporação do cabeçalho (header)"/>
-                            <x-admin.forms.configuration.textarea id="incorporacao_rodape" label="Incorporação de rodapé" description="Adiocione o código de incorporação do rodapé (footer)"/>
+                            <x-admin.forms.configuration.textarea id="incorporacao_cabecalho" :dataArray="$config['incorporacao_cabecalho']"/>
+                            <x-admin.forms.configuration.textarea id="incorporacao_rodape" :dataArray="$config['incorporacao_rodape']"/>
                         </div>
                         <div class="tab-pane" id="tab-img">
-                            <x-admin.forms.configuration.input-file id="logo" label="Logo do site" description="Tamanho ideal: 130x40"/>
-                            <x-admin.forms.configuration.input-file id="favicon" label="Favicon" description="Tamanho ideal: Tamanho ideal: 128x128"/>
-                            <x-admin.forms.configuration.input-file id="logo_radape" label="Logo do Rodapé" description="Tamanho ideal: 130x40"/>
+                            <x-admin.forms.configuration.input-file id="logo" :dataArray="$config['logo']"/>
+                            <x-admin.forms.configuration.input-file id="favicon" :dataArray="$config['favicon']"/>
+                            <x-admin.forms.configuration.input-file id="logo_radape" :dataArray="$config['logo_radape']"/>
                         </div>
                         <div class="tab-pane" id="tab-option">
-                            <x-admin.forms.configuration.input-switch id="manutencao" label="Modo de manutenção" description="Ative para tornar o site offline para os visitantes."/>
-                            <x-admin.forms.configuration.input-switch id="exibir_versao" label="Exibir número da versão do site" description="Ative para exibir a versão do site no rodapé."/>
-                            <x-admin.forms.configuration.input-text  id="cor_principal" label="Cor principal" description="Cor predominante do site, exemplo: cabeçalho e rodapé." :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_titulos" label="Cor dos títulos" description="Cor dos títulos das seções do site." :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_botoes" label="Cor dos botões" description="Cor dos botões do site." :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_fundo_texto" label="Cor de fundos de títulos" description="Cor de fundo de títulos do site." :haveColor="true"/>
+                            <x-admin.forms.configuration.input-switch id="manutencao" :dataArray="$config['manutencao']"/>
+                            <x-admin.forms.configuration.input-switch id="exibir_versao" :dataArray="$config['exibir_versao']"/>
+                            <x-admin.forms.configuration.input-text  id="cor_principal" :dataArray="$config['cor_principal']" :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_titulos" :dataArray="$config['cor_titulos']" :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_botoes" :dataArray="$config['cor_botoes']" :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_fundo" :dataArray="$config['cor_fundo']" :haveColor="true"/>
                         </div>
                     </div>
 

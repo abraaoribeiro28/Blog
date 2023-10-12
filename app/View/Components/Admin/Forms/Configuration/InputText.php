@@ -12,10 +12,12 @@ class InputText extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $id,
-        public string $label,
-        public string $description,
-        public bool $haveColor = false
+        public $id,
+        public $title = null,
+        public $description = null,
+        public $dataArray = null,
+        public $value = null,
+        public $haveColor = false
     ) {
     }
 

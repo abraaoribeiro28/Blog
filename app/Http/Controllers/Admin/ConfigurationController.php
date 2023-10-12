@@ -9,7 +9,13 @@ use Illuminate\Http\Request;
 class ConfigurationController extends Controller
 {
 
-    
+    public $title, $table;
+
+    public function __construct()
+    {
+        $this->title = 'Configurações';
+        $this->table = app(Configuration::class);
+    }
 
     /**
      * Display a listing of the resource.
@@ -48,7 +54,15 @@ class ConfigurationController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.configuration.edit', ['configurations' => Configuration::all()]);
+        foreach ($this->table->all() as $item) {
+            $configurationsArray[$item->key] = [
+                'title' => $item->title,
+                'description' => $item->description,
+                'value' => $item->value,
+            ];
+        }
+
+        return view('admin.configuration.edit', ['config' => $configurationsArray]);
     }
 
     /**
