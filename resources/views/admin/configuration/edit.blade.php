@@ -44,9 +44,9 @@
                 <form action="#" class="gy-3">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-info">
-                            <x-admin.forms.configuration.input-text id="titulo" :dataArray="$config['titulo']"/>
-                            <x-admin.forms.configuration.textarea id="descricao" :dataArray="$config['descricao']"/>
-                            <x-admin.forms.configuration.input-text id="copyright" :dataArray="$config['copyright']"/>
+                            <x-admin.forms.configuration.input-text id="titulo" :dataArray="$config['titulo']" :mandatory="true"/>
+                            <x-admin.forms.configuration.textarea id="descricao" :dataArray="$config['descricao']"  :mandatory="true"/>
+                            <x-admin.forms.configuration.input-text id="copyright" :dataArray="$config['copyright']"  :mandatory="true"/>
                             <x-admin.forms.configuration.input-text id="email" :dataArray="$config['email']"/>
                             <x-admin.forms.configuration.input-text id="telefone" :dataArray="$config['telefone']"/>
                         </div>
@@ -62,10 +62,10 @@
                         <div class="tab-pane" id="tab-option">
                             <x-admin.forms.configuration.input-switch id="manutencao" :dataArray="$config['manutencao']"/>
                             <x-admin.forms.configuration.input-switch id="exibir_versao" :dataArray="$config['exibir_versao']"/>
-                            <x-admin.forms.configuration.input-text  id="cor_principal" :dataArray="$config['cor_principal']" :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_titulos" :dataArray="$config['cor_titulos']" :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_botoes" :dataArray="$config['cor_botoes']" :haveColor="true"/>
-                            <x-admin.forms.configuration.input-text  id="cor_fundo" :dataArray="$config['cor_fundo']" :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_principal" :dataArray="$config['cor_principal']" :haveColor="true"  :mandatory="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_titulos" :dataArray="$config['cor_titulos']" :haveColor="true"  :mandatory="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_botoes" :dataArray="$config['cor_botoes']" :haveColor="true"  :mandatory="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_fundo" :dataArray="$config['cor_fundo']" :haveColor="true"  :mandatory="true"/>
                         </div>
                     </div>
 

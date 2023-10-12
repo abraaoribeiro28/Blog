@@ -3,6 +3,9 @@
         <div class="form-group">
             <label class="form-label" for="{{ $id }}">
                 {{ $dataArray ? $dataArray['title'] : $title }}
+                @if($mandatory)
+                    <span class="text-danger fw-bold">*</span>
+                @endif
             </label>
             <span class="form-note">
                 {{ $dataArray ? $dataArray['description'] : $description }}
