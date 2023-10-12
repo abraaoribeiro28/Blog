@@ -17,14 +17,17 @@
             <div class="form-control-wrap d-flex">
                 @if (isset($haveColor) && $haveColor == true)
                     <input type="color" class="me-1 p-0 rounded"
-                           id="id-{{ $id }}" value="{{ old($id) ?? $dataArray ? $dataArray['value'] : $value }}"
+                           id="id-{{ $id }}" value="{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}"
                            style="height: 36px; border: 1px solid #dbdfea;"
                            oninput="document.getElementById('{{ $id }}').value = this.value">
                 @endif
-                <input type="text" class="form-control"
+                <input type="text" class="form-control @error($id) error @enderror"
                        id="{{ $id }}" name="{{ $id }}"
-                       value="{{ old($id) ?? $dataArray ? $dataArray['value'] : $value }}">
+                       value="{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}">
             </div>
+            @error($id)
+                <span class="d-block text-danger">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 </div>

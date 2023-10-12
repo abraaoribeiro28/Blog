@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col-lg-7">
-        <img src="{{ asset(old($id) ?? $dataArray ? $dataArray['value'] : $value) }}"
+        <img src="{{ asset(old($id) ?? ($dataArray ? $dataArray['value'] : $value)) }}"
              alt="Logo" style="max-height: 87px;">
     </div>
 </div>

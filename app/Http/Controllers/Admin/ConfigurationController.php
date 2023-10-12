@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigurationRequest;
 use App\Models\Admin\Configuration;
 use Illuminate\Http\Request;
 
@@ -68,9 +69,9 @@ class ConfigurationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ConfigurationRequest $request, string $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
