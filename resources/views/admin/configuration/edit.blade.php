@@ -5,7 +5,7 @@
                 <div class="nk-block-head-content">
                     <h3 class="nk-block-title page-title">Configurações do site</h3>
                     <div class="nk-block-des text-soft">
-                        <p>Bem-vindo ao painel de administração.</p>
+                        <p>Preencha os campos do formulário com as informações.</p>
                     </div>
                 </div>
                 <div class="nk-block-head-content">
@@ -55,11 +55,17 @@
                             <x-admin.forms.configuration.textarea id="incorporacao_rodape" label="Incorporação de rodapé" description="Adiocione o código de incorporação do rodapé (footer)"/>
                         </div>
                         <div class="tab-pane" id="tab-img">
-                            <p>Imagens em desenvolvimento</p>
+                            <x-admin.forms.configuration.input-file id="logo" label="Logo do site" description="Tamanho ideal: 130x40"/>
+                            <x-admin.forms.configuration.input-file id="favicon" label="Favicon" description="Tamanho ideal: Tamanho ideal: 128x128"/>
+                            <x-admin.forms.configuration.input-file id="logo_radape" label="Logo do Rodapé" description="Tamanho ideal: 130x40"/>
                         </div>
                         <div class="tab-pane" id="tab-option">
                             <x-admin.forms.configuration.input-switch id="manutencao" label="Modo de manutenção" description="Ative para tornar o site offline para os visitantes."/>
                             <x-admin.forms.configuration.input-switch id="exibir_versao" label="Exibir número da versão do site" description="Ative para exibir a versão do site no rodapé."/>
+                            <x-admin.forms.configuration.input-text  id="cor_principal" label="Cor principal" description="Cor predominante do site, exemplo: cabeçalho e rodapé." :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_titulos" label="Cor dos títulos" description="Cor dos títulos das seções do site." :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_botoes" label="Cor dos botões" description="Cor dos botões do site." :haveColor="true"/>
+                            <x-admin.forms.configuration.input-text  id="cor_fundo_texto" label="Cor de fundos de títulos" description="Cor de fundo de títulos do site." :haveColor="true"/>
                         </div>
                     </div>
 

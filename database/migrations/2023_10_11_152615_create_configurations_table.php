@@ -26,11 +26,13 @@ return new class extends Migration
         DB::table('configurations')->insert([
             'key' => 'titulo',
             'title' => 'Título do site',
+            'value' => 'Site exemplo'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'descricao',
             'title' => 'Descrição',
+            'value' => 'Descrição de exemplo'
         ]);
 
         DB::table('configurations')->insert([
@@ -63,16 +65,19 @@ return new class extends Migration
         DB::table('configurations')->insert([
             'key' => 'logo',
             'title' => 'Logo',
+            'value' => 'assets/images/logo.jpg'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'favicon',
             'title' => 'Favicon',
+            'value' => 'assets/images/logo.jpg'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'logo_radape',
             'title' => 'Logo Rodapé',
+            'value' => 'assets/images/logo.jpg'
         ]);
 
         // Opções
@@ -92,21 +97,25 @@ return new class extends Migration
         DB::table('configurations')->insert([
             'key' => 'cor_principal',
             'title' => 'Cor Principal',
+            'value' => '#000C31'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'cor_titulos',
             'title' => 'Cor dos títulos',
+            'value' => '#000C31'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'cor_botoes',
             'title' => 'Cor dos botões',
+            'value' => '#000C31'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'cor_fundo_texto',
             'title' => 'Cor de fundos de texto',
+            'value' => '#B4D6ED'
         ]);
     }
 

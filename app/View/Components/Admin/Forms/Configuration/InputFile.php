@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class InputText extends Component
+class InputFile extends Component
 {
     /**
      * Create a new component instance.
@@ -15,7 +15,6 @@ class InputText extends Component
         public string $id,
         public string $label,
         public string $description,
-        public bool $haveColor = false
     ) {
     }
 
@@ -24,6 +23,6 @@ class InputText extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.forms.configuration.input-text');
+        return view('components.admin.forms.configuration.input-file');
     }
 }
