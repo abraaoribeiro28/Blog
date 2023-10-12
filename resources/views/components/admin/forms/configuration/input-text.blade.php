@@ -25,9 +25,6 @@
                        id="{{ $id }}" name="{{ $id }}"
                        value="{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}">
             </div>
-            @error($id)
-                <span class="d-block text-danger">{{ $message }}</span>
-            @enderror
         </div>
     </div>
 </div>

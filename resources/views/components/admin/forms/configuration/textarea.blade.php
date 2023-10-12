@@ -17,9 +17,6 @@
             <div class="form-control-wrap">
                 <textarea class="form-control @error($id) error @enderror" id="{{ $id }}" name="{{ $id }}">{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}</textarea>
             </div>
-            @error($id)
-                <span class="d-block text-danger">{{ $message }}</span>
-            @enderror
         </div>
     </div>
 </div>

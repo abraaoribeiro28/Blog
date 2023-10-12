@@ -41,12 +41,7 @@
                     </ul>
                 </div>
             </div>
-            @if($errors->any())
-                <div class="alert alert-icon alert-danger mt-3" role="alert">
-                    <em class="icon ni ni-alert-circle"></em>
-                    <strong>Preencha os dados corretamente!</strong>.
-                </div>
-            @endif
+            <x-admin.forms.alert/>
         </div>
 
         <div class="card card-bordered">

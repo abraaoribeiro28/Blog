@@ -32,7 +32,7 @@ return new class extends Migration
 
         DB::table('configurations')->insert([
             'key' => 'descricao',
-            'title' => 'Descrição',
+            'title' => 'Descrição do site',
             'description' => 'Especifique uma descrição para seu site.',
             'value' => 'Descrição de exemplo'
         ]);
