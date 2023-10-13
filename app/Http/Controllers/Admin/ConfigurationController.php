@@ -74,7 +74,7 @@ class ConfigurationController extends Controller
     public function update(ConfigurationRequest $request, string $id)
     {
         try {
-            if($this->repository->upInsert($request, 1)){
+            if($this->repository->upInsert($request, $id)){
                 return redirect()
                     ->back()
                     ->with('success', 'Os dados foram atualizados com sucesso!');
