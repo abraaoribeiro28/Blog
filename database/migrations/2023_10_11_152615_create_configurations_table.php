@@ -48,6 +48,7 @@ return new class extends Migration
             'key' => 'email',
             'title' => 'E-mail',
             'description' => 'E-mail para contato.',
+            'value' => 'contato@exemplo.com'
         ]);
 
         DB::table('configurations')->insert([
