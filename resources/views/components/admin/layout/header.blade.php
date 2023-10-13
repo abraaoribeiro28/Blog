@@ -13,7 +13,7 @@
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
                     <li>
-                        <a href="{{ route('portal.home') }}" class="nk-menu-link px-0" style="color: #526484;">
+                        <a href="{{ route('portal.home') }}" target="_blank" class="nk-menu-link px-0" style="color: #526484;">
                             <i class="bi bi-box-arrow-up-right"></i>
                             Acessar portal
                         </a>

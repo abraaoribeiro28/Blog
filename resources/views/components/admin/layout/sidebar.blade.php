@@ -5,7 +5,7 @@
         </li>
 
         <li class="nk-menu-item">
-            <a href="#" class="nk-menu-link">
+            <a href="{{ route('dashboard') }}" class="nk-menu-link">
                 <span class="nk-menu-icon"><i class="icon bi bi-graph-up"></i></span>
                 <span class="nk-menu-text">Dashboard</span>
             </a>
@@ -47,7 +47,7 @@
         </li>
 
         <li class="nk-menu-item">
-            <a href="#" class="nk-menu-link">
+            <a href="{{ route('configuration.edit', 1) }}" class="nk-menu-link">
                 <span class="nk-menu-icon"><i class="icon bi bi-sliders"></i></span>
                 <span class="nk-menu-text">Configurações</span>
             </a>
