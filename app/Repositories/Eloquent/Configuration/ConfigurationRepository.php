@@ -22,6 +22,11 @@ class ConfigurationRepository extends Repository implements IConfigurationReposi
     {
         try {
             foreach ($request->except('_token', '_method', 'tab') as $key => $value){
+                if ($request->hasFile($key) && $request->file($key)->isValid()) {
+                    $filename = $key.".".$value->extension();
+                    $path = $request->file($key)->storeAs("configurations", $filename, 'public');
+                    $value = '/storage/'.$path;
+                }
                 $this->getModel()->updateOrCreate(['key' => $key], ['value' => $value]);
             }
             return true;

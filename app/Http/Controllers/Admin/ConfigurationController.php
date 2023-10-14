@@ -79,12 +79,13 @@ class ConfigurationController extends Controller
                     ->back()
                     ->with('success', 'Os dados foram atualizados com sucesso!');
             }
-            return redirect()->back();
         } catch (\Exception $exception) {
-            return redirect()
+            // ...
+        }
+
+        return redirect()
                 ->back()
                 ->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
-        }
     }
 
     /**

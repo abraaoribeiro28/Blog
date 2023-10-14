@@ -9,7 +9,7 @@
             </span>
             <div class="form-control-wrap">
                 <div class="form-file">
-                    <input type="file" class="form-file-input" id="logo" name="logo">
+                    <input type="file" class="form-file-input" id="{{ $id }}" name="{{ $id }}">
                     <label class="form-file-label" for="logo">Escolher arquivo</label>
                 </div>
             </div>
