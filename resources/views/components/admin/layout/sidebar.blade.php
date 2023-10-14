@@ -13,6 +13,13 @@
 
         <li class="nk-menu-item">
             <a href="#" class="nk-menu-link">
+                <span class="nk-menu-icon"><i class="icon bi bi-postcard"></i></span>
+                <span class="nk-menu-text">Postagens</span>
+            </a>
+        </li>
+
+        <li class="nk-menu-item">
+            <a href="#" class="nk-menu-link">
                 <span class="nk-menu-icon"><i class="icon bi bi-chat-left-dots"></i></span>
                 <span class="nk-menu-text">Solicitações
                     <span class="ms-2 badge bg-info">2</span>
