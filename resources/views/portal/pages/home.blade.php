@@ -200,26 +200,8 @@
             </div>
         </div>
     </section>
-
-    <footer class="bg-dark-blue text-center text-white">
-        <div class="container p-4 pb-0">
-            <section class="mb-4">
-                <a class="m-1 text-white text-decoration-none" href="#">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a class="m-1 text-white text-decoration-none" href="#">
-                    <i class="bi bi-threads"></i>
-                </a>
-                <a class="m-1 text-white text-decoration-none" href="#">
-                    <i class="bi bi-envelope-at-fill"></i>
-                </a>
-            </section>
-        </div>
-
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Copyright © 2023 Eu te entendo, eu te quero vivo(a). Todos os direitos reservados.
-        </div>
-    </footer>
-
-    <script async src="//www.instagram.com/embed.js"></script>
+    
+    @section('script')
+        <script async src="//www.instagram.com/embed.js"></script>
+    @endsection
 </x-portal-layout>
