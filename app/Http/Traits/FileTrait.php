@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 
+use App\Models\Admin\Configuration;
 use CURLFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -209,5 +210,33 @@ trait FileTrait
     {
 
         return preg_replace('/\s+|_+|[^a-zA-Z0-9.]+/', $replace, $slug);
+    }
+
+    /**
+     * Cria um arquivo com as cores das configurações do site.
+     *
+     * @param $colors
+     * @return bool
+     */
+    public function saveColors($path): bool
+    {
+        $configurations = Configuration::whereIn('key', [
+            'cor_principal', 'cor_titulos', 'cor_botoes', 'cor_fundo'
+        ])->get();
+
+        foreach ($configurations as $key => $value) {
+            $config[$value->key] = $value->value;
+        }
+
+        $context = ".bg-cor-principal {background-color: $config[cor_principal];}
+.cor-principal {color: $config[cor_principal] !important;}
+.bg-cor-titulos {background-color: $config[cor_titulos] !important;}
+.cor-titulos {color: $config[cor_titulos] !important;}
+.bg-cor-botoes {background-color: $config[cor_botoes] !important;}
+.cor-botoes {color: $config[cor_botoes] !important;}
+.bg-cor-fundo {background-color: $config[cor_fundo] !important;}
+.cor-fundo {color: $config[cor_fundo] !important;}
+";
+        return $this->createfile($path, $context);
     }
 }

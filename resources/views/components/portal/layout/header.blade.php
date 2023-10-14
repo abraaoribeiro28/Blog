@@ -1,4 +1,4 @@
-<header class="bg-dark-blue">
+<header class="bg-cor-principal">
     <nav class="navbar navbar-expand-lg navbar-dark py-md-4">
         <div class="container">
             <a class="navbar-brand" href="#">
