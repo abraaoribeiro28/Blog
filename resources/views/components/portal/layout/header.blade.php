@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark py-md-4">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/images/logo.jpg') }}" loading="lazy" alt="logo" />
+                <img class="logo" src="{{ url($configuration['logo']) }}" loading="lazy" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

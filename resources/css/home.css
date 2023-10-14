@@ -17,6 +17,10 @@
 /*    padding-left: 60px;*/
 /*}*/
 
+/* Header */
+.logo{
+    max-height: 100px;
+}
 
 /* --- Generic --- */
 .section{
