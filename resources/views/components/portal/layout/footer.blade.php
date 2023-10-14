@@ -1,4 +1,4 @@
-<footer class="bg-dark-blue text-center text-white">
+<footer class="bg-cor-principal text-center text-white">
     <div class="container p-4 pb-0">
         <section class="mb-4">
             <a class="m-1 text-white text-decoration-none" href="#">

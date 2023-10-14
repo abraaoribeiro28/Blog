@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" media="all">
 
+<link rel="stylesheet" href="{{ asset($cssColorPath) }}">
+
 @vite(['resources/css/app.css', 'resources/css/home.css'])
 
 @yield('style')
