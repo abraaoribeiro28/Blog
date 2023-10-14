@@ -4,13 +4,9 @@
 @vite(['resources/css/app.css'])
 
 <!-- Fav Icon  -->
-<link rel="shortcut icon" href="themes/images/favicon.png">
+<link rel="icon" type="image/x-icon" href="{{ url($configuration['favicon']) }}">
 <!-- StyleSheets  -->
 <link rel="stylesheet" href="{{ url('theme/src/assets/css/dashlite.min.css') }}">
 <link id="skin-default" rel="stylesheet" href="{{ url('theme/src/assets/css/theme.css') }}">
-{{-- 
-<link rel="stylesheet" href="./assets/css/dashlite.css">
-<link id="skin-default" rel="stylesheet" href="./assets/css/theme.css"> --}}
-
 
 @yield('style')
