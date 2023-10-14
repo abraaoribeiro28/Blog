@@ -11,12 +11,24 @@ class PostController extends Controller
 {
     use SoftDeletes;
 
+    public $table;
+
+    public function __construct()
+    {
+        $this->table = app(Post::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $posts = $this->table
+            ->with('categoryPost')
+            ->orderBy('publication_date', 'desc')
+            ->get();
+
+        return view('admin.post.index', compact('posts'));
     }
 
     /**

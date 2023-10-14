@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    // Configuration
-    Route::resource('configuration', ConfigurationController::class)->only(['edit', 'update']);
+    Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
+    Route::resource('posts', PostController::class);
 });
 
 //Route::middleware('auth')->group(function () {

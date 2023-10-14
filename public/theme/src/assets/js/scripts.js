@@ -502,16 +502,16 @@
           dom: dom,
           language: {
             search: "",
-            searchPlaceholder: "Type in to Search",
-            lengthMenu: "<span class='d-none d-sm-inline-block'>Show</span><div class='form-control-select'> _MENU_ </div>",
-            info: "_START_ -_END_ of _TOTAL_",
+            searchPlaceholder: "Digite para pesquisar",
+            lengthMenu: "<span class='d-none d-sm-inline-block'>Mostrar</span><div class='form-control-select'> _MENU_ </div>",
+            info: "_START_ -_END_ de _TOTAL_",
             infoEmpty: "0",
             infoFiltered: "( Total _MAX_  )",
             paginate: {
-              "first": "First",
-              "last": "Last",
-              "next": "Next",
-              "previous": "Prev"
+              "first": "Primeiro",
+              "last": "Último",
+              "next": "Próximo",
+              "previous": "Anterior"
             }
           }
         },

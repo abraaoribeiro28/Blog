@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\Post;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -23,5 +25,13 @@ class DatabaseSeeder extends Seeder
 
         $role = Role::create(['name' => 'Super Admin']);
         $user->assignRole($role);
+
+
+        DB::table('category_posts')->insert([
+           'name' => 'Geral',
+           'slug' => 'geral',
+        ]);
+
+        Post::factory(100)->create();
     }
 }

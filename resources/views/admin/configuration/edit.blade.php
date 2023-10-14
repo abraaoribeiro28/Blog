@@ -46,7 +46,7 @@
 
         <div class="card card-bordered">
             <div class="card-inner">
-                <form action="{{ route('configuration.update', 1) }}" method="POST" enctype="multipart/form-data" class="gy-3">
+                <form action="{{ route('configurations.update', 1) }}" method="POST" enctype="multipart/form-data" class="gy-3">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="tab" id="input-tab" value="{{ old('tab') ?? 'tab-info'}}">
