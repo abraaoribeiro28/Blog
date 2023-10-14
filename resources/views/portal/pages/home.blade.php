@@ -1,5 +1,5 @@
 <x-portal-layout>
-    <section class="main-section">
+    <section class="main-section bg-cor-fundo">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-md-6">
