@@ -87,12 +87,30 @@
 
     @section('script')
         <script>
+            // Salvando último tab clicado
             const tabs = document.querySelectorAll('.nav-tabs .nav-link');
             const inputTab = document.querySelector('#input-tab');
 
             tabs.forEach(element => element.onclick = () => {
                 inputTab.value = element.getAttribute('href').replace('#', '');
             })
+
+            // exibindo imagem selecionada
+            const inputsFile = document.querySelectorAll('.form-file-input');
+
+            inputsFile.forEach(element => {
+                element.onchange = () => {
+                    const file = element.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = () => {
+                        const img = document.getElementById('image-' + element.id);
+                        img.src = reader.result;
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            });
         </script>
     @endsection
 </x-app-layout>

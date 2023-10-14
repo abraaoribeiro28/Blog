@@ -9,14 +9,14 @@
             </span>
             <div class="form-control-wrap">
                 <div class="form-file">
-                    <input type="file" class="form-file-input" id="{{ $id }}" name="{{ $id }}">
+                    <input type="file" class="form-file-input" id="{{ $id }}" name="{{ $id }}" accept="image/*">
                     <label class="form-file-label" for="logo">Escolher arquivo</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-7">
-        <img src="{{ asset(old($id) ?? ($dataArray ? $dataArray['value'] : $value)) }}"
-             alt="Logo" style="max-height: 87px;">
+        <img src="{{ asset(old($id) ?? ($dataArray ? $dataArray['value'] : $value)) }}" 
+            id="image-{{ $id }}" style="max-height: 87px;">
     </div>
 </div>
