@@ -17,10 +17,9 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->text($maxNbChars = 80);
         return [
-            'title' => $title,
-            'slug' => Str::of('$title')->slug('-'),
+            'title' => fake()->text($maxNbChars = 80),
+            'slug' => Str::of(fake()->text($maxNbChars = 80))->slug('-'),
             'text' => fake()->text($maxNbChars = 180),
             'author' => fake()->name(),
             'publication_date' => fake()->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),

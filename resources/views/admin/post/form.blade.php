@@ -18,20 +18,26 @@
 
         <div class="card card-bordered h-100">
             <div class="card-inner">
-                <form action="#">
+                <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label class="form-label" for="title">Título</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="title">
+                            <input type="text" class="form-control" id="title" name="title">
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="title">Autor</label>
+                                <label class="form-label" for="category_posts_id">Categoria</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" class="form-control" id="title">
+                                    <select class="form-select js-select2" id="category_posts_id" name="category_posts_id">
+                                        <option value="0">Selecione uma categoria</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -47,11 +53,83 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <button type="submit" class="btn btn-lg btn-primary">Save Informations</button>
+                        <label class="form-label" for="author">Autor</label>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" id="author" name="author">
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-3">
+                        <div class="form-group">
+                            <div>
+                                <label class="form-label">
+                                    Imagem de destaque
+                                </label>
+                            </div>
+                            <div id="image-default" class="d-inline-block">
+                                @if (empty($destaque))
+                                    <img id="image-highlight" class="card-img-top thumb-image" src="{{ url('assets/images/sem-imagem.jpg') }}" alt="Imagem" height="112.5px">
+                                @else
+                                    <img id="image-highlight" class="card-img-top thumb-image" src="{{ url($destaque->path) }}" alt="Imagem" height="112.5px">
+                                @endif
+                            </div>
+                            <button class="btn btn-sm btn-primary align-bottom ms-2" type="button" id="select-file">
+                                Selecionar imagem
+                            </button>
+                            <button class="btn btn-sm btn-danger align-bottom @if(empty($destaque)) d-none @endif" type="button" id="remove-highlight">
+                                Remover Imagem
+                            </button>
+                            <input type="file" class="d-none" name="highlight" id="highlight" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="title">Texto</label>
+                        <div class="quill-basic"></div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    @section('style')
+        <link rel="stylesheet" href="{{ url('theme/src/assets/css/editors/quill.css') }}">
+    @endsection
+
+    @section('script')
+        <script src="{{ url('theme/src/assets/js/libs/editors/quill.js') }}"></script>
+        <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
+        <script>
+            const selectFile = document.querySelector('#select-file');
+            const inputHighlight = document.querySelector('#highlight');
+            const imageHighlight = document.querySelector('#image-highlight');
+            const removeHighlight = document.querySelector('#remove-highlight');
+
+            selectFile.onclick = () => {
+                inputHighlight.click();
+            }
+
+            inputHighlight.onchange = () => {
+                if (inputHighlight.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        imageHighlight.src = reader.result;
+                    }
+                    reader.readAsDataURL(inputHighlight.files[0]);
+                    removeHighlight.classList.remove('d-none');
+                }
+            }
+
+            removeHighlight.onclick = () => {
+                imageHighlight.src = window.location.origin + '/assets/images/sem-imagem.jpg';
+
+            }
+        </script>
+    @endsection
 </x-app-layout>

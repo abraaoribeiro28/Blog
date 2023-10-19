@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,7 +37,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.form');
+        $categories = CategoryPost::all();
+        return view('admin.post.form', compact('categories'));
     }
 
     /**
@@ -44,7 +46,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
