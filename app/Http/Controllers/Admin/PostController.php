@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
+use App\Repositories\Eloquent\Post\PostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,11 +14,12 @@ class PostController extends Controller
 {
     use SoftDeletes;
 
-    public $table;
+    public $table, $repository;
 
-    public function __construct()
+    public function __construct(PostRepository $repository)
     {
         $this->table = app(Post::class);
+        $this->repository = $repository;
     }
 
     /**
@@ -47,7 +49,21 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        dd($request->all());
+        try {
+            if ($result = $this->repository->upInsert($request)) {
+                return redirect()
+                        ->back()
+                        ->with('success', 'Os dados foram atualizados com sucesso!');
+            }
+            dd($result);
+        } catch (\Throwable $th) {
+            //
+            dd($th);
+        }
+
+        return redirect()
+                ->back()
+                ->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**

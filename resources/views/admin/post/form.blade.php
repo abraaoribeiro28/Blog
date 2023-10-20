@@ -19,15 +19,7 @@
             <div class="card-inner">
                 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                        <label class="form-label" for="title">
-                            Título
-                            <span class="text-danger fw-bold">*</span>
-                        </label>
-                        <div class="form-control-wrap">
-                            <input type="text" class="form-control @error('title') error @endif" id="title" name="title">
-                        </div>
-                    </div>
+                    <x-admin.forms.input id="title" :value="isset($post) ? $post->title : null"/>
 
                     <div class="row mb-4">
                         <div class="col-md-6">
