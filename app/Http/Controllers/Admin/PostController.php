@@ -86,9 +86,18 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        try {
+            if ($result = $this->repository->upInsert($request, $post->id)) {
+                $this->uploadHighlightArchive($result, $request, $post->id);
+                return redirect()
+                    ->route('posts.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
@@ -97,29 +106,5 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
-    }
-
-    public function uploadHighlightArchive($result, $request, $id = null)
-    {
-        if ($this->validFile($request, 'highlight')) {
-            $dir = 'posts/'.$result->category->slug.'/'.$result->id;
-            $name = $this->saveUpload($request->file('highlight'), $dir);
-            if($id){
-                $highlight = Archive::where('post_id', $id)->where('highlight', true)->first();
-                $highlight->update([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension()
-                ]);
-            }else{
-                Archive::create([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension(),
-                    'highlight' => true,
-                    'post_id' => $result->id
-                ]);
-            }
-        }
     }
 }

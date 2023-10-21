@@ -23,8 +23,11 @@
 
         <div class="card card-bordered">
             <div class="card-inner">
-                <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @isset($post)
+                        @method('PUT')
+                    @endisset
                     <div class="row">
                         <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
 
