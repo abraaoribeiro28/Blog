@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
            'slug' => 'geral',
         ]);
 
-        Post::factory(100)->create();
+        // Post::factory(100)->create();
     }
 }

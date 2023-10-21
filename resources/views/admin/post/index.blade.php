@@ -18,6 +18,7 @@
                         </div>
                     </div>
                 </div>
+                <x-admin.forms.alert/>
             </div>
 
 
@@ -52,7 +53,7 @@
                                         <span class="tb-lead">{{ Str::limit($post->title, 40, '...') }}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-mb">
-                                        <span class="tb-lead">{{ $post->categoryPost->name }}</span>
+                                        <span class="tb-lead">{{ $post->category->name }}</span>
                                     </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{ date('d/m/Y', strtotime($post->publication_date)) }}</span>

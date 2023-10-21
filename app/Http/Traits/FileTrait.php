@@ -6,6 +6,7 @@ use App\Models\Admin\Configuration;
 use CURLFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 trait FileTrait
@@ -52,13 +53,15 @@ trait FileTrait
     {
         $nameFile = $this->getFileName($file);
 
-        /** Caso não exista realize o registro do arquivo. **/
         if ($this->fileExistsInPath($nameFile, $dir)) {
             $this->deleteFile($nameFile, $dir);
         }
-        if ($fileOld) $this->deleteFile(explode("/", $fileOld)[1], $dir);
-        $file->storeAs($dir, "{$nameFile}");
-        $this->compress(storage_path("app/public/$dir/$nameFile"), null, 1024);
+        if ($fileOld) {
+            $this->deleteFile(explode("/", $fileOld)[1], $dir);
+        }
+
+        $file->storeAs('public/'.$dir, "{$nameFile}");
+        // $this->compress(storage_path("app/public/$dir/$nameFile"), null, 1024);
 
         return "$nameFile";
     }
@@ -75,7 +78,7 @@ trait FileTrait
 
     public function getFileName($file, $reference = null): string
     {
-        return date('YmdHis') . "." . strtolower($file->extension());
+        return date('YmdHis') . Str::random(10) . "." . strtolower($file->extension());
     }
 
     private function fileExistsInPath($nameFile, $dir): bool

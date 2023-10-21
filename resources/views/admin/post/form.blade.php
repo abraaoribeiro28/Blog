@@ -19,7 +19,7 @@
             <div class="card-inner">
                 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <x-admin.forms.input id="title" :value="isset($post) ? $post->title : null"/>
+                    <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null"/>
 
                     <div class="row mb-4">
                         <div class="col-md-6">
@@ -32,7 +32,9 @@
                                     <select class="form-select js-select2" id="category_posts_id" name="category_posts_id">
                                         <option value="0">Selecione uma categoria</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}"
+                                                @if(old('category_posts_id') == $category->id) selected @endif
+                                            >{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -48,7 +50,9 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-calendar-alt"></em>
                                     </div>
-                                    <input type="text" class="form-control date-picker @error('publication_date') error @endif" id="publication_date" name="publication_date" data-date-format="dd/mm/yyyy">
+                                    <input type="text" class="form-control date-picker @error('publication_date') error @endif"
+                                           id="publication_date" name="publication_date" data-date-format="dd/mm/yyyy"
+                                           value="{{ old('publication_date') }}">
                                 </div>
                             </div>
                         </div>
@@ -60,7 +64,7 @@
                             <span class="text-danger fw-bold">*</span>
                         </label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control @error('author') error @endif" id="author" name="author">
+                            <input type="text" class="form-control @error('author') error @endif" id="author" name="author" value="{{ old('author') }}">
                         </div>
                     </div>
 
@@ -93,7 +97,7 @@
                             Texto
                             <span class="text-danger fw-bold">*</span>
                         </label>
-                        <textarea id="summernote" name="text"></textarea>
+                        <textarea id="summernote" name="text">{{ old('text') }}</textarea>
                     </div>
 
                     <div class="form-group mt-3">
@@ -111,7 +115,7 @@
     @section('script')
         <script src="{{ url('theme/src/assets/js/libs/editors/summernote.js') }}"></script>
         <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
-        
+
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({

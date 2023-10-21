@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Models\Admin\Archive;
 use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use App\Repositories\Eloquent\Post\PostRepository;
 use Illuminate\Http\Request;
+use App\Http\Traits\FileTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    use SoftDeletes;
+    use SoftDeletes, FileTrait;
 
     public $table, $repository;
 
@@ -28,8 +31,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->table
-            ->with('categoryPost')
+            ->with('category')
             ->orderBy('publication_date', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('admin.post.index', compact('posts'));
@@ -51,19 +55,14 @@ class PostController extends Controller
     {
         try {
             if ($result = $this->repository->upInsert($request)) {
+                $this->uploadHighlightArchive($result, $request);
                 return redirect()
-                        ->back()
-                        ->with('success', 'Os dados foram atualizados com sucesso!');
+                    ->route('posts.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
             }
-            dd($result);
-        } catch (\Throwable $th) {
-            //
-            dd($th);
-        }
+        } catch (\Throwable $th) {}
 
-        return redirect()
-                ->back()
-                ->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
+        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
@@ -96,5 +95,29 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function uploadHighlightArchive($result, $request, $id = null)
+    {
+        if ($this->validFile($request, 'highlight')) {
+            $dir = 'posts/'.$result->category->slug.'/'.$result->id;
+            $name = $this->saveUpload($request->file('highlight'), $dir);
+            if($id){
+                $highlight = Archive::where('post_id', $id)->where('highlight', true)->first();
+                $highlight->update([
+                    'name' => $name,
+                    'path' => "$dir/$name",
+                    'extension' => $request->file('highlight')->extension()
+                ]);
+            }else{
+                Archive::create([
+                    'name' => $name,
+                    'path' => "$dir/$name",
+                    'extension' => $request->file('highlight')->extension(),
+                    'highlight' => true,
+                    'post_id' => $result->id
+                ]);
+            }
+        }
     }
 }

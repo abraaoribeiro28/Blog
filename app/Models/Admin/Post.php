@@ -18,8 +18,13 @@ class Post extends Model
         'category_posts_id',
     ];
 
-    public function categoryPost()
+    public function category()
     {
         return $this->belongsTo(CategoryPost::class, 'category_posts_id');
+    }
+
+    public function archives()
+    {
+        return $this->hasMany(Archive::class);
     }
 }
