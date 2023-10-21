@@ -79,7 +79,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = CategoryPost::all();
-        $highlight = $post->archives->where('highlight')[0];
+        $highlight = $post->archives->where('highlight')[0] ?? null;
         return view('admin.post.form', compact('post', 'categories', 'highlight'));
     }
 
@@ -95,7 +95,7 @@ class PostController extends Controller
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
-        } catch (\Throwable $th) {}
+        } catch (\Throwable $th) {dd($th);}
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }

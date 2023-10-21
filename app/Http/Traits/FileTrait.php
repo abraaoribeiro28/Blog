@@ -247,8 +247,7 @@ trait FileTrait
     {
         if ($this->validFile($request, 'highlight')) {
             $dir = 'posts/'.$result->category->slug.'/'.$result->id;
-            if($id){
-                $highlight = Archive::where('post_id', $id)->where('highlight', true)->first();
+            if($id && $highlight = Archive::where('post_id', $id)->where('highlight', true)->first()){
                 $name = $this->saveUpload($request->file('highlight'), $dir, $highlight->path);
                 $highlight->update([
                     'name' => $name,

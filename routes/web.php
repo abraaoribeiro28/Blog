@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ArchiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     })->name('dashboard');
     Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
     Route::resource('posts', PostController::class);
+
+
+    Route::post('posts/delete-highlight', [ArchiveController::class, 'deletePostHighlight']);
 });
 
 //Route::middleware('auth')->group(function () {
