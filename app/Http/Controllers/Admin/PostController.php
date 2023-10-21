@@ -78,7 +78,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = CategoryPost::all();
+        $highlight = $post->archives->where('highlight')[0];
+        return view('admin.post.form', compact('post', 'categories', 'highlight'));
     }
 
     /**

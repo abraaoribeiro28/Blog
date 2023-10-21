@@ -78,7 +78,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
-                                                    <li><a href="#" class="text-primary">Edit</a></li>
+                                                    <li><a href="{{ route('posts.edit', $post->id) }}" class="text-primary">Editar</a></li>
                                                     <li><a href="#" class="text-primary">View</a></li>
                                                     <li><a href="#" class="text-danger">Remove</a></li>
                                                 </ul>

@@ -3,7 +3,13 @@
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Cadastrar postagem</h3>
+                    <h3 class="nk-block-title page-title">
+                        @if(isset($post))
+                            Editar postagem
+                        @else
+                            Cadastrar postagem
+                        @endif
+                    </h3>
                     <div class="nk-block-des text-soft">
                         <p>Preencha os campos do formulário com as informações.</p>
                     </div>
@@ -19,87 +25,21 @@
             <div class="card-inner">
                 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null"/>
+                    <div class="row">
+                        <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
 
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="category_posts_id">
-                                    Categoria
-                                    <span class="text-danger fw-bold">*</span>
-                                </label>
-                                <div class="form-control-wrap error">
-                                    <select class="form-select js-select2" id="category_posts_id" name="category_posts_id">
-                                        <option value="0">Selecione uma categoria</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}"
-                                                @if(old('category_posts_id') == $category->id) selected @endif
-                                            >{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="publication_date">
-                                    Data de publicação
-                                    <span class="text-danger fw-bold">*</span>
-                                </label>
-                                <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-calendar-alt"></em>
-                                    </div>
-                                    <input type="text" class="form-control date-picker @error('publication_date') error @endif"
-                                           id="publication_date" name="publication_date" data-date-format="dd/mm/yyyy"
-                                           value="{{ old('publication_date') }}">
-                                </div>
-                            </div>
-                        </div>
+                        <x-admin.forms.input id="author" title="Autor" :value="isset($post) ? $post->author : null" :mandatory="true"/>
+
+                        <x-admin.forms.input id="category_posts_id" title="Categoria" type="select" cols="6" :data="$categories"
+                            :value="isset($post) ? $post->category_posts_id : null"  :mandatory="true"/>
+
+                        <x-admin.forms.input id="publication_date" title="Data de publicação" type="date" cols="6"
+                            :value="isset($post) ? $post->publication_date : null" :mandatory="true"/>
+
+                        <x-admin.forms.input id="highlight" title="Imagem de destaque" :value="isset($highlight) ? $highlight->path : null" type="highlight"/>
+
+                        <x-admin.forms.input id="text" title="Texto" :value="isset($post) ? $post->text : null" type="summernote" :mandatory="true"/>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="author">
-                            Autor
-                            <span class="text-danger fw-bold">*</span>
-                        </label>
-                        <div class="form-control-wrap">
-                            <input type="text" class="form-control @error('author') error @endif" id="author" name="author" value="{{ old('author') }}">
-                        </div>
-                    </div>
-
-                    <div class="d-flex mb-3">
-                        <div class="form-group">
-                            <div>
-                                <label class="form-label">
-                                    Imagem de destaque
-                                </label>
-                            </div>
-                            <div id="image-default" class="d-inline-block">
-                                @if (empty($destaque))
-                                    <img id="image-highlight" class="card-img-top thumb-image" src="{{ url('assets/images/sem-imagem.jpg') }}" alt="Imagem" height="112.5px">
-                                @else
-                                    <img id="image-highlight" class="card-img-top thumb-image" src="{{ url($destaque->path) }}" alt="Imagem" height="112.5px">
-                                @endif
-                            </div>
-                            <button class="btn btn-sm btn-primary align-bottom ms-2" type="button" id="select-file">
-                                Selecionar imagem
-                            </button>
-                            <button class="btn btn-sm btn-danger align-bottom @if(empty($destaque)) d-none @endif" type="button" id="remove-highlight">
-                                Remover Imagem
-                            </button>
-                            <input type="file" class="d-none" name="highlight" id="highlight" accept="image/*">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="title">
-                            Texto
-                            <span class="text-danger fw-bold">*</span>
-                        </label>
-                        <textarea id="summernote" name="text">{{ old('text') }}</textarea>
-                    </div>
-
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
                     </div>
