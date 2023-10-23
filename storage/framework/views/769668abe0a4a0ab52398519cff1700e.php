@@ -162,7 +162,6 @@
     <?php $__env->startSection('script'); ?>
         <script src="<?php echo e(url('theme/src/assets/js/libs/editors/summernote.js')); ?>"></script>
         <script src="<?php echo e(url('theme/src/assets/js/editors.js')); ?>"></script>
-        <script src="<?php echo e(url('assets/js/functions.js')); ?>"></script>
 
         <script defer>
             $(document).ready(function() {

@@ -58,7 +58,6 @@
     @section('script')
         <script src="{{ url('theme/src/assets/js/libs/editors/summernote.js') }}"></script>
         <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
-        <script src="{{ url('assets/js/functions.js') }}"></script>
 
         <script defer>
             $(document).ready(function() {

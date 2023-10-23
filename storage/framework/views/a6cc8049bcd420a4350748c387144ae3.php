@@ -2,6 +2,7 @@
 <script src="<?php echo e(url('theme/src/assets/js/bundle.js')); ?>"></script>
 <script src="<?php echo e(url('theme/src/assets/js/scripts.js')); ?>"></script>
 <script src="<?php echo e(url('theme/src/assets/js/charts/gd-default.js')); ?>"></script>
+<script src="<?php echo e(url('assets/js/functions.js')); ?>"></script>
 
 <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.js']); ?>
 

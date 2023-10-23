@@ -95,7 +95,7 @@ class PostController extends Controller
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
-        } catch (\Throwable $th) {dd($th);}
+        } catch (\Throwable $th) {}
 
         return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
@@ -103,8 +103,14 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $post = Post::findOrFail($request->id);
+            $post->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

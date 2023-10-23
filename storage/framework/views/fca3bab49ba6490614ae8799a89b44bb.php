@@ -64,7 +64,7 @@
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr class="nk-tb-item">
+                                <tr class="nk-tb-item" id="item-<?php echo e($post->id); ?>">
                                     <td class="nk-tb-col nk-tb-col-check">
                                         <div class="custom-control custom-control-sm custom-checkbox notext">
                                             <input type="checkbox" class="custom-control-input" id="<?php echo e($post->id); ?>">
@@ -101,8 +101,12 @@
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
                                                     <li><a href="<?php echo e(route('posts.edit', $post->id)); ?>" class="text-primary">Editar</a></li>
-                                                    <li><a href="#" class="text-primary">View</a></li>
-                                                    <li><a href="#" class="text-danger">Remove</a></li>
+                                                    
+                                                    <li>
+                                                        <a href="#" class="text-danger" onclick="confirmDelete(<?php echo e($post->id); ?>)">
+                                                            Excluir
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -115,6 +119,66 @@
             </div>
         </div>
     </div>
+
+    <?php $__env->startSection('script'); ?>
+        <script>
+            async function confirmDelete(id){
+                const item = document.querySelector(`#item-${id}`);
+
+
+
+                    // Swal.fire({
+                    //     title: 'Tem certeza?',
+                    //     text: "Você não poderá reverter isso!",
+                    //     icon: 'warning',
+                    //     showCancelButton: true,
+                    //     confirmButtonText: 'Sim, exclua-o!',
+                    //     cancelButtonText: 'Cancelar',
+                    // }).then(async function (result) {
+                    //     if (result.value) {
+                    //         const response = await myFetch('/admin/posts/delete', 'POST', {
+                    //             "id": id
+                    //         });
+                    //         if (response){
+                    //             item.remove();
+                    //             Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
+                    //         }else{
+                    //             Swal.fire('Não foi possível deletar o registro', 'Ocorreu um erro inesperado. Por favor, tente novamente.', 'error');
+                    //         }
+                    //     }
+                    // });
+
+
+
+
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    cancelButtonText: 'Cancelar',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, exclua-o!',
+                    showLoaderOnConfirm: true,
+                    preConfirm: async function preConfirm() {
+                        const response = await myFetch('/admin/posts/delete', 'POST', {
+                            "id": id
+                        });
+                        if (!response){
+                            Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
+                        }
+                    },
+                    allowOutsideClick: function allowOutsideClick() {
+                        return !Swal.isLoading();
+                    }
+                }).then(function (response) {
+                    if (response) {
+                        item.remove();
+                        Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
+                    }
+                });
+            }
+        </script>
+    <?php $__env->stopSection(); ?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
