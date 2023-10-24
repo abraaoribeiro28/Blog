@@ -171,7 +171,7 @@
                         return !Swal.isLoading();
                     }
                 }).then(function (response) {
-                    if (response) {
+                    if (response.isConfirmed) {
                         item.remove();
                         Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
                     }
