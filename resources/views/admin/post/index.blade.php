@@ -79,7 +79,6 @@
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
                                                     <li><a href="{{ route('posts.edit', $post->id) }}" class="text-primary">Editar</a></li>
-                                                    {{-- <li><a href="#" class="text-primary">View</a></li> --}}
                                                     <li>
                                                         <a href="#" class="text-danger" onclick="confirmDelete({{$post->id}})">
                                                             Excluir
@@ -102,33 +101,6 @@
         <script>
             async function confirmDelete(id){
                 const item = document.querySelector(`#item-${id}`);
-
-
-
-                    // Swal.fire({
-                    //     title: 'Tem certeza?',
-                    //     text: "Você não poderá reverter isso!",
-                    //     icon: 'warning',
-                    //     showCancelButton: true,
-                    //     confirmButtonText: 'Sim, exclua-o!',
-                    //     cancelButtonText: 'Cancelar',
-                    // }).then(async function (result) {
-                    //     if (result.value) {
-                    //         const response = await myFetch('/admin/posts/delete', 'POST', {
-                    //             "id": id
-                    //         });
-                    //         if (response){
-                    //             item.remove();
-                    //             Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
-                    //         }else{
-                    //             Swal.fire('Não foi possível deletar o registro', 'Ocorreu um erro inesperado. Por favor, tente novamente.', 'error');
-                    //         }
-                    //     }
-                    // });
-
-
-
-
                 Swal.fire({
                     title: 'Tem certeza?',
                     text: "Você não poderá reverter isso!",
