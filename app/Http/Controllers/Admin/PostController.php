@@ -44,7 +44,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = CategoryPost::all();
+        $categories = CategoryPost::where('status', true)->get();
         return view('admin.post.form', compact('categories'));
     }
 
@@ -62,7 +62,7 @@ class PostController extends Controller
             }
         } catch (\Throwable $th) {}
 
-        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
+        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**

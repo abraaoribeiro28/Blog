@@ -11,7 +11,8 @@ class CategoryPost extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'status'
     ];
 
     public function posts()

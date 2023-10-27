@@ -5,21 +5,29 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryPostRequest;
 use App\Models\Admin\CategoryPost;
+use App\Repositories\Eloquent\CategoryPost\CategoryPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use TheSeer\Tokenizer\Exception;
 
 class CategoryPostController extends Controller
 {
     use SoftDeletes;
 
+    public $table, $repository;
+
+    public function __construct(CategoryPostRepository $repository)
+    {
+        $this->table = app(CategoryPost::class);
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = CategoryPost::with('posts')->get();
+        $categories = $this->table->with('posts')->orderBy('id', 'desc')->get();
         return view('admin.post-categories.index', compact('categories'));
-
     }
 
     /**
@@ -35,7 +43,15 @@ class CategoryPostController extends Controller
      */
     public function store(CategoryPostRequest $request)
     {
-        dd($request->all());
+        try {
+            if ($result = $this->repository->upInsert($request)) {
+                return redirect()
+                    ->route('posts-categories.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**

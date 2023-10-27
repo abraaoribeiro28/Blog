@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         DB::table('category_posts')->insert([
            'name' => 'Geral',
            'slug' => 'geral',
+            'status' => true
         ]);
 
          Post::factory(10)->create();
