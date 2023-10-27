@@ -50,8 +50,10 @@
                 </button>
                 <input type="file" class="d-none" name="highlight" id="highlight" accept="image/*">
             @elseif(isset($type) && $type == 'switch')
+                <input type="checkbox" class="custom-control-input" name="{{ $id }}" value="0" checked>
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="{{ $id }}">
+                    <input type="checkbox" class="custom-control-input" id="{{ $id }}" name="{{ $id }}" value="1"
+                    @if(old($id) == 1 || $value == 1) checked @endif>
                     <label class="custom-control-label" for="{{ $id }}">{{ $switchLabel ?? null }}</label>
                 </div>
             @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryPostRequest;
 use App\Models\Admin\CategoryPost;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,9 +33,9 @@ class CategoryPostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryPostRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
