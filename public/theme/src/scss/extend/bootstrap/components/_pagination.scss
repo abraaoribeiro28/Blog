@@ -36,6 +36,7 @@
         &:not([href]){
             background-color: transparent;
             color: inherit;
+            // height: 100%;
             .icon{
                 &:before{
                     position: relative;

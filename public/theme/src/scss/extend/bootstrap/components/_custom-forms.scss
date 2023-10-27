@@ -141,7 +141,7 @@
         &-label{
             font-size: $checkbox-radio-switch-font-size;
             line-height: $checkbox-radio-switch-line-height;
-            padding-top: math.div($checkbox-radio-switch-size - $checkbox-radio-switch-line-height,2);
+            padding-top: math.div($checkbox-radio-switch-size - $checkbox-radio-switch-line-height, 2);
             &::before,&::after {
                 top: 0;
             }
@@ -207,7 +207,7 @@
             .custom-control-label {
                 font-size: $checkbox-radio-switch-font-size-lg;
                 line-height: $checkbox-radio-switch-line-height-lg;
-                padding-top: math.div($checkbox-radio-switch-size-lg - $checkbox-radio-switch-line-height-lg,2);
+                padding-top: math.div($checkbox-radio-switch-size-lg - $checkbox-radio-switch-line-height-lg ,2);
                 &::before,&::after {
                     left: -($checkbox-radio-switch-text-gap-lg + $checkbox-radio-switch-size-lg);
                     width: $checkbox-radio-switch-size-lg;
@@ -472,8 +472,8 @@
     width: 100%;
     height: 100%;
     .custom-control-label {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }
 }
 
@@ -486,7 +486,7 @@
         }
     }
 }
-+// Custom-checkbox
+// Custom-checkbox
 .custom-checkbox{
     .custom-control-input:disabled {
         &:checked ~ .custom-control-label::before {
@@ -497,7 +497,6 @@
         }
     }
 }
-
 // custom-radio
 .custom-radio {
     .custom-control-label::before {
@@ -510,7 +509,6 @@
         }
     }
 }
-
 //image control
 .image-control{
     &.custom-control{
@@ -571,6 +569,7 @@
         height: $switch-indicator-size;
         border-radius: $switch-indicator-border-radius;
         background-color: $custom-control-indicator-border-color;
+        transition: transform .15s ease-in-out, $custom-forms-transition;
       }
     }
     .custom-control-input:disabled {
@@ -579,21 +578,21 @@
         }
     }
     .custom-control-input:checked ~ .custom-control-label {
-      &::after {
-        background-color: $custom-control-indicator-bg;
-        transform: translateX($switch-indicator-active-position);
-      }
+        &::after {
+            background-color: $custom-control-indicator-bg;
+            transform: translateX($custom-switch-width - $custom-control-indicator-size);
+        }
     }
     &.custom-control-sm{
         padding-left: $switch-width-sm + $checkbox-radio-switch-text-gap-sm;
         .custom-control-label {
             &::before {
-                left: -($switch-width-sm + $checkbox-radio-switch-text-gap-sm);
+              left: -($switch-width-sm + $checkbox-radio-switch-text-gap-sm);
               width: $switch-width-sm;
               border-radius: $switch-indicator-border-radius-sm;
             }
             &::after {
-              top: math.div($checkbox-radio-switch-size-sm - $switch-indicator-size-sm, 2);
+              top: math.div($checkbox-radio-switch-size-sm - $switch-indicator-size-sm,2);
               left: add(-($switch-width-sm + $checkbox-radio-switch-text-gap-sm), $switch-border-calc);
               width: $switch-indicator-size-sm;
               height: $switch-indicator-size-sm;
@@ -610,12 +609,12 @@
         padding-left: $switch-width-lg + $checkbox-radio-switch-text-gap-lg;
         .custom-control-label {
             &::before {
-                left: -($switch-width-lg + $checkbox-radio-switch-text-gap-lg);
+              left: -($switch-width-lg + $checkbox-radio-switch-text-gap-lg);
               width: $switch-width-lg;
               border-radius: $switch-indicator-border-radius-lg;
             }
             &::after {
-              top: math.div($checkbox-radio-switch-size-lg - $switch-indicator-size-lg, 2);
+              top: math.div($checkbox-radio-switch-size-lg - $switch-indicator-size-lg,2);
               left: add(-($switch-width-lg + $checkbox-radio-switch-text-gap-lg), $switch-border-calc-1-5x);
               width: $switch-indicator-size-lg;
               height: $switch-indicator-size-lg;
@@ -731,8 +730,7 @@ label{
     }
 }
 
-// Form file
-
+// 
 .form-file {
     position: relative;
     display: inline-block;
@@ -912,8 +910,8 @@ label{
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
 }
 
 .input-group > .input-group-append > .btn,
@@ -922,8 +920,8 @@ label{
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
 }
 // for datatable
 .custom-select {

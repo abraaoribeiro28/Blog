@@ -21,7 +21,7 @@
             border-bottom: $table-border-width solid $table-border-color;
         }
     }
-    &-dark thead tr:last-child th, thead.table-dark tr:last-child th {
+    &-dark thead tr:last-child th, thead.thead-dark tr:last-child th {
         border-color: $table-dark-border-color;
     }
     td,th{
@@ -32,7 +32,6 @@
             padding-right: $table-cell-padding-x-sm;
         }
     }
-
     th {
         line-height: 1.1;
         &.overline-title {
@@ -86,7 +85,6 @@
         }
     }
 }
-
 .table-borderless th, .table-borderless td, .table-borderless thead th, .table-borderless tbody + tbody {
     border: 0;
 }

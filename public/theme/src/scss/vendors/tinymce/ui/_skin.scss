@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) Tiny Technologies, Inc. All rights reserved.
  * Licensed under the LGPL or a commercial license.
  * For LGPL see License.txt in the project root for license information.
@@ -449,7 +449,9 @@ button::-moz-focus-inner {
 .tox .tox-bar .tox-checkbox {
   margin-left: 4px;
 }
-
+.tox {
+  /* stylelint-disable-next-line no-descending-specificity */
+}
 .tox .tox-collection--toolbar .tox-collection__group {
   display: flex;
   padding: 0;
@@ -1297,7 +1299,9 @@ button::-moz-focus-inner {
 body.tox-dialog__disable-scroll {
   overflow: hidden;
 }
-
+.tox.tox-platform-ie {
+  /* IE11 CSS styles go here */
+}
 .tox.tox-platform-ie .tox-dialog-wrap {
   position: -ms-device-fixed;
 }
@@ -1353,9 +1357,6 @@ body.tox-dialog__disable-scroll {
   height: 100%;
   position: absolute;
   width: 100%;
-}
-.mce-content-body {
-  font-family: arial;
 }
 .tox.tox-inline-edit-area {
   border: 1px dotted $border-light;
@@ -1833,6 +1834,10 @@ body.tox-dialog__disable-scroll {
 
 .tox .tox-insert-table-picker > div:nth-child(10n) {
   border-right: 0;
+}
+.tox {
+  /* stylelint-disable */
+  /* stylelint-enable */
 }
 .tox .tox-menu {
   background-color: #fff;
@@ -2386,7 +2391,6 @@ body.tox-dialog__disable-scroll {
 .tox .tox-statusbar__path > * {
   margin-right: 4px;
 }
-
 .tox .tox-throbber {
   z-index: 1400;
 }
@@ -2740,7 +2744,9 @@ body.tox-dialog__disable-scroll {
   position: relative;
 }
 /* stylelint-disable */
-
+.tox {
+  /* stylelint-enable */
+}
 .tox .tox-dialog-loading::before {
   background-color: rgba(0, 0, 0, 0.5);
   content: "";

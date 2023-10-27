@@ -373,6 +373,8 @@ button {
   }
 }
 
+
+
 // Iframe content type
 @if $mfp-include-iframe-type {
   .mfp-iframe-holder {
@@ -380,7 +382,7 @@ button {
     padding-bottom: $mfp-iframe-padding-top;
     .mfp-content {
       line-height: 0;
-      width: calc(100% - 34px);
+      width:calc(100% - 34px);
       max-width: $mfp-iframe-max-width;
     }
     // .mfp-close {
@@ -471,7 +473,7 @@ button {
 
   .mfp-image-holder {
     .mfp-content {
-      max-width: calc(100% - 34px);
+      max-width:calc(100% - 34px)
     }
   }
 

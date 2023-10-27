@@ -170,3 +170,12 @@
         }
     }
 }
+@include media-breakpoint-up(xxl) {
+	.product{
+        &-gallery{
+            .slider-nav{
+                width: 470px;
+            }
+        }
+    }
+}
