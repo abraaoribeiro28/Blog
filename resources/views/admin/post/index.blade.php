@@ -11,6 +11,9 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
+                            <a href="{{ route('posts-categories.index') }}" class="btn btn-info">
+                                Categoria de postagens
+                            </a>
                             <a href="{{ route('posts.create') }}" class="btn btn-primary">
                                 <i class="icon bi bi-plus me-1"></i>
                                Nova postagem

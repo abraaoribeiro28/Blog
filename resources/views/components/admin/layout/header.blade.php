@@ -16,6 +16,12 @@
             </div><!-- .nk-header-news -->
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
+                    <li>
+                        <a href="{{ route('portal.home') }}" target="_blank" class="nk-menu-link px-0 bg-transparent" style="color: #526484;">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            Acessar portal
+                        </a>
+                    </li>
                     <li class="dropdown chats-dropdown hide-mb-xs">
                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                             <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>

@@ -16,7 +16,9 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        //
+        $categories = CategoryPost::with('posts')->get();
+        return view('admin.post-categories.index', compact('categories'));
+
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.post-categories.form');
     }
 
     /**
