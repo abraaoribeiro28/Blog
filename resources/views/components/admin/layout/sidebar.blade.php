@@ -50,6 +50,13 @@
                         </a>
                     </li>
 
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
+                            <span class="nk-menu-text">Menus do site</span>
+                        </a>
+                    </li>
+
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>

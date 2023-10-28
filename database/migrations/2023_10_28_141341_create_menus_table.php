@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('archives', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
             $table->string('name');
-            $table->string('extension');
-            $table->boolean('highlight')->nullable();
-            $table->foreignId('post_id')->nullable();
-            $table->foreign('post_id')
-                ->references('id')
-                ->on('posts')
-                ->onDelete('cascade');
+            $table->string('url');
+            $table->integer('order');
+            $table->integer('menus_id')->unsigned();
+            $table->boolean('status');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('archives');
+        Schema::dropIfExists('menus');
     }
 };
