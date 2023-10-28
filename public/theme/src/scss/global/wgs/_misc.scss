@@ -181,11 +181,11 @@
 	height: 80px;
 	flex-grow: 1;
 	&.large{
-		height: 184px;
+		height: 200px;
 	}
 }
 
-@include media-breakpoint-up(xl){
+@include media-breakpoint-between(lg,xxl){
 	.nk-sales-ck{
 		&.sales-revenue{
 			height: 164px;

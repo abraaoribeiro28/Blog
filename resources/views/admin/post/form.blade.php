@@ -23,8 +23,11 @@
 
         <div class="card card-bordered">
             <div class="card-inner">
-                <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @isset($post)
+                        @method('PUT')
+                    @endisset
                     <div class="row">
                         <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
 
@@ -56,12 +59,17 @@
         <script src="{{ url('theme/src/assets/js/libs/editors/summernote.js') }}"></script>
         <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
 
-        <script>
+        <script defer>
             $(document).ready(function() {
                 $('#summernote').summernote({
                     height: 150
                 });
             });
+
+
+            const post = @json($post ?? null);
+            let highlight = @json($highlight ?? false);
+
             const selectFile = document.querySelector('#select-file');
             const inputHighlight = document.querySelector('#highlight');
             const imageHighlight = document.querySelector('#image-highlight');
@@ -82,10 +90,18 @@
                 }
             }
 
-            removeHighlight.onclick = () => {
+            removeHighlight.addEventListener('click', async _ => {
+                if(post && highlight){
+                    resultado = await myFetch('/admin/posts/delete-highlight', 'POST', {
+                        "id": post.id
+                    });
+                    highlight = false;
+                }
                 imageHighlight.src = window.location.origin + '/assets/images/sem-imagem.jpg';
+                removeHighlight.classList.add('d-none');
+            });
 
-            }
+
         </script>
     @endsection
 </x-app-layout>

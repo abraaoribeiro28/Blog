@@ -7,11 +7,11 @@
     align-items: center;
     &-xl {
         @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
-        line-height:$btn-line-height-lg;
+        line-height: $btn-line-height-lg;
     }
     &-xs{
         @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-border-radius-xs);
-        line-height:$btn-line-height-xs;
+        line-height: $btn-line-height-xs;
     }
     // With Icon
     .icon{
@@ -82,14 +82,14 @@
             }
         }
         .dot{
-            position: absolute;
             top: .35rem;
+            position: absolute;
             right: .35rem;
             transform: translate(50%, -50%);
         }
         .badge{
-            position: absolute;
             top: .25rem;
+            position: absolute;
             right: .25rem;
             transform: translate(50%, -50%);
             &-circle{
@@ -158,7 +158,7 @@
 
 @include media-breakpoint-up(md){
     .btn-xl {
-        @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $btn-font-size-xl,  $btn-border-radius-lg);
+        @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $btn-font-size-xl, $btn-border-radius-lg);
         line-height: $btn-line-height-xl;
         &.btn-round{
             border-radius: add($btn-line-height-xl, + $btn-padding-y-xl*2, + $btn-border-width*2);

@@ -98,6 +98,9 @@
                 width: 40px;
             }
         }
+        .icon{
+            height: auto;
+        }
         &.disable{
             &:before{
                 display: none;

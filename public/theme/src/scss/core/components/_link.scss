@@ -22,7 +22,6 @@ $link-list-menu-icon-rtl: $ni-chevron-left !default;
     }
 }
 
-
 /// Link Check
 /////////////////////////////////////
 .link-check{
@@ -145,7 +144,7 @@ $link-list-menu-icon-rtl: $ni-chevron-left !default;
     a{
         display: flex;
         align-items: center;
-        padding: .625rem 1.25rem;
+        padding: .625rem 1.125rem;
         font-size: $fx-sz-12;
         font-weight: $fw-medium;
         color: $base-text;
@@ -207,7 +206,7 @@ $link-list-menu-icon-rtl: $ni-chevron-left !default;
         transition: all .4s;
         line-height: 1.3rem;
         &:after{
-            position: absolute;
+             position: absolute;
             font-size: 1rem;
             font-family: $nk-dashlite-font;
             right: 1.25rem;

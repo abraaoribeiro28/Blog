@@ -42,13 +42,8 @@
     overflow: auto;
 }
 
-.card-preview{
-    border: 1px solid $border-color;
-}
-
 .code-block{
     position: relative;
-    border: 1px solid $border-color; 
     padding:1.25rem;
     background: $white;
     border-radius: $border-radius;
@@ -116,7 +111,6 @@
             position: relative;
             padding: 25px 20px;
             text-align: center;
-            border: 1px solid $border-color;
             .btn-clipboard{
                 position: absolute;
                 top: 0;
