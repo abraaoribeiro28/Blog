@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Portal\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,7 @@ use App\Http\Controllers\Admin\CategoryPostController;
 |
 */
 
-Route::get('/', function () {
-    return view('portal.pages.home');
-})->name('portal.home');
+Route::get('/', HomeController::class)->name('portal.home');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     // Dashboard

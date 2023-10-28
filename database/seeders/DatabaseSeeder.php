@@ -33,6 +33,6 @@ class DatabaseSeeder extends Seeder
             'status' => true
         ]);
 
-         Post::factory(10)->create();
+        //  Post::factory(10)->create();
     }
 }
