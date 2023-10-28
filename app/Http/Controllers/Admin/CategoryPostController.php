@@ -81,7 +81,7 @@ class CategoryPostController extends Controller
         try {
             if ($result = $this->repository->upInsert($request, $id)) {
                 return redirect()
-                    ->route('posts-categories.index')
+                    ->route('categories.index')
                     ->with('success', 'Os dados foram atualizados com sucesso!');
             }
         } catch (\Throwable $th) {}
