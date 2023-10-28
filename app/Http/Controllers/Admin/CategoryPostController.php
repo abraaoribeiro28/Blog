@@ -10,6 +10,7 @@ use App\Repositories\Eloquent\CategoryPost\CategoryPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use TheSeer\Tokenizer\Exception;
+use function Symfony\Component\Translation\t;
 
 class CategoryPostController extends Controller
 {
@@ -47,7 +48,7 @@ class CategoryPostController extends Controller
         try {
             if ($result = $this->repository->upInsert($request)) {
                 return redirect()
-                    ->route('posts-categories.index')
+                    ->route('categories.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
         } catch (\Throwable $th) {}

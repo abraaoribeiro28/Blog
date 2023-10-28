@@ -17,6 +17,7 @@ class CategoryPostRepository extends Repository implements ICategoryPostReposito
 	protected function structureUpInsert($request): array
 	{
         $request['slug'] = Str::slug($request['name']);
+        $request['status'] = $request['status'] == '1' ? 1 : 0;
 		$fields = array_keys($request);
 		return $this->filter_request($request, $fields);
 	}

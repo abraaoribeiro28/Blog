@@ -23,7 +23,7 @@
 
         <div class="card card-bordered">
             <div class="card-inner">
-                <form action="{{ isset($category) ? route('posts-categories.update', $category->id) : route('posts-categories.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @isset($category)
                         @method('PUT')

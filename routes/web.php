@@ -28,13 +28,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
     Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
-    Route::resource('posts/categories', CategoryPostController::class)->names([
-        'index' => 'posts-categories.index',
-        'create' => 'posts-categories.create',
-        'edit' => 'posts-categories.edit',
-        'store' => 'posts-categories.store',
-        'update' => 'posts-categories.update',
-    ]);
+    Route::resource('posts/categories', CategoryPostController::class);
     Route::resource('posts', PostController::class);
 
 
