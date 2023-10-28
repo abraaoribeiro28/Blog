@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryPostRequest;
 use App\Models\Admin\CategoryPost;
+use App\Models\Admin\Post;
 use App\Repositories\Eloquent\CategoryPost\CategoryPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -65,24 +66,39 @@ class CategoryPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CategoryPost $categoryPost)
+    public function edit($id)
     {
-        //
+        $category = $this->table->findOrFail($id);
+        return view('admin.post-categories.form', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CategoryPost $categoryPost)
+    public function update(CategoryPostRequest $request, $id)
     {
-        //
+        try {
+            if ($result = $this->repository->upInsert($request, $id)) {
+                return redirect()
+                    ->route('posts-categories.index')
+                    ->with('success', 'Os dados foram atualizados com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoryPost $categoryPost)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $category = $this->table->findOrFail($request->id);
+            $category->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

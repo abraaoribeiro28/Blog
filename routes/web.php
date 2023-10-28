@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     // ajax
     Route::post('posts/delete', [PostController::class, 'destroy']);
     Route::post('posts/delete-highlight', [ArchiveController::class, 'deletePostHighlight']);
+    Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
 });
 
 //Route::middleware('auth')->group(function () {

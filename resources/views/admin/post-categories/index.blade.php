@@ -104,7 +104,7 @@
                     confirmButtonText: 'Sim, exclua-o!',
                     showLoaderOnConfirm: true,
                     preConfirm: async function preConfirm() {
-                        const response = await myFetch('/admin/posts/delete', 'POST', {
+                        const response = await myFetch('/admin/posts/categories/delete', 'POST', {
                             "id": id
                         });
                         if (!response){
