@@ -49,15 +49,15 @@ $base-light:  		$base-400;
 $base-dim:  		mix($base-color,$white, 8%);
 
 // Base/Default color @used for text
-$accent-100:  		#eff1ff;
-$accent-200:  		#e3e7fe;
-$accent-300:  		#c4cefe;
-$accent-400:  		#9cabff;
-$accent-500:  		#798bff;
+$accent-100:        #f0eaff;
+$accent-200:        #e7dcff;
+$accent-300:        #d4c2ff;
+$accent-400:        #b695ff;
+$accent-500:        #9d72ff;
 
-$accent-color:  	#6576ff;
-$accent-light:  	$accent-300;
-$accent-dark:  		#2c3782;
+$accent-color:      #854fff;
+$accent-light:      $accent-300;
+$accent-dark:       #3a2272;
 $accent-dim:  	    #e3e7fe;
 
 
@@ -159,9 +159,9 @@ $stretch-gap-x:          (4px + math.div($gutter-width,2));
 /////////    TYPTOGRAPHY    //////////
 //////////////////////////////////////
 
-$base-font-family: 		Roboto, sans-serif;
+$base-font-family: 		"DM Sans", sans-serif;
 $base-line-height:		1.65;
-$alt-font-family: 		Nunito, sans-serif;
+$alt-font-family: 		$base-font-family;
 
 $lg-base:				$base-line-height;
 $lh-rg:					$base-line-height;
@@ -722,7 +722,7 @@ $logo-height-icon:                  33px;
 
 // Sidebar
 $sidebar-width-normal:              290px;
-$sidebar-width-short:               81px;
+$sidebar-width-compact:             76px;
 $sidebar-gap-x:                     24px;
 
 $sidebar-width-fat:                 400px;
@@ -740,25 +740,25 @@ $sidebar-apps-transition-duration:   450ms;
 
 $sidebar-transition-name:           ease;
 $sidebar-transition-duration:       450ms;
-$sidebar-overlay:                   rgba($darker,.4); //v120
+$sidebar-overlay:                   rgba($darker,.4); 
 
 $sidebar-bg-color:					$lighter;
 $sidebar-border-color:              $light-200;
 
 $sidebar-bg-dark-color:			    $darker;
 $sidebar-border-dark-color:         lighten($sidebar-bg-dark-color, 10%);
-//@i-v120 -s-
+
 $sidebar-bg-theme-color:			darken($accent-dark,2%);
 $sidebar-border-theme-color:		lighten($sidebar-bg-theme-color, 10%);
-//@i-v120 -e-
+
 $sidebar-bg-light-color:            $white;
 $sidebar-border-light-color:        $light;
 
 $sidebar-toogle-btn-color:			$base-500;
 
 // Content
-$content-gap-x:                     20px - math.div($gutter-width,2);
-$content-gap-x-sm:                  36px - math.div($gutter-width,2);
+$content-gap-x:                     20px - math.div($gutter-width, 2);
+$content-gap-x-sm:                  36px - math.div($gutter-width, 2);
 $content-gap-y:                     24px;
 $content-sidebar-width:             280px;
 
@@ -777,7 +777,7 @@ $header-min-width:                  $min-body-width;
 
 $header-bg-color:                   $lighter;
 $header-bg-dark-color:              $darker;
-$header-bg-theme-color:             darken($accent-dark,2%); //@i-v120 
+$header-bg-theme-color:             darken($accent-dark,2%); 
 $header-border-bottom:				$border-light;
 $header-border-dark-bottom:		    lighten($header-bg-dark-color, 10%);
 $header-border-theme-bottom:		lighten($header-bg-theme-color, 10%);
@@ -789,7 +789,7 @@ $header-toogle-btn-lh:				$btn-line-height-sm;
 $header-toogle-btn-icon-width:		$btn-line-height-sm + $btn-padding-y-sm*2;
 
 $header-col-width-small:            120px;
-$header-col-width-safe:             math.div($header-col-width-small,2);
+$header-col-width-safe:             math.div($header-col-width-small, 2);
 $header-col-width:                  calc(50% - #{$header-col-width-safe});
 
 //Footer
@@ -813,7 +813,7 @@ $menu-icon-width:                   36px;
 $menu-icon-width-sm:                32px;
 
 
-//////  CONFIGURATION VARIABLE  @io-v120  //////
+//////  CONFIGURATION VARIABLE  //////
 $dark_option:           true;
 $dark_theme_option:     true;
 $gd_analytic:           true;

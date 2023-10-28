@@ -15,7 +15,6 @@ $msg-body-gap-x-dsk :2.5rem;
         padding: 0 $msg-item-gap-x;
         background:$lighter;
         z-index: 2;
-        border-top-left-radius: ($border-radius - 1);
         .search-wrap{
             padding: 0 1rem;
             bottom: -1px;
@@ -73,12 +72,11 @@ $msg-body-gap-x-dsk :2.5rem;
     position: relative;
     display: flex;
     overflow: hidden;
+    min-height: calc(100vh - (#{$header-height} + 64px));
+    max-height: calc(100vh - (#{$header-height} + 64px));
     background: $white;
-    border:1px solid $border-color;
-    border-radius: $border-radius;
-    min-height: calc(100vh - (#{$header-height} + 64px + 96px));
-    max-height: calc(100vh - (#{$header-height} + 64px + 96px));
     &-aside{
+        background: $lighter;
         width: 100%;
         overflow: hidden;
         max-height: 100%;
@@ -86,9 +84,11 @@ $msg-body-gap-x-dsk :2.5rem;
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
-        background: rgba($lighter,.7);
-        border-top-left-radius: ($border-radius - 1);
-        border-bottom-left-radius: ($border-radius - 1);
+        .nk-msg-boxed &{
+            background: rgba($lighter,.7);
+            border-top-left-radius: ($border-radius - 1);
+            border-bottom-left-radius: ($border-radius - 1);
+        }
     }
 
     &-list{
@@ -213,11 +213,11 @@ $msg-body-gap-x-dsk :2.5rem;
     &-profile{
         position: absolute;
         top: 0;
+        right: 0;
+        transform: translateX(100%);
         width: 280px;
         height: 100%;
         max-height: 100%;
-        right: 0;
-        transform: translateX(100%);
         transition: transform .3s  ease-in-out;
         background: $white;
         z-index: 100;
@@ -229,14 +229,14 @@ $msg-body-gap-x-dsk :2.5rem;
             align-items: center;
             justify-content: center;
             bottom: -18px;
+            right: -18px;
+            margin-right: 40px;
+            transition: right .3s ease-in-out, margin .3s ease-in-out .2s;
             border: 1px solid $border-light;
             background-color: $white;
             border-radius: 50%;
             font-size: 1.125rem;
             z-index: 2;
-            right: -18px;
-            margin-right: 40px;
-            transition: right .3s ease-in-out, margin .3s ease-in-out .2s;
             color:$base-light;
             z-index: 110;
             &.active{
@@ -301,14 +301,15 @@ $msg-body-gap-x-dsk :2.5rem;
 }
 
 
-@include media-breakpoint-down(sm){
+@include media-breakpoint-down(mb){
     .nk-msg{
-        border-left: none;
-        border-right: none;
-        border-radius: $border-radius;
-        min-height: calc(100vh - (#{$header-height}));
-        max-height: calc(100vh - (#{$header-height}));
-        margin: 0 -18px;
+        &-boxed{
+            border: none;
+            border-radius: $border-radius;
+            min-height: calc(100vh - (#{$header-height}));
+            max-height: calc(100vh - (#{$header-height}));
+            // margin: -24px -18px; // @io-v2.0
+        }
     }
 }
 @include media-breakpoint-up(sm){
@@ -331,7 +332,7 @@ $msg-body-gap-x-dsk :2.5rem;
     }
     
 }
-@include media-breakpoint-between(sm,md){
+@include media-breakpoint-between(sm,lg){
     .nk-msg{
         &-text{
             .title{

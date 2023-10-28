@@ -45,6 +45,31 @@ $skin_menu_active_color:        $skin_accent;
 /// SKIN OVERRIDER
 ////////////////////////
 
+///// Sidebar Style
+.nk-sidebar {
+    &.is-dark{
+        background: $skin_sidebar_bg_dark;
+        border-right-color: $skin_sidebar_bdr_dark;
+    }
+    &.is-theme{
+        background: $skin_sidebar_bg_theme;
+        border-right-color: $skin_sidebar_bdr_theme;
+    }
+    &-head {
+        .is-dark & {
+            border-color: $skin_sidebar_bdr_dark;
+        }
+        .is-theme & {
+            border-color: $skin_sidebar_bdr_theme;
+        }
+    }
+    &.is-dark, &.is-theme {
+         .user-balance-alt {
+            color: rgba($white, .8);
+         }
+    }
+}
+
 ///// Header Style
 .nk-header {
     background: $skin_header_bg;
@@ -61,6 +86,12 @@ $skin_menu_active_color:        $skin_accent;
 .is-dark {
     .nk-menu-link {
         color: $skin_menu_color_dark;
+        &:hover{
+            background: lighten($skin_sidebar_bg_dark, 6%);
+        }
+    }
+    .active > .nk-menu-link {
+        background: lighten($skin_sidebar_bg_dark, 6%);
     }
     .nk-menu-icon {
         color: lighten($skin_menu_color_dark, 8%);
@@ -74,7 +105,7 @@ $skin_menu_active_color:        $skin_accent;
     .nk-menu-link:hover .nk-menu-icon, .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon {
         color: lighten($skin_accent, 10%);
     }
-    .user-name {
+    .user-name{
         color: lighten($skin_base_light, 5%);
     }
     .nk-quick-nav-icon {
@@ -86,6 +117,12 @@ $skin_menu_active_color:        $skin_accent;
 .is-theme {
     .nk-menu-link {
         color: $skin_menu_color_theme;
+        &:hover{
+            background: lighten($skin_sidebar_bg_theme, 6%);
+        }
+    }
+    .active > .nk-menu-link {
+        background: lighten($skin_sidebar_bg_theme, 6%);
     }
     .nk-menu-icon {
         color: lighten($skin_menu_color_theme, 8%);
@@ -114,10 +151,8 @@ $skin_menu_active_color:        $skin_accent;
 .bg-primary,
 .icon-circle,
 .noUi-connect,
-.nk-kycfm-label::after,
-.sp-package-choose ~ label:after,
-.ticket-msg-attach-list a .icon,
 .nk-msg-menu-item a:after,
+.ui-shady .nk-msg-item.active:after, .ui-shady .nk-msg-item.current:after, 
 .ui-softy .nk-msg-item.active:after, .ui-softy .nk-msg-item.current:after {
     background: $skin_accent;
 }
@@ -126,6 +161,9 @@ $skin_menu_active_color:        $skin_accent;
 }
 .card.is-dark {
     background: $skin_accent_dark;
+}
+.is-dark .nk-wg7-title, .is-dark .nk-wg7-note {
+    color: $skin_accent_light;
 }
 .user-avatar, [class^="user-avatar"]:not([class*="-group"]) {
     background: lighten($skin_accent, 10%);
@@ -176,7 +214,7 @@ $skin_menu_active_color:        $skin_accent;
 
 .accordion-s2 .accordion-head .title,
 .accordion-s3 .accordion-head .title,
-.bg-outline-primary,
+.badge-outline-primary,
 .badge-dim.bg-primary,
 .badge-dot.bg-primary,
 .badge-dim.bg-outline-primary,
@@ -184,32 +222,22 @@ $skin_menu_active_color:        $skin_accent;
 .form-clip,
 .form-text-hint,
 .search-submit:hover,
-.nk-wg1-amount .amount,
-.nk-kycfm-control:checked ~ .nk-kycfm-label .label-icon,
 .attach-item .icon,
 .attach-download:hover span,
-.ticket-meta .ticket-id strong,
-.tb-ticket-id,
-.tb-ftr-plan .icon,
-.support-topic-details h3, 
-.support-topic-details h4,
-.support-topic-count,
-.invoice-desc .title,
-.invoice-bills .table th,
-.invoice-contact ul .icon,
 .nk-reply-meta-info .whom,
 .nk-msg-tags li > span .icon,
 .nk-msg-menu-item a:hover,
 .nk-msg-menu-item.active a,
 .user-balance,
-.user-avatar[class*="-primary-dim"],
-.dropzone .dz-message-text span, a,
+.user-avatar[class*="-primary-dim"], a,
+.dropzone .dz-message-text span,
 .nk-switch-icon.active, 
 .link-list-plain a .icon,
 .chat-upload-option a,
 .is-unread .chat-context .status,
 .add-opt:hover .sub-text, .add-opt:hover .icon,
-.icon[class*="bg-primary-dim"]  {
+.icon[class*="bg-primary-dim"],
+.nk-tb-list .tb-asterisk a  {
     color: $skin_accent;
 }
 a:hover {
@@ -245,6 +273,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 }
 .alert-pro.alert-primary, .bg-primary, 
 .sp-package-choose:checked ~ label, 
+.plan-control:checked + .plan-item-card,
 .form-control:focus,
 .form-control.focus,
 .custom-file-input:focus ~ .custom-file-label,
@@ -254,12 +283,16 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 {
     border-color: $skin_accent;
 }
-.bg-outline-primary {
+.nk-order-ovwg-data.sell, .bg-outline-primary {
     border-color: mix($skin_accent, $white, 40%);
 }
 .dropdown-menu-s1 {
     border-top-color: $skin_accent;   
 }
+.nk-iv-wg2-amount.ui-v2 {
+    border-bottom-color: $skin_accent;   
+}
+
 .page-item.active .page-link, 
 .custom-control-input:checked ~ .custom-control-label::before,
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before
@@ -441,9 +474,14 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
     color: mix($skin_accent, $white, 70%);
     background-color: mix($skin_accent, $white, 10%);
 }
-.is-theme .sub-text,.is-theme .lead-text span {
+.is-theme .nk-sidebar-footer,.nk-apps-sidebar.is-theme,.is-theme .nk-sidebar-profile-fixed{
+    background: $skin_sidebar_bg_theme;
+    border-color: $skin_sidebar_bdr_theme;
+}
+.is-theme .nk-menu-footer .nk-menu-link,.is-theme .sub-text,.is-theme .lead-text span {
     color: $skin_accent_light;
 }
+
 .nav-switch-s2 .nav-link:hover, .nav-switch-s2 .nav-link:focus{
     color: $skin_base_text;
 }
@@ -451,7 +489,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
     color: $skin_base_color;
 }
 
-//io-v130 @inbox
+//@inbox
 .active .nk-ibx-menu-text, 
 .active .nk-ibx-menu-item .icon, 
 .nk-reply-form-nav li a:hover, 

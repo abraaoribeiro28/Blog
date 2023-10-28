@@ -11,6 +11,9 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
+                            <a href="{{ route('posts-categories.index') }}" class="btn btn-info">
+                                Categoria de postagens
+                            </a>
                             <a href="{{ route('posts.create') }}" class="btn btn-primary">
                                 <i class="icon bi bi-plus me-1"></i>
                                Nova postagem
@@ -42,7 +45,7 @@
                         </thead>
                         <tbody>
                             @foreach ($posts as $post)
-                                <tr class="nk-tb-item">
+                                <tr class="nk-tb-item" id="item-{{$post->id}}">
                                     <td class="nk-tb-col nk-tb-col-check">
                                         <div class="custom-control custom-control-sm custom-checkbox notext">
                                             <input type="checkbox" class="custom-control-input" id="{{ $post->id }}">
@@ -79,8 +82,11 @@
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
                                                     <li><a href="{{ route('posts.edit', $post->id) }}" class="text-primary">Editar</a></li>
-                                                    <li><a href="#" class="text-primary">View</a></li>
-                                                    <li><a href="#" class="text-danger">Remove</a></li>
+                                                    <li>
+                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$post->id}})">
+                                                            Excluir
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -93,4 +99,37 @@
             </div>
         </div>
     </div>
+
+    @section('script')
+        <script>
+            async function confirmDelete(id){
+                const item = document.querySelector(`#item-${id}`);
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    cancelButtonText: 'Cancelar',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, exclua-o!',
+                    showLoaderOnConfirm: true,
+                    preConfirm: async function preConfirm() {
+                        const response = await myFetch('/admin/posts/delete', 'POST', {
+                            "id": id
+                        });
+                        if (!response){
+                            Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
+                        }
+                    },
+                    allowOutsideClick: function allowOutsideClick() {
+                        return !Swal.isLoading();
+                    }
+                }).then(function (response) {
+                    if (response.isConfirmed) {
+                        item.remove();
+                        Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
+                    }
+                });
+            }
+        </script>
+    @endsection
 </x-app-layout>

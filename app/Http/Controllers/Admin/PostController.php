@@ -44,7 +44,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = CategoryPost::all();
+        $categories = CategoryPost::where('status', true)->get();
         return view('admin.post.form', compact('categories'));
     }
 
@@ -62,7 +62,7 @@ class PostController extends Controller
             }
         } catch (\Throwable $th) {}
 
-        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
+        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
@@ -79,47 +79,38 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = CategoryPost::all();
-        $highlight = $post->archives->where('highlight')[0];
+        $highlight = $post->archives->where('highlight')[0] ?? null;
         return view('admin.post.form', compact('post', 'categories', 'highlight'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        try {
+            if ($result = $this->repository->upInsert($request, $post->id)) {
+                $this->uploadHighlightArchive($result, $request, $post->id);
+                return redirect()
+                    ->route('posts.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    public function uploadHighlightArchive($result, $request, $id = null)
-    {
-        if ($this->validFile($request, 'highlight')) {
-            $dir = 'posts/'.$result->category->slug.'/'.$result->id;
-            $name = $this->saveUpload($request->file('highlight'), $dir);
-            if($id){
-                $highlight = Archive::where('post_id', $id)->where('highlight', true)->first();
-                $highlight->update([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension()
-                ]);
-            }else{
-                Archive::create([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension(),
-                    'highlight' => true,
-                    'post_id' => $result->id
-                ]);
-            }
+        try {
+            $post = Post::findOrFail($request->id);
+            $post->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
         }
     }
 }

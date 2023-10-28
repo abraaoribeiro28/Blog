@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ArchiveController;
+use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Portal\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +19,7 @@ use App\Http\Controllers\Admin\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('portal.pages.home');
-})->name('portal.home');
+Route::get('/', HomeController::class)->name('portal.home');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     // Dashboard
@@ -27,7 +28,21 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
     Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
+    Route::resource('posts/categories', CategoryPostController::class)->names([
+        'index' => 'posts-categories.index',
+        'create' => 'posts-categories.create',
+        'edit' => 'posts-categories.edit',
+        'store' => 'posts-categories.store',
+        'update' => 'posts-categories.update',
+    ]);
     Route::resource('posts', PostController::class);
+
+
+
+    // ajax
+    Route::post('posts/delete', [PostController::class, 'destroy']);
+    Route::post('posts/delete-highlight', [ArchiveController::class, 'deletePostHighlight']);
+    Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
 });
 
 //Route::middleware('auth')->group(function () {

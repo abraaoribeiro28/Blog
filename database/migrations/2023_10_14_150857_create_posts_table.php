@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('author');
             $table->date('publication_date');
             $table->boolean('status')->default(true);
+            $table->integer('clicks')->default(0);
             $table->foreignId('category_posts_id');
             $table->foreign('category_posts_id')
                 ->references('id')

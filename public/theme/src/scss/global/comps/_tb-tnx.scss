@@ -176,6 +176,7 @@
         &-desc, &-date, &-total, &-status {
             display: inline-block;
             vertical-align: middle;
+
         }
         &-desc, &-date {
             width: calc(50% - 4px);

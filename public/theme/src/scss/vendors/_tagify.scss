@@ -1,5 +1,4 @@
 @use "sass:math";
-
 .tagify{
     // SCSS "default" allows overriding variables BEFORE they are set in the below lines of code
     $self: &;
@@ -250,7 +249,7 @@
     }
 
     &__tag__removeBtn{
-        $size: 11px;
+        $size: 14px;
 
         order          : 5;
         display        : inline-flex;
@@ -262,17 +261,17 @@
         background     : $tag-remove-btn-bg;
         color          : $base-color;
 
-        width          : $size + 3;
-        height         : $size + 3;
-        margin-right   : math.div($size , 3);
-        margin-left    : math.div(-$size , 3);
+        width          : $size;
+        height         : $size;
+        margin-right   : math.div($size,3);
+        margin-left    : math.div(-$size,3);
 
         transition     : .2s ease-out;
 
         &::after{
             position: relative;
             content: $ni-cross;
-            top:1px;
+            top:0;
         }
 
         &:hover{

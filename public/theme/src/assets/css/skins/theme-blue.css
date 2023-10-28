@@ -5,6 +5,24 @@
  * Author: Softnio
  * Author URI: http://themeforest.net/user/softnio
 **/
+.nk-sidebar.is-dark {
+  background: #0f192a;
+  border-right-color: #1c2f50;
+}
+.nk-sidebar.is-theme {
+  background: #0a2d6c;
+  border-right-color: #0f419a;
+}
+.is-dark .nk-sidebar-head {
+  border-color: #1c2f50;
+}
+.is-theme .nk-sidebar-head {
+  border-color: #0f419a;
+}
+.nk-sidebar.is-dark .user-balance-alt, .nk-sidebar.is-theme .user-balance-alt {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .nk-header {
   background: #f5f6fa;
   border-bottom-color: #e5e9f2;
@@ -18,6 +36,12 @@
 
 .is-dark .nk-menu-link {
   color: #8699b2;
+}
+.is-dark .nk-menu-link:hover {
+  background: #172641;
+}
+.is-dark .active > .nk-menu-link {
+  background: #172641;
 }
 .is-dark .nk-menu-icon {
   color: #9faec2;
@@ -40,6 +64,12 @@
 
 .is-theme .nk-menu-link {
   color: #9fc7ff;
+}
+.is-theme .nk-menu-link:hover {
+  background: #0d3988;
+}
+.is-theme .active > .nk-menu-link {
+  background: #0d3988;
 }
 .is-theme .nk-menu-icon {
   color: #c8dfff;
@@ -65,10 +95,8 @@
 .bg-primary,
 .icon-circle,
 .noUi-connect,
-.nk-kycfm-label::after,
-.sp-package-choose ~ label:after,
-.ticket-msg-attach-list a .icon,
 .nk-msg-menu-item a:after,
+.ui-shady .nk-msg-item.active:after, .ui-shady .nk-msg-item.current:after,
 .ui-softy .nk-msg-item.active:after, .ui-softy .nk-msg-item.current:after {
   background: #0971fe;
 }
@@ -79,6 +107,10 @@
 
 .card.is-dark {
   background: #0b3175;
+}
+
+.is-dark .nk-wg7-title, .is-dark .nk-wg7-note {
+  color: #a9cdff;
 }
 
 .user-avatar, [class^=user-avatar]:not([class*=-group]) {
@@ -134,32 +166,22 @@
 .form-clip,
 .form-text-hint,
 .search-submit:hover,
-.nk-wg1-amount .amount,
-.nk-kycfm-control:checked ~ .nk-kycfm-label .label-icon,
 .attach-item .icon,
 .attach-download:hover span,
-.ticket-meta .ticket-id strong,
-.tb-ticket-id,
-.tb-ftr-plan .icon,
-.support-topic-details h3,
-.support-topic-details h4,
-.support-topic-count,
-.invoice-desc .title,
-.invoice-bills .table th,
-.invoice-contact ul .icon,
 .nk-reply-meta-info .whom,
 .nk-msg-tags li > span .icon,
 .nk-msg-menu-item a:hover,
 .nk-msg-menu-item.active a,
 .user-balance,
-.user-avatar[class*=-primary-dim],
-.dropzone .dz-message-text span, a,
+.user-avatar[class*=-primary-dim], a,
+.dropzone .dz-message-text span,
 .nk-switch-icon.active,
 .link-list-plain a .icon,
 .chat-upload-option a,
 .is-unread .chat-context .status,
 .add-opt:hover .sub-text, .add-opt:hover .icon,
-.icon[class*=bg-primary-dim] {
+.icon[class*=bg-primary-dim],
+.nk-tb-list .tb-asterisk a {
   color: #0971fe;
 }
 
@@ -206,6 +228,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 
 .alert-pro.alert-primary, .bg-primary,
 .sp-package-choose:checked ~ label,
+.plan-control:checked + .plan-item-card,
 .form-control:focus,
 .form-control.focus,
 .custom-file-input:focus ~ .custom-file-label,
@@ -215,12 +238,16 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
   border-color: #0971fe;
 }
 
-.bg-outline-primary {
+.nk-order-ovwg-data.sell, .bg-outline-primary {
   border-color: #9dc6ff;
 }
 
 .dropdown-menu-s1 {
   border-top-color: #0971fe;
+}
+
+.nk-iv-wg2-amount.ui-v2 {
+  border-bottom-color: #0971fe;
 }
 
 .page-item.active .page-link,
@@ -417,7 +444,12 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
   background-color: #e6f1ff;
 }
 
-.is-theme .sub-text, .is-theme .lead-text span {
+.is-theme .nk-sidebar-footer, .nk-apps-sidebar.is-theme, .is-theme .nk-sidebar-profile-fixed {
+  background: #0a2d6c;
+  border-color: #0f419a;
+}
+
+.is-theme .nk-menu-footer .nk-menu-link, .is-theme .sub-text, .is-theme .lead-text span {
   color: #a9cdff;
 }
 

@@ -54,8 +54,10 @@
   .select2-selection__choice__remove {
     color: $select2-color;
     cursor: pointer;
+
     display: inline-block;
     font-weight: bold;
+
     margin-right: .5rem;
     &:hover {
       color: $select2-color;

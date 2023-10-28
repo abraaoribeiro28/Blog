@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 
+use App\Models\Admin\Archive;
 use App\Models\Admin\Configuration;
 use CURLFile;
 use Illuminate\Http\Request;
@@ -57,11 +58,10 @@ trait FileTrait
             $this->deleteFile($nameFile, $dir);
         }
         if ($fileOld) {
-            $this->deleteFile(explode("/", $fileOld)[1], $dir);
+            Storage::delete($fileOld);
         }
-
-        $file->storeAs('public/'.$dir, "{$nameFile}");
-        // $this->compress(storage_path("app/public/$dir/$nameFile"), null, 1024);
+        $file->storeAs($dir, "{$nameFile}");
+//        $this->compress(storage_path("$dir/$nameFile"), null, 1024);
 
         return "$nameFile";
     }
@@ -241,5 +241,29 @@ trait FileTrait
 .cor-fundo {color: $config[cor_fundo] !important;}
 ";
         return $this->createfile($path, $context);
+    }
+
+    public function uploadHighlightArchive($result, $request, $id = null)
+    {
+        if ($this->validFile($request, 'highlight')) {
+            $dir = 'posts/'.$result->category->slug.'/'.$result->id;
+            if($id && $highlight = Archive::where('post_id', $id)->where('highlight', true)->first()){
+                $name = $this->saveUpload($request->file('highlight'), $dir, $highlight->path);
+                $highlight->update([
+                    'name' => $name,
+                    'path' => "$dir/$name",
+                    'extension' => $request->file('highlight')->extension()
+                ]);
+            }else{
+                $name = $this->saveUpload($request->file('highlight'), $dir);
+                Archive::create([
+                    'name' => $name,
+                    'path' => "$dir/$name",
+                    'extension' => $request->file('highlight')->extension(),
+                    'highlight' => true,
+                    'post_id' => $result->id
+                ]);
+            }
+        }
     }
 }

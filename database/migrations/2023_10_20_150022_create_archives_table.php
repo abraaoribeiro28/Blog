@@ -20,7 +20,8 @@ return new class extends Migration
             $table->foreignId('post_id')->nullable();
             $table->foreign('post_id')
                 ->references('id')
-                ->on('posts');
+                ->on('posts')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
