@@ -32,7 +32,7 @@
     accepts: function accepts(el, target) {
       return target !== document.querySelector("#aside-copySpillLeft");
     }
-  }); // Drag Handle 
+  }); // Drag Handle
 
   dragula([document.querySelector("#dragHandleLeft"), document.querySelector("#dragHandleRight")], {
     moves: function moves(el, container, handle) {

@@ -51,7 +51,7 @@
                     </li>
 
                     <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link">
+                        <a href="{{ route('menus.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
                             <span class="nk-menu-text">Menus do site</span>
                         </a>

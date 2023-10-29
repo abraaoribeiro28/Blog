@@ -3,16 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+    public $table, $repository;
+
+    public function __construct()
+    {
+        $this->table = app(Menu::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+//        $menus = $this->table->all();
+        $menus = $this->table->with('children')->whereNull('menus_id')->orderBy('order')->get();
+        return view('admin.menu.index', compact('menus'));
     }
 
     /**
@@ -58,8 +68,29 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $menu = $this->table->findOrFail($request->id);
+            $menu->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function order(Request $request)
+    {
+        try {
+            $data = $request->all();
+            foreach ($data as $key => $value){
+                $menu = $this->table->find($value);
+                $menu->order = $key + 1;
+                $menu->update();
+            }
+            return true;
+        } catch (\Throwable $th){
+            return false;
+        }
     }
 }

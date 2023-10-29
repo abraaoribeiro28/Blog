@@ -5,9 +5,9 @@
                 <div class="nk-block-head-content">
                     <h3 class="nk-block-title page-title">
                         @if(isset($category))
-                            Editar postagem
+                            Editar categoria
                         @else
-                            Cadastrar postagem
+                            Cadastrar categoria
                         @endif
                     </h3>
                     <div class="nk-block-des text-soft">
