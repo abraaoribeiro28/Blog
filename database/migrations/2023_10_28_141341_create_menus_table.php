@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url');
             $table->integer('order');
             $table->foreignId('menus_id')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

@@ -8,8 +8,13 @@
                     </span>
                     <span class="tb-lead ms-1">{{ $menu->name }}</span>
                 </div>
-                <div class="ms-auto me-2">
-                    <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-title="{{ $menu->url }}"></i>
+                <div class="ms-auto me-2 d-flex align-items-center">
+                    @if($menu->status)
+                        <em class="ni ni-check-circle text-success" data-bs-toggle="tooltip" data-bs-title="Ativado" style="font-size: 19px;"></em>
+                    @else
+                        <em class="ni ni-cross-circle text-danger" data-bs-toggle="tooltip" data-bs-title="Desativado" style="font-size: 19px;"></em>
+                    @endif
+                    <i class="bi bi-info-circle-fill mx-1" data-bs-toggle="tooltip" data-bs-title="{{ $menu->url }}" style="line-height: 0;"></i>
                     <div class="dropdown">
                         <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
                             <em class="icon ni ni-more-h"></em>

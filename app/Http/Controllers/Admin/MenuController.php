@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MenuRequest;
 use App\Models\Admin\Menu;
+use App\Repositories\Eloquent\Menu\MenuRepository;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
     public $table, $repository;
 
-    public function __construct()
+    public function __construct(MenuRepository $repository)
     {
         $this->table = app(Menu::class);
+        $this->repository = $repository;
     }
 
     /**
@@ -20,8 +23,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-//        $menus = $this->table->all();
-        $menus = $this->table->with('children')->whereNull('menus_id')->orderBy('order')->get();
+        $menus = $this->table->with('children')
+            ->whereNull('menus_id')
+            ->orderBy('order')
+            ->get();
         return view('admin.menu.index', compact('menus'));
     }
 
@@ -30,15 +35,24 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $menus = $this->table->all();
+        return view('admin.menu.form', compact('menus'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        //
+        try {
+            if ($result = $this->repository->upInsert($request)) {
+                return redirect()
+                    ->route('menus.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
@@ -52,17 +66,26 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Menu $menu)
     {
-        //
+        $menus = $this->table->all();
+        return view('admin.menu.form', compact('menus', 'menu'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MenuRequest $request, string $id)
     {
-        //
+        try {
+            if ($result = $this->repository->upInsert($request, $id)) {
+                return redirect()
+                    ->route('menus.index')
+                    ->with('success', 'Os dados foram atualizados com sucesso!');
+            }
+        } catch (\Throwable $th) {}
+
+        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
     }
 
     /**
