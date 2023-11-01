@@ -33,10 +33,6 @@
         <div class="spinner"></div>
     </div>
 
-    <style>
-
-    </style>
-
 @section('script')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script defer src="{{ asset('assets/js/menu.js') }}"></script>
