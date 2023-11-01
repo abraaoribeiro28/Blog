@@ -102,7 +102,7 @@
                     <div class="col-lg-6">
                         @if($mostViewedPost)
                             <a href="" class="post-destaque">
-                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '') }}" class="imagem-palestra-destaque"
+                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}" class="imagem-palestra-destaque"
                                     loading="lazy" alt="imagem de destaque" />
 
                                 <div class="category pt-4">

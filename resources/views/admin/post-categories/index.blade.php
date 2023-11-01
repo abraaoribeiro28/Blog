@@ -14,7 +14,7 @@
                             <a href="{{ route('posts.index') }}" class="btn btn-info">
                                 Postagens
                             </a>
-                            <a href="{{ route('posts-categories.create') }}" class="btn btn-primary">
+                            <a href="{{ route('categories.create') }}" class="btn btn-primary">
                                 <i class="icon bi bi-plus me-1"></i>
                                 Nova Categoria
                             </a>
@@ -72,7 +72,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                             <ul class="link-list-plain">
-                                                <li><a href="{{ route('posts-categories.edit', $category->id) }}" class="text-primary">Editar</a></li>
+                                                <li><a href="{{ route('categories.edit', $category->id) }}" class="text-primary">Editar</a></li>
                                                 <li>
                                                     <a href="#" class="text-danger" onclick="confirmDelete({{$category->id}})">
                                                         Excluir

@@ -8,24 +8,42 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Palestras</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Links úteis
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                        </ul>
-                    </li>
+                <ul id="menu-header" class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
+                    {{--  @include('components.portal.menu-list', ['menus' => $menus, 'level' => 0])--}}
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+
+<script defer>
+    function generateMenu(menus, level = 0, dropend = false) {
+        let html = '';
+
+        menus.forEach(menu => {
+            if (menu.all_children && menu.all_children.length) {
+                if (dropend) {
+                    html += `<li class="dropdown-submenu">`;
+                    html += `<a class="dropdown-item dropdown-toggle" href="#">${menu.name}</a>`;
+                    html += `<ul class="dropdown-menu">`;
+                    html += generateMenu(menu.all_children, level + 1, true);
+                    html += `</ul>`;
+                    html += `</li>`;
+                } else {
+                    html += `<div class="dropdown">`;
+                    html += `<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-${menu.id}" data-bs-toggle="dropdown">${menu.name}</button>`;
+                    html += `<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-${menu.id}">`;
+                    html += generateMenu(menu.all_children, level + 1, true);
+                    html += `</ul>`;
+                    html += `</div>`;
+                }
+            } else {
+                html += `<li class="nav-item"><a class="nav-link active" href="${menu.url}">${menu.name}</a></li>`;
+            }
+        });
+
+        return html;
+    }
+
+    document.querySelector('#menu-header').innerHTML = generateMenu(@json($menus));
+</script>
