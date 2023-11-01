@@ -12,6 +12,7 @@ use App\Repositories\Eloquent\Post\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Traits\FileTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -57,6 +58,7 @@ class PostController extends Controller
         try {
             if ($result = $this->repository->upInsert($request)) {
                 $this->uploadHighlightArchive($result, $request);
+                Cache::pull('posts');
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -92,6 +94,7 @@ class PostController extends Controller
         try {
             if ($result = $this->repository->upInsert($request, $post->id)) {
                 $this->uploadHighlightArchive($result, $request, $post->id);
+                Cache::pull('posts');
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -109,6 +112,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($request->id);
             $post->delete();
+            Cache::pull('posts');
             return true;
         } catch (\Throwable $th) {
             return false;
