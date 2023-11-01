@@ -3,33 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryPostRequest;
-use App\Models\Admin\CategoryPost;
-use App\Models\Admin\Post;
-use App\Repositories\Eloquent\CategoryPost\CategoryPostRepository;
+use App\Http\Requests\MenuRequest;
+use App\Models\Admin\Menu;
+use App\Repositories\Eloquent\Menu\MenuRepository;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use TheSeer\Tokenizer\Exception;
-use function Symfony\Component\Translation\t;
+use Illuminate\Support\Facades\Cache;
 
-class CategoryPostController extends Controller
+class MenuController extends Controller
 {
-    use SoftDeletes;
-
     public $table, $repository;
 
-    public function __construct(CategoryPostRepository $repository)
+    public function __construct(MenuRepository $repository)
     {
-        $this->table = app(CategoryPost::class);
+        $this->table = app(Menu::class);
         $this->repository = $repository;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = $this->table->with('posts')->orderBy('id', 'desc')->get();
-        return view('admin.post-categories.index', compact('categories'));
+        $menus = $this->table->with('children')
+            ->whereNull('menus_id')
+            ->orderBy('order')
+            ->get();
+        return view('admin.menu.index', compact('menus'));
     }
 
     /**
@@ -37,18 +36,20 @@ class CategoryPostController extends Controller
      */
     public function create()
     {
-        return view('admin.post-categories.form');
+        $menus = $this->table->all();
+        return view('admin.menu.form', compact('menus'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryPostRequest $request)
+    public function store(MenuRequest $request)
     {
         try {
             if ($result = $this->repository->upInsert($request)) {
+                Cache::pull('menu_structure');
                 return redirect()
-                    ->route('categories.index')
+                    ->route('menus.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
         } catch (\Throwable $th) {}
@@ -59,7 +60,7 @@ class CategoryPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CategoryPost $categoryPost)
+    public function show(string $id)
     {
         //
     }
@@ -67,21 +68,22 @@ class CategoryPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        $category = $this->table->findOrFail($id);
-        return view('admin.post-categories.form', compact('category'));
+        $menus = $this->table->all();
+        return view('admin.menu.form', compact('menus', 'menu'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryPostRequest $request, $id)
+    public function update(MenuRequest $request, string $id)
     {
         try {
             if ($result = $this->repository->upInsert($request, $id)) {
+                Cache::pull('menu_structure');
                 return redirect()
-                    ->route('categories.index')
+                    ->route('menus.index')
                     ->with('success', 'Os dados foram atualizados com sucesso!');
             }
         } catch (\Throwable $th) {}
@@ -95,10 +97,27 @@ class CategoryPostController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $category = $this->table->findOrFail($request->id);
-            $category->delete();
+            $menu = $this->table->findOrFail($request->id);
+            $menu->delete();
+            Cache::pull('menu_structure');
             return true;
         } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function order(Request $request)
+    {
+        try {
+            $data = $request->all();
+            foreach ($data as $key => $value){
+                $menu = $this->table->find($value);
+                $menu->order = $key + 1;
+                $menu->update();
+            }
+            Cache::pull('menu_structure');
+            return true;
+        } catch (\Throwable $th){
             return false;
         }
     }

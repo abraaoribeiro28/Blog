@@ -10,6 +10,8 @@ export default defineConfig({
                 "resources/css/home.css",
                 "resources/css/tailwind.css",
                 "resources/js/app.js",
+                "resources/js/bootstrap.js",
+                "resources/js/custom-dropdown.js",
             ],
             refresh: true,
         }),

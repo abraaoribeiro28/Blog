@@ -11,7 +11,7 @@
         <div class="form-control-wrap">
 
             @if(isset($type) && $type == 'select')
-                <select class="form-select js-select2" id="category_posts_id" name="category_posts_id">
+                <select class="form-select js-select2" id="{{ $id }}" name="{{ $id }}">
                     <option value="0">Selecione uma categoria</option>
                     @foreach($data as $item)
                         <option value="{{ $item->id }}"

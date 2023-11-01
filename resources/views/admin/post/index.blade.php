@@ -11,7 +11,7 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('posts-categories.index') }}" class="btn btn-info">
+                            <a href="{{ route('categories.index') }}" class="btn btn-info">
                                 Categoria de postagens
                             </a>
                             <a href="{{ route('posts.create') }}" class="btn btn-primary">
