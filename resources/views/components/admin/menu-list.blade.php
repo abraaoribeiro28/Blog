@@ -16,7 +16,7 @@
                     @endif
                     <i class="bi bi-info-circle-fill mx-1" data-bs-toggle="tooltip" data-bs-title="{{ $menu->url }}" style="line-height: 0;"></i>
                     <div class="dropdown">
-                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
+                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="8" aria-expanded="false">
                             <em class="icon ni ni-more-h"></em>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">

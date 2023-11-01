@@ -21,6 +21,7 @@ class Header extends Component
 
         $this->menus = Cache::remember('menu_structure', 3600, function () {
             return $this->menus = $this->table->with('allChildren')
+                ->where('status', true)
                 ->whereNull('menus_id')
                 ->orderBy('order')
                 ->get();

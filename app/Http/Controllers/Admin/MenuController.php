@@ -7,6 +7,7 @@ use App\Http\Requests\MenuRequest;
 use App\Models\Admin\Menu;
 use App\Repositories\Eloquent\Menu\MenuRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MenuController extends Controller
 {
@@ -46,6 +47,7 @@ class MenuController extends Controller
     {
         try {
             if ($result = $this->repository->upInsert($request)) {
+                Cache::pull('menu_structure');
                 return redirect()
                     ->route('menus.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -79,6 +81,7 @@ class MenuController extends Controller
     {
         try {
             if ($result = $this->repository->upInsert($request, $id)) {
+                Cache::pull('menu_structure');
                 return redirect()
                     ->route('menus.index')
                     ->with('success', 'Os dados foram atualizados com sucesso!');
@@ -96,6 +99,7 @@ class MenuController extends Controller
         try {
             $menu = $this->table->findOrFail($request->id);
             $menu->delete();
+            Cache::pull('menu_structure');
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -111,6 +115,7 @@ class MenuController extends Controller
                 $menu->order = $key + 1;
                 $menu->update();
             }
+            Cache::pull('menu_structure');
             return true;
         } catch (\Throwable $th){
             return false;

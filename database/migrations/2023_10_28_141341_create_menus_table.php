@@ -36,48 +36,9 @@ return new class extends Migration
         ]);
         // ID - 2
         DB::table('menus')->insert([
-            'name' => 'Palestras',
-            'url' => '/palestras',
+            'name' => 'Postagens',
+            'url' => '/postagens',
             'order' => 2,
-            'status' => 1
-        ]);
-        // ID - 3
-        DB::table('menus')->insert([
-            'name' => 'Links úteis',
-            'url' => '#',
-            'order' => 3,
-            'status' => 1
-        ]);
-        // ID - 4
-        DB::table('menus')->insert([
-            'name' => 'Link 1',
-            'url' => '#',
-            'order' => 4,
-            'menus_id' => 3,
-            'status' => 1
-        ]);
-        // ID - 5
-        DB::table('menus')->insert([
-            'name' => 'Link 2',
-            'url' => '#',
-            'order' => 5,
-            'menus_id' => 3,
-            'status' => 1
-        ]);
-        // ID - 6
-        DB::table('menus')->insert([
-            'name' => 'Sub Link 3',
-            'url' => '#',
-            'order' => 6,
-            'menus_id' => 4,
-            'status' => 1
-        ]);
-        // ID - 7
-        DB::table('menus')->insert([
-            'name' => 'Sub Link 4',
-            'url' => '#',
-            'order' => 7,
-            'menus_id' => 4,
             'status' => 1
         ]);
     }
