@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\InstagramPost;
 use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class HomeController extends Controller
             ->orderByDesc('clicks')
             ->first();
 
-        return view('portal.pages.home', compact('posts', 'mostViewedPost'));
+        $instagramPosts = InstagramPost::where('status', true)->get();
+
+        return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts'));
     }
 }
