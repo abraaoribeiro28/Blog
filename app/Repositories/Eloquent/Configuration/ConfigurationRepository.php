@@ -30,7 +30,7 @@ class ConfigurationRepository extends Repository implements IConfigurationReposi
                 }
                 $this->getModel()->updateOrCreate(['key' => $key], ['value' => $value]);
             }
-            Storage::delete("public/configurations/colors.css");
+            Storage::delete("configurations/colors.css");
             return true;
         } catch (\Throwable $th) {
             return false;
