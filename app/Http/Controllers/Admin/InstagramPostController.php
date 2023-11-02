@@ -41,6 +41,7 @@ class InstagramPostController extends Controller
     {
         try {
             if ($result = $this->repository->upInsert($request)) {
+                Cache::pull('instagramPosts');
                 return redirect()
                     ->route('instagram.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -74,6 +75,7 @@ class InstagramPostController extends Controller
     {
         try {
             if ($result = $this->repository->upInsert($request, $id)) {
+                Cache::pull('instagramPosts');
                 return redirect()
                     ->route('instagram.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -91,6 +93,7 @@ class InstagramPostController extends Controller
         try {
             $post = $this->table->findOrFail($request->id);
             $post->delete();
+            Cache::pull('instagramPosts');
             return true;
         } catch (\Throwable $th) {
             return false;

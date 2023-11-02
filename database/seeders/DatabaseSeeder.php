@@ -34,5 +34,30 @@ class DatabaseSeeder extends Seeder
         ]);
 
          Post::factory(10)->create();
+
+
+        DB::table('instagram_posts')->insert([
+            'title' => 'Post 1',
+            'url' => 'https://www.instagram.com/p/Cydh2Fiu_9r/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            'status' => true
+        ]);
+
+        DB::table('instagram_posts')->insert([
+            'title' => 'Post 2',
+            'url' => 'https://www.instagram.com/p/Cx8ybmhu_NS/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            'status' => true
+        ]);
+
+        DB::table('instagram_posts')->insert([
+            'title' => 'Post 3',
+            'url' => 'https://www.instagram.com/p/CvUr9sBgDes/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            'status' => true
+        ]);
+
+        DB::table('instagram_posts')->insert([
+            'title' => 'Post 4',
+            'url' => 'https://www.instagram.com/p/CvKXbezAMbZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            'status' => true
+        ]);
     }
 }
