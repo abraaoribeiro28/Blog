@@ -1,5 +1,8 @@
 <?php
 
+use GuzzleHttp\Client;
+use Symfony\Component\DomCrawler\Crawler;
+
 /**
  * Converte uma data no formato brasileiro (dd/mm/yyyy) para o formato de banco de dados (Y-m-d)
  * @param string $date A data no formato brasileiro (dd/mm/yyyy).

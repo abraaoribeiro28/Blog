@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\InstagramPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
     Route::resource('posts/categories', CategoryPostController::class);
     Route::resource('posts', PostController::class);
+    Route::resource('instagram', InstagramPostController::class);
     Route::resource('menus', MenuController::class);
-
-
 
     // ajax
     Route::post('posts/delete', [PostController::class, 'destroy']);
@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
     Route::post('menu-order', [MenuController::class, 'order']);
     Route::post('menus/delete', [MenuController::class, 'destroy']);
+    Route::post('instagram-post/delete', [InstagramPostController::class, 'destroy']);
 });
 
 //Route::middleware('auth')->group(function () {

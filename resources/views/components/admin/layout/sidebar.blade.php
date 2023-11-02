@@ -50,6 +50,25 @@
                         </a>
                     </li>
 
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><i class="icon bi bi-stack"></i></span>
+                            <span class="nk-menu-text">Seções do site</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{ route('instagram.index') }}" class="nk-menu-link">
+                                    <span class="nk-menu-text">Instagram</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="#" class="nk-menu-link">
+                                    <span class="nk-menu-text">E-book</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nk-menu-item">
                         <a href="{{ route('menus.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
