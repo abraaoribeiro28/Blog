@@ -83,7 +83,7 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link">
+                                <a href="{{ route('users.index') }}" class="nk-menu-link">
                                     <span class="nk-menu-text">Lista de usuários</span>
                                 </a>
                             </li>
