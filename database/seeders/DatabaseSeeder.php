@@ -22,21 +22,22 @@ class DatabaseSeeder extends Seeder
             'email' => 'root@root.com',
             'password' => Hash::make('123123'),
             'status' => 1,
-            'email_verified_at' => date('Y-m-d'),
+            'email_verified_at' => '2023-01-05',
             'last_login' => date('Y-m-d'),
         ]);
 
         $role = Role::create(['name' => 'Super Admin']);
+        $role2 = Role::create(['name' => 'Admin']);
         $user->assignRole($role);
 
 
-        DB::table('category_posts')->insert([
-           'name' => 'Geral',
-           'slug' => 'geral',
-            'status' => true
-        ]);
-
-         Post::factory(10)->create();
+//        DB::table('category_posts')->insert([
+//           'name' => 'Geral',
+//           'slug' => 'geral',
+//            'status' => true
+//        ]);
+//
+//         Post::factory(10)->create();
 
 //        DB::table('instagram_posts')->insert([
 //            'title' => 'Post 1',

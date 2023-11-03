@@ -97,7 +97,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
-                                                    <li><a href="{{ route('posts.edit', $user->id) }}" class="text-primary">Editar</a></li>
+                                                    <li><a href="{{ route('users.edit', $user->id) }}" class="text-primary">Editar</a></li>
                                                     <li>
                                                         <a href="#" class="text-danger" onclick="confirmDelete({{$user->id}})">
                                                             Excluir
