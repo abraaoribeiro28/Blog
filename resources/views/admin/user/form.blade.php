@@ -31,10 +31,18 @@
                     <div class="row">
                         <x-admin.forms.input id="name" title="Nome do usuário" :value="isset($user) ? $user->name : null" :mandatory="true" cols="6"/>
                         <x-admin.forms.input id="email" title="E-mail" :value="isset($user) ? $user->email : null" :mandatory="true" cols="6"/>
-                        @if(!isset($user))
-                            <x-admin.forms.input id="password" title="Senha" :value="null" type="password" :mandatory="true"  cols="6"/>
-                            <x-admin.forms.input id="password_confirmation" title="Confirmar senha" :value="null" type="password" :mandatory="true"  cols="6"/>
-                        @endif
+                        <div id="box-user" class="row px-0 mx-0">
+                            @if(!isset($user))
+                                <x-admin.forms.input id="password" title="Senha" :value="null" type="password" :mandatory="true"  cols="6"/>
+                                <x-admin.forms.input id="password_confirmation" title="Confirmar senha" :value="null" type="password" :mandatory="true"  cols="6"/>
+                            @else
+                                <div class="col-12 mb-3">
+                                    <button type="button" id="alter-password" class="btn btn-sm btn-info">
+                                        Mudar a senha
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
 
                         <div class="col-12">
                             <label class="d-block" for="exampleInputPassword1">Selecione os perfis de permissões</label>
@@ -80,6 +88,14 @@
                 maxWidth: '758px',
                 showDropboxAsPopup: true,
             });
+
+            // inserindo campos de alterar senha
+            document.querySelector('#alter-password').onclick = () => {
+                document.querySelector('#box-user').innerHTML = `
+                    <x-admin.forms.input id="password" title="Senha" :value="null" type="password" :mandatory="true"  cols="6"/>
+                    <x-admin.forms.input id="password_confirmation" title="Confirmar senha" :value="null" type="password" :mandatory="true"  cols="6"/>
+                `;
+            }
         </script>
     @endsection
 </x-app-layout>
