@@ -79,14 +79,19 @@
 
                                     <td class="nk-tb-col tb-col-md">
                                         <span class="tb-status">
-                                            @if($user->status)
-                                                <em class="icon ni ni-check-circle text-success"></em>
-                                                Ativo
-                                            @else
-                                                <em class="icon ni ni-cross-circle text-danger"></em>
-                                                Inativo
-                                            @endif
-                                        </span>
+{{--                                            @if($user->status)--}}
+{{--                                                <em class="icon ni ni-check-circle text-success"></em>--}}
+{{--                                                Ativo--}}
+{{--                                            @else--}}
+{{--                                                <em class="icon ni ni-cross-circle text-danger"></em>--}}
+{{--                                                Inativo--}}
+{{--                                            @endif--}}
+{{--                                            <x-admin.forms.input id="status-{{$user->id}}" :value="$user->status" type="switch"/>--}}
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input switch" id="status-{{$user->id}}" value="{{$user->id}}" @if($user->status) checked @endif>
+                                                <label class="custom-control-label" for="status-{{$user->id}}"></label>
+                                            </div>
+                                    </span>
                                     </td>
 
                                     <td class="nk-tb-col tb-col-md text-center">
@@ -98,11 +103,11 @@
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
                                                     <li><a href="{{ route('users.edit', $user->id) }}" class="text-primary">Editar</a></li>
-                                                    <li>
-                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$user->id}})">
-                                                            Excluir
-                                                        </a>
-                                                    </li>
+{{--                                                    <li>--}}
+{{--                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$user->id}})">--}}
+{{--                                                            Inativar--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -115,22 +120,33 @@
             </div>
         </div>
     </div>
-
     @section('script')
         <script>
-            async function confirmDelete(id){
+            const switchElement = document.querySelectorAll('.switch');
+
+            switchElement.forEach(element => {
+                 element.onchange = () => {
+                     element.checked
+                         ? toggleUserActiveState(element.value, 1, element)
+                         : toggleUserActiveState(element.value, 0, element);
+                 };
+            });
+
+            async function toggleUserActiveState(id, status, element){
                 const item = document.querySelector(`#item-${id}`);
+
                 Swal.fire({
-                    title: 'Tem certeza?',
-                    text: "Você não poderá reverter isso!",
+                    title: status ? 'Ativar usuário?' : 'Inativar usuário?',
+                    text: "Você poderá reverter isso!",
                     icon: 'warning',
                     cancelButtonText: 'Cancelar',
                     showCancelButton: true,
-                    confirmButtonText: 'Sim, exclua-o!',
+                    confirmButtonText: status ? 'Sim, ative-o!' : 'Sim, desative-o!',
                     showLoaderOnConfirm: true,
                     preConfirm: async function preConfirm() {
-                        const response = await myFetch('/admin/users/delete', 'POST', {
-                            "id": id
+                        const response = await myFetch('/admin/users/state', 'POST', {
+                            "id": id,
+                            "status": status,
                         });
                         if (!response){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
@@ -141,8 +157,9 @@
                     }
                 }).then(function (response) {
                     if (response.isConfirmed) {
-                        item.remove();
-                        Swal.fire('Excluído!', 'O registro foi excluído.', 'success');
+                        Swal.fire('Desativado!', 'O usuário não poderá efetuar login.', 'success');
+                    }else{
+                        element.checked = !status;
                     }
                 });
             }

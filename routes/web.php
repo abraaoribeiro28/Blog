@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::post('menu-order', [MenuController::class, 'order']);
     Route::post('menus/delete', [MenuController::class, 'destroy']);
     Route::post('instagram-post/delete', [InstagramPostController::class, 'destroy']);
+    Route::post('users/state', [UserController::class, 'toggleUserActiveState']);
 });
 
 //Route::middleware('auth')->group(function () {

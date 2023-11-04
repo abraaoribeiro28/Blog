@@ -113,4 +113,16 @@ class UserController extends Controller
     {
         //
     }
+
+    public function toggleUserActiveState(Request $request)
+    {
+        try {
+            $user = User::findOrFail($request->id);
+            $user->status = $request->status;
+            $user->update();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
