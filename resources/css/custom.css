@@ -123,3 +123,7 @@
         transform: rotate(360deg);
     }
 }
+
+#roles{
+    max-width: 100% !important;
+}
