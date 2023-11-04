@@ -29,6 +29,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        Auth::user()->last_login = date('Y-m-d');
+        Auth::user()->update();
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

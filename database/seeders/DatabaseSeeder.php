@@ -21,43 +21,46 @@ class DatabaseSeeder extends Seeder
             'name' => 'Root',
             'email' => 'root@root.com',
             'password' => Hash::make('123123'),
+            'status' => 1,
+            'email_verified_at' => '2023-01-05',
+            'last_login' => date('Y-m-d'),
         ]);
 
         $role = Role::create(['name' => 'Super Admin']);
+        $role2 = Role::create(['name' => 'Admin']);
         $user->assignRole($role);
 
 
-        DB::table('category_posts')->insert([
-           'name' => 'Geral',
-           'slug' => 'geral',
-            'status' => true
-        ]);
+//        DB::table('category_posts')->insert([
+//           'name' => 'Geral',
+//           'slug' => 'geral',
+//            'status' => true
+//        ]);
+//
+//         Post::factory(10)->create();
 
-         Post::factory(10)->create();
-
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 1',
-            'url' => 'https://www.instagram.com/p/Cydh2Fiu_9r/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 2',
-            'url' => 'https://www.instagram.com/p/Cx8ybmhu_NS/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 3',
-            'url' => 'https://www.instagram.com/p/CvUr9sBgDes/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 4',
-            'url' => 'https://www.instagram.com/p/CvKXbezAMbZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
+//        DB::table('instagram_posts')->insert([
+//            'title' => 'Post 1',
+//            'url' => 'https://www.instagram.com/p/Cydh2Fiu_9r/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+//            'status' => true
+//        ]);
+//
+//        DB::table('instagram_posts')->insert([
+//            'title' => 'Post 2',
+//            'url' => 'https://www.instagram.com/p/Cx8ybmhu_NS/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+//            'status' => true
+//        ]);
+//
+//        DB::table('instagram_posts')->insert([
+//            'title' => 'Post 3',
+//            'url' => 'https://www.instagram.com/p/CvUr9sBgDes/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+//            'status' => true
+//        ]);
+//
+//        DB::table('instagram_posts')->insert([
+//            'title' => 'Post 4',
+//            'url' => 'https://www.instagram.com/p/CvKXbezAMbZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+//            'status' => true
+//        ]);
     }
 }

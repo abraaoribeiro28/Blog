@@ -65,3 +65,17 @@ function getPathStorage(string $path): string
 
     return 'assets/images/sem-imagem.jpg';
 }
+
+
+/**
+ * Get the profile initials.
+ * @return string
+ */
+function getProfileInitials($name)
+{
+    $names = explode(' ', trim($name));
+
+    return count($names) > 1
+        ? strtoupper($names[0][0]) . strtoupper($names[1][0])
+        : strtoupper($names[0][0]);
+}

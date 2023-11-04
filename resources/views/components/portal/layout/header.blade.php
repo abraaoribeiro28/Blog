@@ -9,7 +9,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul id="menu-header" class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
-                    {{--  @include('components.portal.menu-list', ['menus' => $menus, 'level' => 0])--}}
+                    {{--  @includ('components.portal.menu-list', ['menus' => $menus, 'level' => 0])--}}
                 </ul>
             </div>
         </div>
