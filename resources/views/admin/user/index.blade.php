@@ -79,14 +79,6 @@
 
                                     <td class="nk-tb-col tb-col-md">
                                         <span class="tb-status">
-{{--                                            @if($user->status)--}}
-{{--                                                <em class="icon ni ni-check-circle text-success"></em>--}}
-{{--                                                Ativo--}}
-{{--                                            @else--}}
-{{--                                                <em class="icon ni ni-cross-circle text-danger"></em>--}}
-{{--                                                Inativo--}}
-{{--                                            @endif--}}
-{{--                                            <x-admin.forms.input id="status-{{$user->id}}" :value="$user->status" type="switch"/>--}}
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input switch" id="status-{{$user->id}}" value="{{$user->id}}" @if($user->status) checked @endif>
                                                 <label class="custom-control-label" for="status-{{$user->id}}"></label>
@@ -103,11 +95,6 @@
                                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
                                                 <ul class="link-list-plain">
                                                     <li><a href="{{ route('users.edit', $user->id) }}" class="text-primary">Editar</a></li>
-{{--                                                    <li>--}}
-{{--                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$user->id}})">--}}
-{{--                                                            Inativar--}}
-{{--                                                        </a>--}}
-{{--                                                    </li>--}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -157,7 +144,9 @@
                     }
                 }).then(function (response) {
                     if (response.isConfirmed) {
-                        Swal.fire('Desativado!', 'O usuário não poderá efetuar login.', 'success');
+                        status
+                            ? Swal.fire('Ativado!', 'O usuário poderá efetuar login.', 'success')
+                            : Swal.fire('Desativado!', 'O usuário não poderá efetuar login.', 'success');
                     }else{
                         element.checked = !status;
                     }
