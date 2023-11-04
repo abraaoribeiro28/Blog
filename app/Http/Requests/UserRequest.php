@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 class UserRequest extends FormRequest
@@ -27,10 +28,10 @@ class UserRequest extends FormRequest
     {
         $validations = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
         ];
 
-        if(($request->get('_method') == 'PUT' && $request->get('password')) or !$request->get('_method')){
+        if ($request->isMethod('post') || $request->filled('password')) {
             $validations['password'] = ['required', 'confirmed', Rules\Password::defaults()];
         }
 
