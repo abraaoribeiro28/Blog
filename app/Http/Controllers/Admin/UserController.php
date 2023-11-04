@@ -7,8 +7,10 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Repositories\Eloquent\User\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -44,19 +46,23 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        DB::beginTransaction();
         try {
             if ($user = $this->repository->upInsert($request)) {
-                foreach (json_decode($request->roles) as $role) {
-                    $role = Role::find($role);
-                    $user->assignRole($role);
-                }
+                $roles = json_decode($request->roles, true);
+                $user->assignRole($roles);
+                DB::commit();
                 return redirect()
                     ->route('users.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
-        } catch (\Throwable $th) {}
-
-        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
+            throw new Exception('Não foi possível criar o usuário.');
+        }  catch (Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Ocorreu um erro ao salvar os dados: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -81,7 +87,23 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            if ($user = $this->repository->upInsert($request, $id)) {
+                $roles = json_decode($request->roles, true);
+                $user->syncRoles($roles);
+                DB::commit();
+                return redirect()
+                    ->route('users.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+            throw new Exception('Usuário não encontrado.');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Ocorreu um erro ao salvar os dados: ' . $e->getMessage());
+        }
     }
 
     /**
