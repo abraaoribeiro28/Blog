@@ -62,7 +62,7 @@
                                 </a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link">
+                                <a href="{{ route('ebooks.index') }}" class="nk-menu-link">
                                     <span class="nk-menu-text">E-book</span>
                                 </a>
                             </li>

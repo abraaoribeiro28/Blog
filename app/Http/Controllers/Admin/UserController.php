@@ -114,7 +114,7 @@ class UserController extends Controller
         //
     }
 
-    public function toggleUserActiveState(Request $request)
+    public function toggleState(Request $request)
     {
         try {
             $user = User::findOrFail($request->id);

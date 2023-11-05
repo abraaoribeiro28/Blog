@@ -18,12 +18,19 @@ return new class extends Migration
             $table->string('extension');
             $table->boolean('highlight')->nullable();
             $table->foreignId('post_id')->nullable();
+            $table->foreignId('ebook_id')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+
             $table->foreign('post_id')
                 ->references('id')
                 ->on('posts')
                 ->onDelete('cascade');
-            $table->softDeletes();
-            $table->timestamps();
+
+            $table->foreign('ebook_id')
+                ->references('id')
+                ->on('ebooks')
+                ->onDelete('cascade');
         });
     }
 
