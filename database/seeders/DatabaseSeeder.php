@@ -62,5 +62,17 @@ class DatabaseSeeder extends Seeder
 //            'url' => 'https://www.instagram.com/p/CvKXbezAMbZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
 //            'status' => true
 //        ]);
+
+        DB::table('ebooks')->insert([
+            'title' => 'Como falar sobre suicídio?',
+            'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
+            'status' => false,
+        ]);
+
+        DB::table('ebooks')->insert([
+            'title' => 'Um relacionamento saudável com minha ansiedade',
+            'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
+            'status' => true,
+        ]);
     }
 }

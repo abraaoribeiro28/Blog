@@ -10,6 +10,7 @@ use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\InstagramPostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\EbookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('posts/categories', CategoryPostController::class);
     Route::resource('posts', PostController::class);
     Route::resource('instagram', InstagramPostController::class);
+    Route::resource('ebooks', EbookController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('users', UserController::class);
 
@@ -44,7 +46,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::post('menu-order', [MenuController::class, 'order']);
     Route::post('menus/delete', [MenuController::class, 'destroy']);
     Route::post('instagram-post/delete', [InstagramPostController::class, 'destroy']);
-    Route::post('users/state', [UserController::class, 'toggleUserActiveState']);
+    Route::post('users/state', [UserController::class, 'toggleState']);
+    Route::post('ebooks/state', [EbookController::class, 'toggleState']);
 });
 
 //Route::middleware('auth')->group(function () {
