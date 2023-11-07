@@ -31,7 +31,7 @@
                     <div class="row">
                         <x-admin.forms.input id="title" title="Título" :value="isset($ebook) ? $ebook->title : null" :mandatory="true"/>
                         <x-admin.forms.input id="author" title="Autor" :value="isset($ebook) ? $ebook->author : null" :mandatory="true" cols="6"/>
-                        <x-admin.forms.input id="publication_date" title="Data de publicação" :value="isset($ebook) ? $ebook->publication_date : null" :mandatory="true" cols="6"/>
+                        <x-admin.forms.input id="publication_date" title="Data de publicação" :value="isset($ebook) ? $ebook->publication_date : null" type="date" :mandatory="true" cols="6"/>
                         <div class="col-md-6 mb-3 d-flex align-items-end">
                             <div class="form-group w-100">
                                 <label class="form-label" for="customFileLabel">
@@ -99,8 +99,9 @@
 
             removeHighlight.addEventListener('click', async _ => {
                 if(ebook && highlight){
-                    resultado = await myFetch('/admin/ebooks/delete-highlight', 'POST', {
-                        "id": ebook.id
+                    resultado = await myFetch('/admin/delete-highlight', 'POST', {
+                        "id": ebook.id,
+                        "column": 'ebook_id'
                     });
                     highlight = false;
                 }

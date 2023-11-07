@@ -4,16 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EbookRequest;
+use App\Http\Traits\FileTrait;
 use App\Models\Admin\Ebook;
+use App\Repositories\Eloquent\Ebook\EbookRepository;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EbookController extends Controller
 {
-    public $table;
+    use FileTrait;
 
-    public function __construct()
+    public $table, $repository;
+
+    public function __construct(EbookRepository $repository)
     {
         $this->table = app(Ebook::class);
+        $this->repository = $repository;
     }
 
     /**
@@ -38,7 +45,22 @@ class EbookController extends Controller
      */
     public function store(EbookRequest $request)
     {
-        dd($request->all());
+        DB::beginTransaction();
+        try {
+            if ($ebook = $this->repository->upInsert($request)){
+                $this->uploadHighlightArchive($ebook, $request);
+                DB::commit();
+                return redirect()
+                    ->route('ebooks.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+            throw new Exception('Não foi possível criar o e-book.');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Ocorreu um erro ao salvar os dados: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -52,17 +74,35 @@ class EbookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Ebook $ebook)
     {
-        //
+        $highlight = $ebook->highlightArchive;
+        return view('admin.ebook.form', compact('ebook', 'highlight'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EbookRequest $request, string $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            if (
+                ($ebook = $this->repository->upInsert($request, $id))
+                && $this->uploadHighlightArchive($ebook, $request, $id)
+            ) {
+                DB::commit();
+                return redirect()
+                    ->route('ebooks.index')
+                    ->with('success', 'Os dados foram atualizados com sucesso!');
+            }
+            throw new Exception('Não foi possível atualizar o e-book.');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Ocorreu um erro ao salvar os dados: ' . $e->getMessage());
+        }
     }
 
     /**

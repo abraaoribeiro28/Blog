@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
     // ajax
     Route::post('posts/delete', [PostController::class, 'destroy']);
-    Route::post('posts/delete-highlight', [ArchiveController::class, 'deletePostHighlight']);
+    Route::post('delete-highlight', [ArchiveController::class, 'deleteHighlight']);
     Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
     Route::post('menu-order', [MenuController::class, 'order']);
     Route::post('menus/delete', [MenuController::class, 'destroy']);

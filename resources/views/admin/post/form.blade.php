@@ -92,8 +92,9 @@
 
             removeHighlight.addEventListener('click', async _ => {
                 if(post && highlight){
-                    resultado = await myFetch('/admin/posts/delete-highlight', 'POST', {
-                        "id": post.id
+                    resultado = await myFetch('/admin/delete-highlight', 'POST', {
+                        "id": post.id,
+                        "column": 'post_id'
                     });
                     highlight = false;
                 }

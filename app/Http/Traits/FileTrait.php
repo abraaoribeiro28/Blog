@@ -243,27 +243,85 @@ trait FileTrait
         return $this->createfile($path, $context);
     }
 
-    public function uploadHighlightArchive($result, $request, $id = null)
+
+    public function uploadHighlightArchive($result, $request, $id = null): bool
     {
-        if ($this->validFile($request, 'highlight')) {
-            $dir = 'posts/'.$result->category->slug.'/'.$result->id;
-            if($id && $highlight = Archive::where('post_id', $id)->where('highlight', true)->first()){
-                $name = $this->saveUpload($request->file('highlight'), $dir, $highlight->path);
-                $highlight->update([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension()
-                ]);
-            }else{
-                $name = $this->saveUpload($request->file('highlight'), $dir);
-                Archive::create([
-                    'name' => $name,
-                    'path' => "$dir/$name",
-                    'extension' => $request->file('highlight')->extension(),
-                    'highlight' => true,
-                    'post_id' => $result->id
-                ]);
-            }
+        if (!$this->validFile($request, 'highlight')){
+            return false;
         }
+
+        $uploadDirectoryInfo = $this->determineDirectory($result, $result->getTable());
+
+        $highlight = Archive::where($uploadDirectoryInfo['column'], $id)->where('highlight', true)->first();
+
+        $filePath = $this->processFileUpload($request, $uploadDirectoryInfo, $highlight);
+
+        if ($id && $highlight) {
+            $this->updateExistingHighlight($id, $filePath, $highlight);
+        } else {
+            $this->createNewHighlight($result, $filePath, $uploadDirectoryInfo['column']);
+        }
+
+        return true;
+    }
+
+    protected function determineDirectory($result, $table): array|bool
+    {
+        return match ($table) {
+            'ebooks' => [
+                'directory' => "ebooks/$result->id",
+                'column' => 'ebook_id',
+            ],
+            'posts' => [
+                'directory' => 'posts/'.$result->category->slug.'/'.$result->id,
+                'column' => 'post_id',
+            ],
+            default => false,
+        };
+
+    }
+
+    protected function processFileUpload($request, $uploadDirectoryInfo, $highlight): string
+    {
+        $file = $request->file('highlight');
+
+        if ($highlight){
+            $name = $this->saveUpload($file, $uploadDirectoryInfo['directory'], $highlight->path);
+        }else{
+            $name = $this->saveUpload($file, $uploadDirectoryInfo['directory']);
+        }
+
+        return $uploadDirectoryInfo['directory'].'/'.$name;
+    }
+
+    protected function updateExistingHighlight($id, $filePath, $highlight)
+    {
+        if (!$highlight) {
+            return false;
+        }
+
+        $name = basename($filePath);
+        $highlight->update([
+            'name' => $name,
+            'path' => $filePath,
+            'extension' => $this->getExtension($name),
+        ]);
+    }
+
+    protected function createNewHighlight($result, $filePath, $coluna): void
+    {
+        $name = basename($filePath);
+        Archive::create([
+            'name' => $name,
+            'path' => $filePath,
+            'extension' => $this->getExtension($name),
+            'highlight' => true,
+            $coluna => $result->id,
+        ]);
+    }
+
+    protected function getExtension(string $name): string
+    {
+        return explode('.', $name)[1];
     }
 }

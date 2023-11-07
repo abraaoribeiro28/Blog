@@ -1,19 +1,25 @@
 <?php
 
-use GuzzleHttp\Client;
-use Symfony\Component\DomCrawler\Crawler;
-
 /**
- * Converte uma data no formato brasileiro (dd/mm/yyyy) para o formato de banco de dados (Y-m-d)
- * @param string $date A data no formato brasileiro (dd/mm/yyyy).
+ * Converte uma data no formato brasileiro (d/m/Y) para o formato de banco de dados (Y-m-d)
+ * @param string $date A data no formato brasileiro (d/m/Y).
  * @return string A data formatada no formato de banco de dados (Y-m-d).
  */
-function convertDateToDB($date): string
+function convertDateToDB(string $date): string
 {
     $date = str_replace('/', '-', $date);
-    $dataFormatada = date('Y-m-d', strtotime($date));
+    return date('Y-m-d', strtotime($date));
+}
 
-    return $dataFormatada;
+/**
+ * Converte uma data no formato de banco de dados (Y-m-d) para o formato brasileiro (d/m/Y)
+ * @param string $date A data no formato de banco de dados (Y-m-d).
+ * @return string A data formatada no formato brasileiro (d/m/Y).
+ */
+function convertDateToBR(string $date): string
+{
+    $date = str_replace('-', '/', $date);
+    return date('d/m/Y', strtotime($date));
 }
 
 /**
@@ -30,9 +36,7 @@ function formatDateWithMonth(string $date): string
     );
 
     $monthIndex = (int)$dateObj->format('m') - 1;
-    $formattedDate = $dateObj->format('d ') . $monthNames[$monthIndex] . $dateObj->format(' Y');
-
-    return $formattedDate;
+    return $dateObj->format('d ') . $monthNames[$monthIndex] . $dateObj->format(' Y');
 }
 
 /**
@@ -69,9 +73,10 @@ function getPathStorage(string $path): string
 
 /**
  * Get the profile initials.
+ * @param string $name
  * @return string
  */
-function getProfileInitials($name)
+function getProfileInitials(string $name): string
 {
     $names = explode(' ', trim($name));
 
