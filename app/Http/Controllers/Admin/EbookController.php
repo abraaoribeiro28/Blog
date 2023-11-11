@@ -28,7 +28,7 @@ class EbookController extends Controller
      */
     public function index()
     {
-        $ebooks = $this->table->all();
+        $ebooks = $this->table->orderByDesc('publication_date')->get();
         return view('admin.ebook.index', compact('ebooks'));
     }
 
@@ -49,6 +49,7 @@ class EbookController extends Controller
         try {
             if ($ebook = $this->repository->upInsert($request)){
                 $this->uploadHighlightArchive($ebook, $request);
+                $this->uploadEbook($ebook, $request);
                 DB::commit();
                 return redirect()
                     ->route('ebooks.index')

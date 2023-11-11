@@ -171,17 +171,14 @@
                 @foreach($ebooks as $ebook)
                     <div class="row p-3 p-md-5 rounded flex-column-reverse flex-lg-row">
                         <div class="col-lg-6 px-0">
-                            <h1 class="display-4 font-italic">Como falar sobre suicídio?</h1>
+                            <h1 class="display-4 font-italic">{{ $ebook->title }}</h1>
                             <p class="lead my-3">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
-                                elementum tristique
-                                Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae
-                                erat. Nunc ut sem vitae risus tristique posuere.
+                                {{ strip_tags($ebook->resume) }}
                             </p>
-                            <a href="#" class="btn bg-dark-blue text-white">Baixar E-book</a>
+                            <a href="#" download class="btn bg-dark-blue text-white">Baixar E-book</a>
                         </div>
                         <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
-                            <img src="{{ asset('assets/images/capa-ebook.png') }}" class="card-img-right rounded mb-4 mb-lg-0"
+                            <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}" class="card-img-right rounded mb-4 mb-lg-0"
                                  alt="capa do e-book" style="max-height: 500px;">
                         </div>
                     </div>

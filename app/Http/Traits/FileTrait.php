@@ -265,6 +265,27 @@ trait FileTrait
         return true;
     }
 
+    public function uploadEbook($result, $request, $id = null): bool
+    {
+        if (!$this->validFile($request, 'ebook')) {
+            return false;
+        }
+
+        $uploadDirectoryInfo = $this->determineDirectory($result, $result->getTable());
+
+        $ebook = Archive::where($uploadDirectoryInfo['column'], $id)->where('highlight', false)->first();
+
+        $filePath = $this->processFileUpload($request, $uploadDirectoryInfo, $ebook);
+
+        // if ($id && $ebook) {
+        //     $this->updateExistingHighlight($id, $filePath, $ebook);
+        // } else {
+        //     $this->createNewHighlight($result, $filePath, $uploadDirectoryInfo['column']);
+        // }
+
+        return true;
+    }
+
     protected function determineDirectory($result, $table): array|bool
     {
         return match ($table) {
@@ -283,7 +304,7 @@ trait FileTrait
 
     protected function processFileUpload($request, $uploadDirectoryInfo, $highlight): string
     {
-        $file = $request->file('highlight');
+        $file = $request->file('ebook');
 
         if ($highlight){
             $name = $this->saveUpload($file, $uploadDirectoryInfo['directory'], $highlight->path);

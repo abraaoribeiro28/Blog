@@ -48,7 +48,7 @@
                 <button class="btn btn-sm btn-danger align-bottom @if(!$value) d-none @endif" type="button" id="remove-highlight">
                     Remover Imagem
                 </button>
-                <input type="file" class="d-none" name="highlight" id="highlight" accept="image/*">
+                <input type="file" accept="image/*" class="d-none" name="highlight" id="highlight" accept="image/*">
             @elseif(isset($type) && $type == 'switch')
                 <input type="checkbox" class="custom-control-input switch" name="{{ $id }}" value="0" checked>
                 <div class="custom-control custom-switch">

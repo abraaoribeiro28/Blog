@@ -40,7 +40,7 @@
                                 </label>
                                 <div class="form-control-wrap">
                                     <div class="form-file">
-                                        <input type="file" class="form-file-input" id="customFile" name="ebook">
+                                        <input type="file" accept="application/pdf" class="form-file-input" id="customFile" name="ebook">
                                         <label class="form-file-label" for="customFile">Selecione o arquivo</label>
                                     </div>
                                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Ebook;
 use App\Models\Admin\InstagramPost;
 use App\Models\Admin\Post;
 use Illuminate\Http\Request;
@@ -36,6 +37,10 @@ class HomeController extends Controller
             return InstagramPost::where('status', true)->get();
         });
 
-        return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts'));
+        $ebooks = Cache::remember('ebooks', 3600, function () {
+            return Ebook::where('status', true)->orderByDesc('publication_date')->get();
+        });
+
+        return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts', 'ebooks'));
     }
 }
