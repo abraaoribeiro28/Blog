@@ -53,7 +53,6 @@ trait FileTrait
     public function saveUpload($file, $dir, $fileOld = null): string
     {
         $nameFile = $this->getFileName($file);
-
         if ($this->fileExistsInPath($nameFile, $dir)) {
             $this->deleteFile($nameFile, $dir);
         }
@@ -63,7 +62,7 @@ trait FileTrait
         $file->storeAs($dir, "{$nameFile}");
 //        $this->compress(storage_path("$dir/$nameFile"), null, 1024);
 
-        return "$nameFile";
+        return "$dir/$nameFile";
     }
 
     public function deleteFile($files, string $dir)
@@ -267,21 +266,34 @@ trait FileTrait
 
     public function uploadEbook($result, $request, $id = null): bool
     {
+
         if (!$this->validFile($request, 'ebook')) {
             return false;
         }
 
-        $uploadDirectoryInfo = $this->determineDirectory($result, $result->getTable());
+        $file = $request->file('ebook');
+        $uploadDirectoryInfo = "ebooks/$result->id";
+        $ebook = Archive::where('ebook_id', $id)->where('highlight', false)->first();
 
-        $ebook = Archive::where($uploadDirectoryInfo['column'], $id)->where('highlight', false)->first();
-
-        $filePath = $this->processFileUpload($request, $uploadDirectoryInfo, $ebook);
-
-        // if ($id && $ebook) {
-        //     $this->updateExistingHighlight($id, $filePath, $ebook);
-        // } else {
-        //     $this->createNewHighlight($result, $filePath, $uploadDirectoryInfo['column']);
-        // }
+        if ($ebook) {
+            $filePath = $this->saveUpload($file, $uploadDirectoryInfo, $ebook->path);
+            $name = basename($filePath);
+            $ebook->update([
+                'name' => $name,
+                'path' => $filePath,
+                'extension' => $this->getExtension($name),
+            ]);
+        }else{
+            $filePath = $this->saveUpload($file, $uploadDirectoryInfo);
+            $name = basename($filePath);
+            Archive::create([
+                'name' => $name,
+                'path' => $filePath,
+                'extension' => $this->getExtension($name),
+                'highlight' => false,
+                'ebook_id' => $result->id,
+            ]);
+        }
 
         return true;
     }
@@ -304,7 +316,7 @@ trait FileTrait
 
     protected function processFileUpload($request, $uploadDirectoryInfo, $highlight): string
     {
-        $file = $request->file('ebook');
+        $file = $request->file('highlight');
 
         if ($highlight){
             $name = $this->saveUpload($file, $uploadDirectoryInfo['directory'], $highlight->path);
@@ -312,7 +324,7 @@ trait FileTrait
             $name = $this->saveUpload($file, $uploadDirectoryInfo['directory']);
         }
 
-        return $uploadDirectoryInfo['directory'].'/'.$name;
+        return $name;
     }
 
     protected function updateExistingHighlight($id, $filePath, $highlight)

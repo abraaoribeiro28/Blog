@@ -88,10 +88,9 @@ class EbookController extends Controller
     {
         DB::beginTransaction();
         try {
-            if (
-                ($ebook = $this->repository->upInsert($request, $id))
-                && $this->uploadHighlightArchive($ebook, $request, $id)
-            ) {
+            if ($ebook = $this->repository->upInsert($request, $id)){
+                $this->uploadHighlightArchive($ebook, $request, $id);
+                $this->uploadEbook($ebook, $request, $id);
                 DB::commit();
                 return redirect()
                     ->route('ebooks.index')
