@@ -14,7 +14,8 @@ class Archive extends Model
         'path',
         'extension',
         'highlight',
-        'post_id'
+        'post_id',
+        'ebook_id'
     ];
 
 

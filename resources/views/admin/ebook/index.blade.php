@@ -33,6 +33,8 @@
                                     </div>
                                 </th>
                                 <th class="nk-tb-col"><span class="sub-text">Título</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Autor</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Data de publicação</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
                                 <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
                             </tr>
@@ -49,7 +51,12 @@
                                     <td class="nk-tb-col">
                                         <span class="tb-lead">{{ $ebook->title }}</span>
                                     </td>
-
+                                    <td class="nk-tb-col">
+                                        <span class="tb-lead">{{ $ebook->author }}</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-md">
+                                        <span>{{ convertDateToBR($ebook->publication_date) }}</span>
+                                    </td>
                                     <td class="nk-tb-col tb-col-md">
                                         <span class="tb-status">
                                             <div class="custom-control custom-switch">

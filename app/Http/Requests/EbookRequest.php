@@ -26,7 +26,7 @@ class EbookRequest extends FormRequest
             'publication_date' => 'required',
             'author' => 'required|max:80',
             'resume' => 'required|max:999',
-            'ebook' => 'required'
+//            'ebook' => 'required'
         ];
     }
 
@@ -45,7 +45,7 @@ class EbookRequest extends FormRequest
             'author.max' => 'O campo Autor não pode ser superior a 80 caracteres.',
             'resume.required' => 'O campo Texto é obrigatório.',
             'resume.max' => 'O campo Texto não pode ser superior a 999 caracteres.',
-            'ebook.required' => 'O campo E-book é obrigatório.',
+//            'ebook.required' => 'O campo E-book é obrigatório.',
         ];
     }
 }
