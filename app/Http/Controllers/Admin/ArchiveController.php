@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ArchiveController extends Controller
 {
-    public function deletePostHighlight(Request $request){
-        $archive = Archive::where('post_id', $request->id)->where('highlight', true)->first();
+    public function deleteHighlight(Request $request){
+        $archive = Archive::where($request->column, $request->id)->where('highlight', true)->first();
         Storage::delete($archive->path);
         $archive->delete();
     }
