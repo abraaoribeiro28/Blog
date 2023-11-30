@@ -6,6 +6,7 @@ use App\Models\Admin\Archive;
 use App\Models\Admin\Configuration;
 use CURLFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -21,11 +22,18 @@ trait FileTrait
      */
     public function createfile($path, $context): bool
     {
+        $directory = dirname($path);
+
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
         if ($repository = fopen($path, "a")) {
             fwrite($repository, trim($context));
             fclose($repository);
             return true;
-        };
+        }
+
         return false;
     }
 
