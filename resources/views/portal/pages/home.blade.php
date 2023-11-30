@@ -101,10 +101,9 @@
                 <div class="row">
                     <div class="col-lg-6">
                         @if($mostViewedPost)
-                            <a href="" class="post-destaque">
+                            <a href="{{ route('posts.show', $mostViewedPost->slug) }}" class="post-destaque">
                                 <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}" class="imagem-palestra-destaque"
                                     loading="lazy" alt="imagem de destaque" />
-
                                 <div class="category pt-4">
                                     Mais visualizada
                                 </div>
@@ -123,24 +122,24 @@
                     <div class="col-lg-6 ps-md-4 mt-5 pt-5 pt-lg-0 mt-lg-0">
                         <h4>Últimas palestras</h4>
                         @foreach ($posts as $post)
-                        <div class="blog-index w-dyn-list">
-                            <a href="#" class="post-recente d-block d-sm-grid">
-                                <div>
-                                    <div class="category">{{ $post->category->name }}</div>
-                                    <h4>{{ $post->title }}</h4>
-                                    <div class="post-details">
-                                        <div>{{ $post->author }}</div>
-                                        <div class="spacer-dot">•</div>
-                                        <div>{{ formatDateWithMonth($post->publication_date) }}</div>
+                            <div class="blog-index w-dyn-list">
+                                <a href="{{ route('posts.show', $post->slug) }}" class="post-recente d-block d-sm-grid">
+                                    <div>
+                                        <div class="category">{{ $post->category->name }}</div>
+                                        <h4>{{ $post->title }}</h4>
+                                        <div class="post-details">
+                                            <div>{{ $post->author }}</div>
+                                            <div class="spacer-dot">•</div>
+                                            <div>{{ formatDateWithMonth($post->publication_date) }}</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}"
-                                    class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
-                            </a>
-                        </div>
-                        @if (!$loop->last)
-                        <div class="line-spacer"></div>
-                        @endif
+                                    <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}"
+                                        class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
+                                </a>
+                            </div>
+                            @if (!$loop->last)
+                                <div class="line-spacer"></div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
