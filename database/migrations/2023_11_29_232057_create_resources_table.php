@@ -23,19 +23,49 @@ return new class extends Migration
 
         DB::table('resources')->insert([
             [
+                'name' => 'Postagens',
+                'slug' => 'postagens',
+                'description' => 'Funcionalidade de postagens do site.'
+            ],
+            [
+                'name' => 'Solicitações',
+                'slug' => 'solicitacoes',
+                'description' => 'Funcionalidade de solicitações de visitantes do site.'
+            ],
+            [
+                'name' => 'Galeria de imagens',
+                'slug' => 'galeria',
+                'description' => 'Funcionalidade de galeria de imagens.'
+            ],
+            [
+                'name' => 'Instagram',
+                'slug' => 'instagram',
+                'description' => 'Funcionalidade para cadastrar postagens do instagram.'
+            ],
+            [
+                'name' => 'E-books',
+                'slug' => 'ebooks',
+                'description' => 'Funcionalidade para cadastro de e-books.'
+            ],
+            [
+                'name' => 'Menus',
+                'slug' => 'menus',
+                'description' => 'Funcionalidade para cadastro de menus do site.'
+            ],
+            [
                 'name' => 'Configurações',
                 'slug' => 'configuracoes',
-                'description' => 'Funcionalidade Configurações do site'
+                'description' => 'Funcionalidade de configurações do site'
             ],
             [
                 'name' => 'Usuários',
                 'slug' => 'usuarios',
-                'description' => 'Funcionalidade de Usuários'
+                'description' => 'Funcionalidade para cadastro de usuários'
             ],
             [
                 'name' => 'Perfis',
                 'slug' => 'perfis',
-                'description' => 'Funcionalidade de Perfis'
+                'description' => 'Funcionalidade de para definir perfis de usuários e suas permissões'
             ],
         ]);
 

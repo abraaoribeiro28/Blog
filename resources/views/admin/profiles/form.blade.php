@@ -77,14 +77,14 @@
                                     </td>
                                     <td>
                                         <div class="form-check m-2 edit">
-                                            <x-admin.forms.input id="{{ $resource->slug }}.update"
-                                                value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.update") : 0 }}' type="checkbox"/>
+                                            <x-admin.forms.input id="{{ $resource->slug }}.edit"
+                                                value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.edit") : 0 }}' type="checkbox"/>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-check m-2 delete">
-                                            <x-admin.forms.input id="{{ $resource->slug }}.delete"
-                                                 value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.delete") : 0 }}' type="checkbox"/>
+                                            <x-admin.forms.input id="{{ $resource->slug }}.destroy"
+                                                 value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.destroy") : 0 }}' type="checkbox"/>
                                         </div>
                                     </td>
                                 </tr>

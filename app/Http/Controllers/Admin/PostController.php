@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use App\Repositories\Eloquent\Post\PostRepository;
@@ -15,12 +16,13 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    use SoftDeletes, FileTrait;
+    use SoftDeletes, FileTrait, PermissionTrait;
 
     public $table, $repository;
 
     public function __construct(PostRepository $repository)
     {
+        $this->permission('postagens');
         $this->table = app(Post::class);
         $this->repository = $repository;
     }

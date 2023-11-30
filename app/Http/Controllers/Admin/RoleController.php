@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Resource;
 use App\Repositories\Eloquent\Role\RoleRepository;
 use Illuminate\Http\Request;
@@ -12,10 +13,11 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-
+    use PermissionTrait;
     public $table, $repository;
 
     public function __construct(RoleRepository $repository){
+        $this->permission('perfis');
         $this->table = app(Role::class);
         $this->repository = $repository;
     }
