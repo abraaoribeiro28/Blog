@@ -29,18 +29,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $role = Role::create(['name' => 'Super Admin']);
-        $role2 = Role::create(['name' => 'Admin']);
         $user->assignRole($role);
 
         $actions = ['index', 'create', 'update', 'delete'];
         foreach (Resource::all() as $resource){
             foreach ($actions as $action){
                 $permission = Permission::create(['name' => "$resource->slug.$action"]);
-                $role2->givePermissionTo($permission);
+                $role->givePermissionTo($permission);
             }
         }
-
-
 
 //        DB::table('category_posts')->insert([
 //           'name' => 'Geral',
