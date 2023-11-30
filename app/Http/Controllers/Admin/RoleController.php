@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
+use App\Models\Resource;
+use App\Repositories\Eloquent\Role\RoleRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
 
-    public $table;
+    public $table, $repository;
 
-    public function __construct(){
+    public function __construct(RoleRepository $repository){
         $this->table = app(Role::class);
+        $this->repository = $repository;
     }
 
     /**
@@ -30,15 +34,28 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $resources = Resource::all();
+        return view('admin.profiles.form', compact('resources'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            if ($result = $this->repository->upInsert($request)) {
+                DB::commit();
+                return redirect()
+                    ->route('profiles.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+            throw new \Exception();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados: Falha ao inserir os dados no banco de dados.');
+        }
     }
 
     /**
@@ -54,15 +71,37 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::findById($id);
+        $resources = Resource::all();
+        return view('admin.profiles.form', compact('role', 'resources'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleRequest $request, string $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $role = $this->repository->upInsert($request, $id);
+            $permissions = $request->except('_token', '_method', 'name');
+            $role->syncPermissions();
+            foreach ($permissions as $key => $value){
+                $key = str_replace('_', '.', $key);
+                $role->givePermissionTo($key);
+            }
+            if ($role) {
+                DB::commit();
+                return redirect()
+                    ->route('profiles.index')
+                    ->with('success', 'Os dados foram salvos com sucesso!');
+            }
+            throw new \Exception();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e);
+            return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados: Falha ao inserir os dados no banco de dados.');
+        }
     }
 
     /**

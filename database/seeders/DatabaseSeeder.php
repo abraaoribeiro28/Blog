@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Admin\Post;
+use App\Models\Resource;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +31,15 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'Super Admin']);
         $role2 = Role::create(['name' => 'Admin']);
         $user->assignRole($role);
+
+        $actions = ['index', 'create', 'update', 'delete'];
+        foreach (Resource::all() as $resource){
+            foreach ($actions as $action){
+                $permission = Permission::create(['name' => "$resource->slug.$action"]);
+                $role2->givePermissionTo($permission);
+            }
+        }
+
 
 
 //        DB::table('category_posts')->insert([

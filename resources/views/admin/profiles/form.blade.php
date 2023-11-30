@@ -4,7 +4,7 @@
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
                     <h3 class="nk-block-title page-title">
-                        @if(isset($post))
+                        @if(isset($role))
                             Editar postagem
                         @else
                             Cadastrar postagem
@@ -23,27 +23,75 @@
 
         <div class="card card-bordered">
             <div class="card-inner">
-                <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ isset($role) ? route('profiles.update', $role->id) : route('profiles.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @isset($post)
+                    @isset($role)
                         @method('PUT')
                     @endisset
                     <div class="row">
-                        <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
+                        <x-admin.forms.input id="name" title="Nome" :value="isset($role) ? $role->name : null" :mandatory="true"/>
 
-                        <x-admin.forms.input id="slug" title="URL Amigável" :value="isset($post) ? $post->slug : null" :mandatory="true" type="slug"/>
+                        <div class="d-flex align-items-center mt-4 mb-3 justify-content-between">
+                            <h6>Permissões do Perfil</h6>
+                            <button type="button" id="checkAll" class="btn btn-primary btn-sm">Marcar Todas</button>
+                        </div>
+                        <table class="table mx-2">
+                            <thead>
+                            <tr>
+                                <th scope="col">
+                                    Módulo
+                                </th>
+                                <th scope="col">
+                                    Listar
+                                    <input type="checkbox" id="listAll" />
+                                </th>
+                                <th scope="col">
+                                    Cadastrar
+                                    <input type="checkbox" id="createAll" />
+                                </th>
+                                <th scope="col">
+                                    Editar
+                                    <input type="checkbox" id="editAll" />
+                                </th>
+                                <th scope="col">
+                                    Deletar
+                                    <input type="checkbox" id="deleteAll" />
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($resources as $resource)
+                                <tr>
+                                    <td>{{ $resource->name }}</td>
+                                    <td>
+                                        <div class="form-check m-2 list">
+                                            <x-admin.forms.input id="{{ $resource->slug }}.index"
+                                                value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.index") : 0 }}' type="checkbox"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check m-2 create">
+                                            <x-admin.forms.input id="{{ $resource->slug }}.create"
+                                                value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.create") : 0 }}' type="checkbox"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check m-2 edit">
+                                            <x-admin.forms.input id="{{ $resource->slug }}.update"
+                                                value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.update") : 0 }}' type="checkbox"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check m-2 delete">
+                                            <x-admin.forms.input id="{{ $resource->slug }}.delete"
+                                                 value='{{ isset($role) ? $role->hasPermissionTo("$resource->slug.delete") : 0 }}' type="checkbox"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
 
-                        <x-admin.forms.input id="author" title="Autor" :value="isset($post) ? $post->author : null" :mandatory="true"/>
-
-                        <x-admin.forms.input id="category_posts_id" title="Categoria" type="select" cols="6" :data="$categories"
-                            :value="isset($post) ? $post->category_posts_id : null"  :mandatory="true"/>
-
-                        <x-admin.forms.input id="publication_date" title="Data de publicação" type="date" cols="6"
-                            :value="isset($post) ? $post->publication_date : null" :mandatory="true"/>
-
-                        <x-admin.forms.input id="highlight" title="Imagem de destaque" :value="isset($highlight) ? $highlight->path : null" type="highlight"/>
-
-                        <x-admin.forms.input id="text" title="Texto" :value="isset($post) ? $post->text : null" type="summernote" :mandatory="true"/>
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
@@ -52,71 +100,5 @@
             </div>
         </div>
     </div>
-
-    @section('style')
-        <link rel="stylesheet" href="{{ url('theme/src/assets/css/editors/summernote.css') }}">
-    @endsection
-
-    @section('script')
-        <script src="{{ url('theme/src/assets/js/libs/editors/summernote.js') }}"></script>
-        <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
-
-        <script defer>
-            $(document).ready(function() {
-                $('#summernote').summernote({
-                    height: 150
-                });
-            });
-
-            // Url amigável (slug)
-            const title = document.querySelector('#title');
-            const slug = document.querySelector('#slug');
-
-            title.addEventListener('keyup', () => {
-                slug.value = slugify(title.value);
-            });
-
-            slug.addEventListener('keyup', () => {
-                slug.value = slugify(slug.value);
-            });
-
-            // Remover destaque
-            const post = @json($post ?? null);
-            let highlight = @json($highlight ?? false);
-
-            const selectFile = document.querySelector('#select-file');
-            const inputHighlight = document.querySelector('#highlight');
-            const imageHighlight = document.querySelector('#image-highlight');
-            const removeHighlight = document.querySelector('#remove-highlight');
-
-            selectFile.onclick = () => {
-                inputHighlight.click();
-            }
-
-            inputHighlight.onchange = () => {
-                if (inputHighlight.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        imageHighlight.src = reader.result;
-                    }
-                    reader.readAsDataURL(inputHighlight.files[0]);
-                    removeHighlight.classList.remove('d-none');
-                }
-            }
-
-            removeHighlight.addEventListener('click', async _ => {
-                if(post && highlight){
-                    resultado = await myFetch('/admin/delete-highlight', 'POST', {
-                        "id": post.id,
-                        "column": 'post_id'
-                    });
-                    highlight = false;
-                }
-                imageHighlight.src = window.location.origin + '/assets/images/sem-imagem.jpg';
-                removeHighlight.classList.add('d-none');
-            });
-
-
-        </script>
-    @endsection
+    <script src="{{ url('assets/js/checkAll.js') }}"></script>
 </x-app-layout>
