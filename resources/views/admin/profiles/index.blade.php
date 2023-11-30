@@ -11,16 +11,17 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('profiles.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                               Novo perfil
-                            </a>
+                            @can('perfis.create')
+                                <a href="{{ route('profiles.create') }}" class="btn btn-primary">
+                                    <i class="icon bi bi-plus me-1"></i>
+                                   Novo perfil
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
                 <x-admin.forms.alert/>
             </div>
-
 
             <div class="card card-bordered card-preview">
                 <div class="card-inner">
@@ -35,7 +36,9 @@
                                 </th>
                                 <th class="nk-tb-col"><span class="sub-text">Nome do perfil</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Criado em</span></th>
-                                <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @canany(['perfis.edit', 'perfis.destroy'])
+                                    <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -53,23 +56,29 @@
                                     <td class="nk-tb-col tb-col-md">
                                         <span>{{ date('d/m/Y', strtotime($role->created_at)) }}</span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md text-center">
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
-                                                <em class="icon ni ni-more-h"></em>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="{{ route('profiles.edit', $role->id) }}" class="text-primary">Editar</a></li>
-                                                    <li>
-                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$role->id}})">
-                                                            Excluir
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                    @canany(['perfis.edit', 'perfis.destroy'])
+                                        <td class="nk-tb-col tb-col-md text-center">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
+                                                    <em class="icon ni ni-more-h"></em>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
+                                                    <ul class="link-list-plain">
+                                                        @can('perfis.edit')
+                                                            <li><a href="{{ route('profiles.edit', $role->id) }}" class="text-primary">Editar</a></li>
+                                                        @endcan
+                                                        @can('perfis.destroy')
+                                                            <li>
+                                                                <a href="#" class="text-danger" onclick="confirmDelete({{$role->id}})">
+                                                                    Excluir
+                                                                </a>
+                                                            </li>
+                                                        @endcan
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @endcanany
                                 </tr>
                             @endforeach
                         </tbody>
@@ -95,7 +104,7 @@
                         const response = await myFetch('/admin/profiles/delete', 'POST', {
                             "id": id
                         });
-                        if (!response){
+                        if (response != 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },

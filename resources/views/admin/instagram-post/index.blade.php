@@ -11,10 +11,12 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('instagram.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                               Nova postagem
-                            </a>
+                            @can('instagram.create')
+                                <a href="{{ route('instagram.create') }}" class="btn btn-primary">
+                                    <i class="icon bi bi-plus me-1"></i>
+                                   Nova postagem
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,9 @@
                                 <th class="nk-tb-col"><span class="sub-text">Título</span></th>
                                 <th class="nk-tb-col tb-col-mb"><span class="sub-text">URL</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @canany(['instagram.edit', 'instagram.destroy'])
+                                    <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -57,36 +61,40 @@
                                             </a>
                                         </span>
                                     </td>
-
                                     <td class="nk-tb-col tb-col-md">
-                                    <span class="tb-status">
-                                        @if($post->status)
-                                            <em class="icon ni ni-check-circle text-success"></em>
-                                            Ativo
-                                        @else
-                                            <em class="icon ni ni-cross-circle text-danger"></em>
-                                            Desativado
-                                        @endif
-                                    </span>
+                                        <span class="tb-status">
+                                            @if($post->status)
+                                                <em class="icon ni ni-check-circle text-success"></em>
+                                                Ativo
+                                            @else
+                                                <em class="icon ni ni-cross-circle text-danger"></em>
+                                                Desativado
+                                            @endif
+                                        </span>
                                     </td>
-                                    <td class="nk-tb-col tb-col-md text-center">
-
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
-                                                <em class="icon ni ni-more-h"></em>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="{{ route('instagram.edit', $post->id) }}" class="text-primary">Editar</a></li>
-                                                    <li>
-                                                        <a href="#" class="text-danger" onclick="confirmDelete({{$post->id}})">
-                                                            Excluir
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                    @canany(['instagram.edit', 'instagram.destroy'])
+                                        <td class="nk-tb-col tb-col-md text-center">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
+                                                    <em class="icon ni ni-more-h"></em>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
+                                                    <ul class="link-list-plain">
+                                                        @can('instagram.edit')
+                                                            <li><a href="{{ route('instagram.edit', $post->id) }}" class="text-primary">Editar</a></li>
+                                                        @endcan
+                                                        @can('instagram.destroy')
+                                                            <li>
+                                                                <a href="#" class="text-danger" onclick="confirmDelete({{$post->id}})">
+                                                                    Excluir
+                                                                </a>
+                                                            </li>
+                                                        @endcan
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @endcanany
                                 </tr>
                             @endforeach
                         </tbody>
@@ -112,7 +120,7 @@
                         const response = await myFetch('/admin/instagram-post/delete', 'POST', {
                             "id": id
                         });
-                        if (!response){
+                        if (response !== 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },

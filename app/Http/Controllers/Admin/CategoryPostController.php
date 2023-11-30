@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryPostRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use App\Repositories\Eloquent\CategoryPost\CategoryPostRepository;
@@ -14,12 +15,13 @@ use function Symfony\Component\Translation\t;
 
 class CategoryPostController extends Controller
 {
-    use SoftDeletes;
+    use SoftDeletes, PermissionTrait;
 
     public $table, $repository;
 
     public function __construct(CategoryPostRepository $repository)
     {
+        $this->permission('postagens');
         $this->table = app(CategoryPost::class);
         $this->repository = $repository;
     }

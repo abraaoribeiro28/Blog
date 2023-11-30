@@ -115,7 +115,7 @@
                         </li>
                     @endcanany
 
-                    @can('configuracoes.update')
+                    @can('configuracoes.edit')
                         <li class="nk-menu-item">
                             <a href="{{ route('configurations.edit', 1) }}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><i class="icon bi bi-sliders"></i></span>
