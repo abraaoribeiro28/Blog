@@ -18,11 +18,11 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         $posts = Cache::remember('posts', 3600, function () {
             return Post::with('category', 'highlightArchive')
                 ->where('status', true)
                 ->orderByDesc('publication_date')
+                ->orderBy('id', 'desc')
                 ->limit(3)
                 ->get();
         });

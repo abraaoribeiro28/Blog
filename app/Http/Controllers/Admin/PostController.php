@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
-use App\Models\Admin\Archive;
 use App\Models\Admin\CategoryPost;
-use App\Models\Admin\Menu;
 use App\Models\Admin\Post;
 use App\Repositories\Eloquent\Post\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Traits\FileTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -55,17 +53,21 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        DB::beginTransaction();
         try {
             if ($result = $this->repository->upInsert($request)) {
                 $this->uploadHighlightArchive($result, $request);
                 Cache::pull('posts');
+                DB::commit();
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
-        } catch (\Throwable $th) {}
-
-        return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados no banco de dados. Por favor, tente novamente!');
+            throw new \Exception();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados: Falha ao inserir os dados no banco de dados.');
+        }
     }
 
     /**
@@ -91,17 +93,21 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        DB::beginTransaction();
         try {
             if ($result = $this->repository->upInsert($request, $post->id)) {
                 $this->uploadHighlightArchive($result, $request, $post->id);
                 Cache::pull('posts');
+                DB::commit();
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
-        } catch (\Throwable $th) {}
-
-        return redirect()->back()->with('error', 'Ocorreu um erro ao atualizar os dados no banco de dados. Por favor, tente novamente!');
+            throw new \Exception();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados: Falha ao inserir os dados no banco de dados.');
+        }
     }
 
     /**
