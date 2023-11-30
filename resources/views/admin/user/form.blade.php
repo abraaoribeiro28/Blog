@@ -76,7 +76,7 @@
         <script src="{{ asset('assets/modules/virtual-select/virtual-select.min.js') }}"></script>
         <script defer>
             VirtualSelect.init({
-                ele: '#profiles',
+                ele: '#roles',
                 search: true,
                 searchPlaceholderText: 'Pesquisar...',
                 disableAllOptionsSelectedText: true,

@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->table->with('profiles')->get();
+        $users = $this->table->with('roles')->get();
         return view('admin.user.index', compact('users'));
     }
 
