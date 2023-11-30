@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\SelectRule;
+use Illuminate\Validation\Rule;
 
 class PostRequest extends FormRequest
 {
@@ -28,6 +29,10 @@ class PostRequest extends FormRequest
             'publication_date' => 'required',
             'author' => 'required|max:80',
             'text' => 'required|max:999',
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($this->post),
+            ]
         ];
     }
 
@@ -46,6 +51,8 @@ class PostRequest extends FormRequest
             'author.max' => 'O campo Autor não pode ser superior a 80 caracteres.',
             'text.required' => 'O campo Texto é obrigatório.',
             'text.max' => 'O campo Texto não pode ser superior a 999 caracteres.',
+            'slug.required' => 'O campo URL Amigável é obrigatório.',
+            'slug.unique' => 'O campo URL Amigável já está sendo utilizado.',
         ];
     }
 }
