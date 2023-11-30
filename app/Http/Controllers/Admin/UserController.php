@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\User;
 use App\Repositories\Eloquent\User\UserRepository;
 use Illuminate\Http\Request;
@@ -14,10 +15,12 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
+    use PermissionTrait;
     public $table, $repository;
 
     public function __construct(UserRepository $repository)
     {
+        $this->permission('usuarios');
         $this->table = app(User::class);
         $this->repository = $repository;
     }
@@ -117,11 +120,14 @@ class UserController extends Controller
     public function toggleState(Request $request)
     {
         try {
-            $user = User::findOrFail($request->id);
-            $user->status = $request->status;
-            $user->update();
-            return true;
-        } catch (\Throwable $th) {
+            if(auth()->user()->can('usuarios.edit')){
+                $user = User::findOrFail($request->id);
+                $user->status = $request->status;
+                $user->update();
+                return true;
+            }
+            throw new \Exception();
+        } catch (\Exception $e) {
             return false;
         }
     }

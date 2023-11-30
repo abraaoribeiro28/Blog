@@ -3,27 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\RoleRequest;
 use App\Http\Traits\PermissionTrait;
-use App\Models\Admin\CategoryPost;
-use App\Models\Admin\Post;
-use App\Repositories\Eloquent\Post\PostRepository;
+use App\Models\Resource;
+use App\Repositories\Eloquent\Role\RoleRepository;
 use Illuminate\Http\Request;
-use App\Http\Traits\FileTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
-class PostController extends Controller
+class RoleController extends Controller
 {
-    use SoftDeletes, FileTrait, PermissionTrait;
-
+    use PermissionTrait;
     public $table, $repository;
 
-    public function __construct(PostRepository $repository)
-    {
-        $this->permission('postagens');
-        $this->table = app(Post::class);
+    public function __construct(RoleRepository $repository){
+        $this->permission('perfis');
+        $this->table = app(Role::class);
         $this->repository = $repository;
     }
 
@@ -32,13 +27,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->table
-            ->with('category')
-            ->orderBy('publication_date', 'desc')
-            ->orderBy('id', 'desc')
-            ->get();
-
-        return view('admin.post.index', compact('posts'));
+        $roles = Role::all();
+        return view('admin.profiles.index', compact('roles'));
     }
 
     /**
@@ -46,23 +36,27 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = CategoryPost::where('status', true)->get();
-        return view('admin.post.form', compact('categories'));
+        $resources = Resource::all();
+        return view('admin.profiles.form', compact('resources'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostRequest $request)
+    public function store(RoleRequest $request)
     {
         DB::beginTransaction();
         try {
-            if ($result = $this->repository->upInsert($request)) {
-                $this->uploadHighlightArchive($result, $request);
-                Cache::pull('posts');
+            $role = $this->repository->upInsert($request);
+            $permissions = $request->except('_token', '_method', 'name');
+            foreach ($permissions as $key => $value){
+                $key = str_replace('_', '.', $key);
+                $role->givePermissionTo($key);
+            }
+            if ($role) {
                 DB::commit();
                 return redirect()
-                    ->route('posts.index')
+                    ->route('profiles.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
             throw new \Exception();
@@ -75,7 +69,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $id)
     {
         //
     }
@@ -83,31 +77,37 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(string $id)
     {
-        $categories = CategoryPost::all();
-        $highlight = $post->archives->where('highlight')[0] ?? null;
-        return view('admin.post.form', compact('post', 'categories', 'highlight'));
+        $role = Role::findById($id);
+        $resources = Resource::all();
+        return view('admin.profiles.form', compact('role', 'resources'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(RoleRequest $request, string $id)
     {
         DB::beginTransaction();
         try {
-            if ($result = $this->repository->upInsert($request, $post->id)) {
-                $this->uploadHighlightArchive($result, $request, $post->id);
-                Cache::pull('posts');
+            $role = $this->repository->upInsert($request, $id);
+            $permissions = $request->except('_token', '_method', 'name');
+            $role->syncPermissions();
+            foreach ($permissions as $key => $value){
+                $key = str_replace('_', '.', $key);
+                $role->givePermissionTo($key);
+            }
+            if ($role) {
                 DB::commit();
                 return redirect()
-                    ->route('posts.index')
+                    ->route('profiles.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
             }
             throw new \Exception();
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e);
             return redirect()->back()->with('error', 'Ocorreu um erro ao salvar os dados: Falha ao inserir os dados no banco de dados.');
         }
     }
@@ -115,12 +115,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): bool
     {
         try {
-            $post = Post::findOrFail($request->id);
-            $post->delete();
-            Cache::pull('posts');
+            $role = $this->table->findOrFail($request->id);
+            $role->delete();
             return true;
         } catch (\Throwable $th) {
             return false;

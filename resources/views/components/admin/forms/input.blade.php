@@ -63,6 +63,9 @@
                     </div>
                     <input type="text" class="form-control @error($id) error @endif" id="{{ $id }}" name="{{ $id }}" value="{{ old($id) ?? $value }}">
                 </div>
+            @elseif(isset($type) && $type == 'checkbox')
+{{--                <input class="form-check-input" id="{{ $id }}" name="{{ $id }}" type="checkbox" value="0" @if ($value) checked @endif />--}}
+                <input class="form-check-input" id="{{ $id }}" name="{{ $id }}" type="checkbox" value="1" @if ($value) checked @endif />
             @else
                 <input type="{{ $type ?? 'text'}}"
                        id="{{ $id }}" name="{{ $id }}"

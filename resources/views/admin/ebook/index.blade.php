@@ -11,10 +11,12 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('ebooks.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                               Novo e-book
-                            </a>
+                            @can('ebooks.create')
+                                <a href="{{ route('ebooks.create') }}" class="btn btn-primary">
+                                    <i class="icon bi bi-plus me-1"></i>
+                                   Novo e-book
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -36,7 +38,9 @@
                                 <th class="nk-tb-col"><span class="sub-text">Autor</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Data de publicação</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @canany(['ebooks.edit', 'ebooks.destroy'])
+                                    <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -63,22 +67,24 @@
                                                 <input type="checkbox" class="custom-control-input switch" id="status-{{$ebook->id}}" value="{{$ebook->id}}" @if($ebook->status) checked @endif>
                                                 <label class="custom-control-label" for="status-{{$ebook->id}}"></label>
                                             </div>
-                                    </span>
+                                        </span>
                                     </td>
-
-                                    <td class="nk-tb-col tb-col-md text-center">
-
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
-                                                <em class="icon ni ni-more-h"></em>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="{{ route('ebooks.edit', $ebook->id) }}" class="text-primary">Editar</a></li>
-                                                </ul>
+                                    @canany(['ebooks.edit', 'ebooks.destroy'])
+                                        <td class="nk-tb-col tb-col-md text-center">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
+                                                    <em class="icon ni ni-more-h"></em>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
+                                                    <ul class="link-list-plain">
+                                                        @can('ebooks.edit')
+                                                            <li><a href="{{ route('ebooks.edit', $ebook->id) }}" class="text-primary">Editar</a></li>
+                                                        @endcan
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @endcanany
                                 </tr>
                             @endforeach
                         </tbody>
@@ -115,7 +121,7 @@
                             "id": id,
                             "status": status,
                         });
-                        if (!response){
+                        if (response !== 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },

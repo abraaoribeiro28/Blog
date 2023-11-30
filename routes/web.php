@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\ConfigurationController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\CategoryPostController;
-use App\Http\Controllers\Portal\HomeController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\InstagramPostController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\EbookController;
+use App\Http\Controllers\Admin\InstagramPostController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Portal\HomeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('ebooks', EbookController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('users', UserController::class);
+    Route::resource('profiles', RoleController::class);
 
     // ajax
     Route::post('posts/delete', [PostController::class, 'destroy']);
@@ -45,6 +46,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
     Route::post('menu-order', [MenuController::class, 'order']);
     Route::post('menus/delete', [MenuController::class, 'destroy']);
+    Route::post('profiles/delete', [RoleController::class, 'destroy']);
     Route::post('instagram-post/delete', [InstagramPostController::class, 'destroy']);
     Route::post('users/state', [UserController::class, 'toggleState']);
     Route::post('ebooks/state', [EbookController::class, 'toggleState']);

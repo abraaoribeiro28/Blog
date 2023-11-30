@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InstagramPostRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Admin\InstagramPost;
 use App\Repositories\Eloquent\InstagemPost\InstagemPostRepository;
 use Illuminate\Http\Request;
@@ -11,9 +12,12 @@ use Illuminate\Support\Facades\Cache;
 
 class InstagramPostController extends Controller
 {
+    use PermissionTrait;
+
     public $table, $repository;
 
     public function __construct(InstagemPostRepository $repository){
+        $this->permission('instagram');
         $this->table = app(InstagramPost::class);
         $this->repository = $repository;
     }

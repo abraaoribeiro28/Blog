@@ -11,10 +11,12 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('menus.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                                Novo Menu
-                            </a>
+                            @can('menus.create')
+                                <a href="{{ route('menus.create') }}" class="btn btn-primary">
+                                    <i class="icon bi bi-plus me-1"></i>
+                                    Novo Menu
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -54,7 +56,7 @@
                         const response = await myFetch('/admin/menus/delete', 'POST', {
                             "id": id
                         });
-                        if (!response){
+                        if (response !== 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },

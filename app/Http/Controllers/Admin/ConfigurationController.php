@@ -8,14 +8,18 @@ use App\Models\Admin\Configuration;
 use App\Repositories\Contracts\IConfigurationRepository;
 use App\Repositories\Eloquent\Configuration\ConfigurationRepository;
 use Illuminate\Http\Request;
+use App\Http\Traits\PermissionTrait;
 
 class ConfigurationController extends Controller
 {
+    use PermissionTrait;
 
     public $table, $repository;
 
     public function __construct(ConfigurationRepository $repository)
     {
+        $teste = $this->permission('configuracoes');
+
         $this->table = app(Configuration::class);
         $this->repository = $repository;
     }

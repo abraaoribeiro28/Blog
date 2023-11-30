@@ -11,10 +11,12 @@
                     </div>
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                               Novo usuário
-                            </a>
+                            @can('usuarios.create')
+                                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                                    <i class="icon bi bi-plus me-1"></i>
+                                   Novo usuário
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -37,7 +39,9 @@
                                 <th class="nk-tb-col"><span class="sub-text">Perfis</span></th>
                                 <th class="nk-tb-col tb-col-mb"><span class="sub-text">Último login</span></th>
                                 <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @canany(['usuarios.edit', 'usuarios.destroy'])
+                                    <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -80,25 +84,32 @@
                                     <td class="nk-tb-col tb-col-md">
                                         <span class="tb-status">
                                             <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input switch" id="status-{{$user->id}}" value="{{$user->id}}" @if($user->status) checked @endif>
-                                                <label class="custom-control-label" for="status-{{$user->id}}"></label>
+                                                <input type="checkbox" class="custom-control-input switch" id="status-{{$user->id}}"
+                                                       value="{{$user->id}}" @if($user->status) checked @endif
+                                                       @cannot('usuarios.edit') disabled @endcannot>
+                                                <label class="custom-control-label" for="status-{{$user->id}}"
+                                                       @cannot('usuarios.edit') style="cursor: not-allowed;" @endcannot>
+                                                </label>
                                             </div>
-                                    </span>
+                                        </span>
                                     </td>
 
-                                    <td class="nk-tb-col tb-col-md text-center">
-
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
-                                                <em class="icon ni ni-more-h"></em>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="{{ route('users.edit', $user->id) }}" class="text-primary">Editar</a></li>
-                                                </ul>
+                                    @canany(['usuarios.edit', 'usuarios.destroy'])
+                                        <td class="nk-tb-col tb-col-md text-center">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
+                                                    <em class="icon ni ni-more-h"></em>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" style="">
+                                                    <ul class="link-list-plain">
+                                                        @can('usuarios.edit')
+                                                            <li><a href="{{ route('users.edit', $user->id) }}" class="text-primary">Editar</a></li>
+                                                        @endcan
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @endcanany
                                 </tr>
                             @endforeach
                         </tbody>
@@ -135,7 +146,7 @@
                             "id": id,
                             "status": status,
                         });
-                        if (!response){
+                        if (response !== 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },
