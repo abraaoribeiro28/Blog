@@ -45,7 +45,13 @@ class RoleController extends Controller
     {
         DB::beginTransaction();
         try {
-            if ($result = $this->repository->upInsert($request)) {
+            $role = $this->repository->upInsert($request);
+            $permissions = $request->except('_token', '_method', 'name');
+            foreach ($permissions as $key => $value){
+                $key = str_replace('_', '.', $key);
+                $role->givePermissionTo($key);
+            }
+            if ($role) {
                 DB::commit();
                 return redirect()
                     ->route('profiles.index')
