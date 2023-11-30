@@ -88,7 +88,7 @@
                                 </a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link">
+                                <a href="{{ route('profiles.index') }}" class="nk-menu-link">
                                     <span class="nk-menu-text">Perfis e permissões</span>
                                 </a>
                             </li>
