@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'author' => 'Raquel França',
             'publication_date' => '2023-10-01',
             'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
-            'status' => false,
+            'status' => true,
         ]);
 
         DB::table('ebooks')->insert([

@@ -18,19 +18,21 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $posts = Cache::remember('posts', 3600, function () {
-            return Post::with('category', 'highlightArchive')
-                ->where('status', true)
-                ->orderByDesc('publication_date')
-                ->orderBy('id', 'desc')
-                ->limit(3)
-                ->get();
-        });
-
         $mostViewedPost = Cache::remember('mostViewedPost', 3600, function () {
             return Post::with('highlightArchive')
+                ->where('status', true)
                 ->orderByDesc('clicks')
                 ->first();
+        });
+
+        $posts = Cache::remember('posts', 3600, function () use($mostViewedPost) {
+            return Post::with('category', 'highlightArchive')
+                ->where('status', true)
+                ->where('id', '<>', $mostViewedPost->id)
+                ->orderByDesc('publication_date')
+                ->orderBy('id', 'desc')
+                ->limit(10)
+                ->get();
         });
 
         $instagramPosts = Cache::remember('instagramPosts', 3600, function () {
@@ -38,7 +40,8 @@ class HomeController extends Controller
         });
 
         $ebooks = Cache::remember('ebooks', 3600, function () {
-            return Ebook::where('status', true)->orderByDesc('publication_date')->get();
+            return Ebook::with('highlightArchive')
+                ->where('status', true)->orderByDesc('publication_date')->get();
         });
 
         return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts', 'ebooks'));
