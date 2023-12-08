@@ -68,7 +68,6 @@ trait FileTrait
             Storage::delete($fileOld);
         }
         $file->storeAs($dir, "{$nameFile}");
-//        $this->compress(storage_path("$dir/$nameFile"), null, 1024);
 
         return "$dir/$nameFile";
     }
@@ -232,22 +231,17 @@ trait FileTrait
     {
         $configurations = Configuration::whereIn('key', [
             'cor_principal', 'cor_titulos', 'cor_botoes', 'cor_fundo'
-        ])->get();
+        ])->pluck('value', 'key');
+
+        $css = '';
 
         foreach ($configurations as $key => $value) {
-            $config[$value->key] = $value->value;
+            $selector = str_replace('_', '-', $key);
+            $css .= ".bg-$selector{background-color:{$value};}\n";
+            $css .= ".$selector{color:{$value};}\n";
         }
 
-        $context = ".bg-cor-principal {background-color: $config[cor_principal];}
-.cor-principal {color: $config[cor_principal] !important;}
-.bg-cor-titulos {background-color: $config[cor_titulos] !important;}
-.cor-titulos {color: $config[cor_titulos] !important;}
-.bg-cor-botoes {background-color: $config[cor_botoes] !important;}
-.cor-botoes {color: $config[cor_botoes] !important;}
-.bg-cor-fundo {background-color: $config[cor_fundo] !important;}
-.cor-fundo {color: $config[cor_fundo] !important;}
-";
-        return $this->createfile($path, $context);
+        return $this->createfile($path, $css);
     }
 
 
