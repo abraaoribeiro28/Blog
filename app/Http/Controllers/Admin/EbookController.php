@@ -50,6 +50,7 @@ class EbookController extends Controller
             if ($ebook = $this->repository->upInsert($request)){
                 $this->uploadHighlightArchive($ebook, $request);
                 $this->uploadEbook($ebook, $request);
+                Cache::pull('ebooks');
                 DB::commit();
                 return redirect()
                     ->route('ebooks.index')
@@ -91,6 +92,7 @@ class EbookController extends Controller
             if ($ebook = $this->repository->upInsert($request, $id)){
                 $this->uploadHighlightArchive($ebook, $request, $id);
                 $this->uploadEbook($ebook, $request, $id);
+                Cache::pull('ebooks');
                 DB::commit();
                 return redirect()
                     ->route('ebooks.index')
@@ -119,6 +121,7 @@ class EbookController extends Controller
             $ebook = $this->table->findOrFail($request->id);
             $ebook->status = $request->status;
             $ebook->update();
+            Cache::pull('ebooks');
             return true;
         } catch (\Throwable $th) {
             return false;

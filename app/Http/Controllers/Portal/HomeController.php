@@ -38,7 +38,10 @@ class HomeController extends Controller
         });
 
         $ebooks = Cache::remember('ebooks', 3600, function () {
-            return Ebook::where('status', true)->orderByDesc('publication_date')->get();
+            return Ebook::with('archives', 'highlightArchive')
+                ->where('status', true)
+                ->orderByDesc('publication_date')
+                ->get();
         });
 
         return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts', 'ebooks'));

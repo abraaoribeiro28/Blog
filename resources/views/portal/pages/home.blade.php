@@ -95,15 +95,15 @@
         </div>
     </section>
 
-    @if($mostViewedPost && $posts)
+    @if ($mostViewedPost && $posts)
         <section class="section section-palestras">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        @if($mostViewedPost)
+                        @if ($mostViewedPost)
                             <a href="" class="post-destaque">
-                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}" class="imagem-palestra-destaque"
-                                    loading="lazy" alt="imagem de destaque" />
+                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}"
+                                    class="imagem-palestra-destaque" loading="lazy" alt="imagem de destaque" />
 
                                 <div class="category pt-4">
                                     Mais visualizada
@@ -123,24 +123,24 @@
                     <div class="col-lg-6 ps-md-4 mt-5 pt-5 pt-lg-0 mt-lg-0">
                         <h4>Últimas palestras</h4>
                         @foreach ($posts as $post)
-                        <div class="blog-index w-dyn-list">
-                            <a href="#" class="post-recente d-block d-sm-grid">
-                                <div>
-                                    <div class="category">{{ $post->category->name }}</div>
-                                    <h4>{{ $post->title }}</h4>
-                                    <div class="post-details">
-                                        <div>{{ $post->author }}</div>
-                                        <div class="spacer-dot">•</div>
-                                        <div>{{ formatDateWithMonth($post->publication_date) }}</div>
+                            <div class="blog-index w-dyn-list">
+                                <a href="#" class="post-recente d-block d-sm-grid">
+                                    <div>
+                                        <div class="category">{{ $post->category->name }}</div>
+                                        <h4>{{ $post->title }}</h4>
+                                        <div class="post-details">
+                                            <div>{{ $post->author }}</div>
+                                            <div class="spacer-dot">•</div>
+                                            <div>{{ formatDateWithMonth($post->publication_date) }}</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}"
-                                    class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
-                            </a>
-                        </div>
-                        @if (!$loop->last)
-                        <div class="line-spacer"></div>
-                        @endif
+                                    <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}"
+                                        class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
+                                </a>
+                            </div>
+                            @if (!$loop->last)
+                                <div class="line-spacer"></div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -149,12 +149,12 @@
     @endif
 
 
-    @if(isset($instagramPosts) && $instagramPosts->count())
+    @if (isset($instagramPosts) && $instagramPosts->count())
         <section class="section bg-white">
             <div class="container">
                 <h4 class="mb-4">Estamos no instagram</h4>
                 <div class="row">
-                    @foreach($instagramPosts as $post)
+                    @foreach ($instagramPosts as $post)
                         <div class="col-sm-6 col-xl-3">
                             <x-portal.post-instagram :url="$post->url" />
                         </div>
@@ -164,11 +164,11 @@
         </section>
     @endif
 
-    @if(isset($ebooks) && $ebooks->count())
+    @if (isset($ebooks) && $ebooks->count())
         <section class="section section-ebook">
             <div class="container">
 
-                @foreach($ebooks as $ebook)
+                @foreach ($ebooks as $ebook)
                     <div class="row p-3 p-md-5 rounded flex-column-reverse flex-lg-row">
                         <div class="col-lg-6 px-0">
                             <h1 class="display-4 font-italic">{{ $ebook->title }}</h1>
@@ -178,8 +178,9 @@
                             <a href="#" download class="btn bg-dark-blue text-white">Baixar E-book</a>
                         </div>
                         <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
-                            <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}" class="card-img-right rounded mb-4 mb-lg-0"
-                                 alt="capa do e-book" style="max-height: 500px;">
+                            <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}"
+                                class="card-img-right rounded mb-4 mb-lg-0" alt="capa do e-book"
+                                style="max-height: 500px;">
                         </div>
                     </div>
                 @endforeach
