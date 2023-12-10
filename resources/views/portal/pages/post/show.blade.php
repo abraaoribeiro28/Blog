@@ -1,5 +1,5 @@
 <x-portal-layout>
-    <section class="section section-palestras">
+    <section class="section section-palestras show">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12 col-sm-12 mx-auto mb-4 text-center">

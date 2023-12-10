@@ -1,4 +1,8 @@
 /* --- Layout --- */
+html, body{
+    height: 100%;
+}
+
 .body {
     background-color: var(--white);
     font-family: Inter, sans-serif;
@@ -8,14 +12,6 @@
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
 }
-
-/* .container {*/
-/*    max-width: 1250px;*/
-/*    margin-right: auto;*/
-/*    margin-left: auto;*/
-/*    padding-right: 60px;*/
-/*    padding-left: 60px;*/
-/*}*/
 
 /* Header */
 .logo{
@@ -102,16 +98,11 @@ iframe{
     color: #fff !important;
 }
 
-.section-ebook .btn:hover{
-
-}
-
 .main-section input:focus{
     outline: none;
     padding-left: 18px;
     border: none;
 }
-
 
 
 /* --- Nossa visão --- */
@@ -190,12 +181,6 @@ iframe{
     margin-bottom: 0;
     font-size: .9em;
 }
-
-
-
-
-
-
 
 
 /* --- Palestras --- */
@@ -489,10 +474,6 @@ iframe{
         padding-left: 20px;
     }
 
-    /*.navbar-collapse {*/
-    /*    padding-left: 20px;*/
-    /*}*/
-
     .featured-post-small {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -509,4 +490,9 @@ iframe{
         margin-right: 20px;
         margin-left: 20px;
     }
+}
+
+
+.section-palestras.show{
+    min-height: calc(100% - 157.98px - 137.59px);
 }
