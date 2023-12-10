@@ -56,6 +56,16 @@
                     @if(old($id) == 1 || $value == 1) checked @endif>
                     <label class="custom-control-label" for="{{ $id }}">{{ $switchLabel ?? null }}</label>
                 </div>
+            @elseif(isset($type) && $type == 'slug')
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">{{ request()->root() }}/</span>
+                    </div>
+                    <input type="text" class="form-control @error($id) error @endif" id="{{ $id }}" name="{{ $id }}" value="{{ old($id) ?? $value }}">
+                </div>
+            @elseif(isset($type) && $type == 'checkbox')
+{{--                <input class="form-check-input" id="{{ $id }}" name="{{ $id }}" type="checkbox" value="0" @if ($value) checked @endif />--}}
+                <input class="form-check-input" id="{{ $id }}" name="{{ $id }}" type="checkbox" value="1" @if ($value) checked @endif />
             @else
                 <input type="{{ $type ?? 'text'}}"
                        id="{{ $id }}" name="{{ $id }}"

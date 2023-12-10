@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EbookRequest;
 use App\Http\Traits\FileTrait;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Admin\Ebook;
 use App\Repositories\Eloquent\Ebook\EbookRepository;
 use Exception;
@@ -13,12 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class EbookController extends Controller
 {
-    use FileTrait;
+    use FileTrait, PermissionTrait;
 
     public $table, $repository;
 
     public function __construct(EbookRepository $repository)
     {
+        $this->permission('ebooks');
         $this->table = app(Ebook::class);
         $this->repository = $repository;
     }

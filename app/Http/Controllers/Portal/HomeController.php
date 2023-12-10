@@ -18,19 +18,21 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-
-        $posts = Cache::remember('posts', 3600, function () {
-            return Post::with('category', 'highlightArchive')
-                ->where('status', true)
-                ->orderByDesc('publication_date')
-                ->limit(3)
-                ->get();
-        });
-
         $mostViewedPost = Cache::remember('mostViewedPost', 3600, function () {
             return Post::with('highlightArchive')
+                ->where('status', true)
                 ->orderByDesc('clicks')
                 ->first();
+        });
+
+        $posts = Cache::remember('posts', 3600, function () use($mostViewedPost) {
+            return Post::with('category', 'highlightArchive')
+                ->where('status', true)
+                ->where('id', '<>', $mostViewedPost->id)
+                ->orderByDesc('publication_date')
+                ->orderBy('id', 'desc')
+                ->limit(10)
+                ->get();
         });
 
         $instagramPosts = Cache::remember('instagramPosts', 3600, function () {

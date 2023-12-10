@@ -53,7 +53,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('roles')
+                            @error('profiles')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

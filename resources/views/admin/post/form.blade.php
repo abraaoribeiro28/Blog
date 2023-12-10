@@ -31,6 +31,8 @@
                     <div class="row">
                         <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
 
+                        <x-admin.forms.input id="slug" title="URL Amigável" :value="isset($post) ? $post->slug : null" :mandatory="true" type="slug"/>
+
                         <x-admin.forms.input id="author" title="Autor" :value="isset($post) ? $post->author : null" :mandatory="true"/>
 
                         <x-admin.forms.input id="category_posts_id" title="Categoria" type="select" cols="6" :data="$categories"
@@ -62,11 +64,23 @@
         <script defer>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    height: 150
+                    height: 450
                 });
             });
 
+            // Url amigável (slug)
+            const title = document.querySelector('#title');
+            const slug = document.querySelector('#slug');
 
+            title.addEventListener('keyup', () => {
+                slug.value = slugify(title.value);
+            });
+
+            slug.addEventListener('keyup', () => {
+                slug.value = slugify(slug.value);
+            });
+
+            // Remover destaque
             const post = @json($post ?? null);
             let highlight = @json($highlight ?? false);
 

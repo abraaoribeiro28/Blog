@@ -100,11 +100,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        @if ($mostViewedPost)
-                            <a href="" class="post-destaque">
-                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}"
-                                    class="imagem-palestra-destaque" loading="lazy" alt="imagem de destaque" />
-
+                        @if($mostViewedPost)
+                            <a href="{{ route('posts.show', $mostViewedPost->slug) }}" class="post-destaque">
+                                <img src="{{ getPathStorage($mostViewedPost->highlightArchive->path ?? '#') }}" class="imagem-palestra-destaque"
+                                    loading="lazy" alt="imagem de destaque" />
                                 <div class="category pt-4">
                                     Mais visualizada
                                 </div>
@@ -124,7 +123,7 @@
                         <h4>Últimas palestras</h4>
                         @foreach ($posts as $post)
                             <div class="blog-index w-dyn-list">
-                                <a href="#" class="post-recente d-block d-sm-grid">
+                                <a href="{{ route('posts.show', $post->slug) }}" class="post-recente d-block d-sm-grid">
                                     <div>
                                         <div class="category">{{ $post->category->name }}</div>
                                         <h4>{{ $post->title }}</h4>

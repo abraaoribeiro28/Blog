@@ -28,79 +28,101 @@
                         </a>
                     </li>
 
-                    <li class="nk-menu-item">
-                        <a href="{{ route('posts.index') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-postcard"></i></span>
-                            <span class="nk-menu-text">Postagens</span>
-                        </a>
-                    </li>
+                    @can('postagens.index')
+                        <li class="nk-menu-item">
+                            <a href="{{ route('posts.index') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-postcard"></i></span>
+                                <span class="nk-menu-text">Postagens</span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-chat-left-dots"></i></span>
-                            <span class="nk-menu-text">Solicitações
-                             <span class="ms-2 badge bg-info">2</span></span>
-                        </a>
-                    </li>
+                    @can('solicitacoes.index')
+                        <li class="nk-menu-item">
+                            <a href="#" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-chat-left-dots"></i></span>
+                                <span class="nk-menu-text">Solicitações
+                                 <span class="ms-2 badge bg-info">2</span></span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-images"></i></span>
-                            <span class="nk-menu-text">Galeria de imagens</span>
-                        </a>
-                    </li>
+                    @can('galeria.index')
+                        <li class="nk-menu-item">
+                            <a href="#" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-images"></i></span>
+                                <span class="nk-menu-text">Galeria de imagens</span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><i class="icon bi bi-stack"></i></span>
-                            <span class="nk-menu-text">Seções do site</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="{{ route('instagram.index') }}" class="nk-menu-link">
-                                    <span class="nk-menu-text">Instagram</span>
-                                </a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="{{ route('ebooks.index') }}" class="nk-menu-link">
-                                    <span class="nk-menu-text">E-book</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @canany(['instagram.index', 'ebooks.index'])
+                        <li class="nk-menu-item has-sub">
+                            <a href="#" class="nk-menu-link nk-menu-toggle">
+                                <span class="nk-menu-icon"><i class="icon bi bi-stack"></i></span>
+                                <span class="nk-menu-text">Seções do site</span>
+                            </a>
+                            <ul class="nk-menu-sub">
+                                @can('instagram.index')
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('instagram.index') }}" class="nk-menu-link">
+                                            <span class="nk-menu-text">Instagram</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('ebooks.index')
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('ebooks.index') }}" class="nk-menu-link">
+                                            <span class="nk-menu-text">E-book</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
 
-                    <li class="nk-menu-item">
-                        <a href="{{ route('menus.index') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
-                            <span class="nk-menu-text">Menus do site</span>
-                        </a>
-                    </li>
+                    @can('menus.index')
+                        <li class="nk-menu-item">
+                            <a href="{{ route('menus.index') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
+                                <span class="nk-menu-text">Menus do site</span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                            <span class="nk-menu-text">Usuários</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="{{ route('users.index') }}" class="nk-menu-link">
-                                    <span class="nk-menu-text">Lista de usuários</span>
-                                </a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link">
-                                    <span class="nk-menu-text">Perfis e permissões</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @canany(['usuarios.index', 'perfis.index'])
+                        <li class="nk-menu-item has-sub">
+                            <a href="#" class="nk-menu-link nk-menu-toggle">
+                                <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                <span class="nk-menu-text">Usuários</span>
+                            </a>
+                            <ul class="nk-menu-sub">
+                                @can('usuarios.index')
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('users.index') }}" class="nk-menu-link">
+                                            <span class="nk-menu-text">Lista de usuários</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('perfis.index')
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('profiles.index') }}" class="nk-menu-link">
+                                            <span class="nk-menu-text">Perfis e permissões</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
 
-                    <li class="nk-menu-item">
-                        <a href="{{ route('configurations.edit', 1) }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-sliders"></i></span>
-                            <span class="nk-menu-text">Configurações</span>
-                        </a>
-                    </li>
+                    @can('configuracoes.edit')
+                        <li class="nk-menu-item">
+                            <a href="{{ route('configurations.edit', 1) }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-sliders"></i></span>
+                                <span class="nk-menu-text">Configurações</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
         </div>

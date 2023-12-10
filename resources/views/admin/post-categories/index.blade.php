@@ -107,7 +107,7 @@
                         const response = await myFetch('/admin/posts/categories/delete', 'POST', {
                             "id": id
                         });
-                        if (!response){
+                        if (response !== 1){
                             Swal.showValidationMessage("Ocorreu um erro inesperado. Por favor, tente novamente.");
                         }
                     },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuRequest;
+use App\Http\Traits\PermissionTrait;
 use App\Models\Admin\Menu;
 use App\Repositories\Eloquent\Menu\MenuRepository;
 use Illuminate\Http\Request;
@@ -11,10 +12,13 @@ use Illuminate\Support\Facades\Cache;
 
 class MenuController extends Controller
 {
+    use PermissionTrait;
+
     public $table, $repository;
 
     public function __construct(MenuRepository $repository)
     {
+        $this->permission('menus');
         $this->table = app(Menu::class);
         $this->repository = $repository;
     }
