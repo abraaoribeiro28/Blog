@@ -56,7 +56,7 @@
                             <x-admin.forms.configuration.textarea id="descricao" :dataArray="$config['descricao']" :mandatory="true"/>
                             <x-admin.forms.configuration.input-text id="copyright" :dataArray="$config['copyright']" :mandatory="true"/>
                             <x-admin.forms.configuration.input-text id="email" :dataArray="$config['email']" :mandatory="true"/>
-                            <x-admin.forms.configuration.input-text id="telefone" :dataArray="$config['telefone']"/>
+                            <x-admin.forms.configuration.input-text id="telefone" :dataArray="$config['telefone']" mask="phone"/>
                         </div>
                         <div class="tab-pane @if(old('tab') == 'tab-incorp') active @endif" id="tab-incorp">
                             <x-admin.forms.configuration.textarea id="incorporacao_cabecalho" :dataArray="$config['incorporacao_cabecalho']"/>
