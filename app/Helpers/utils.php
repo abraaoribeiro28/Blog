@@ -64,10 +64,10 @@ function getPathStorage(string $path): string
     $path = 'storage/' . $path;
 
     if (file_exists($path)) {
-        return $path;
+        return '/'.$path;
     }
 
-    return 'assets/images/sem-imagem.jpg';
+    return '/assets/images/sem-imagem.jpg';
 }
 
 

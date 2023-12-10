@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'category_posts_id' => new SelectRule,
             'publication_date' => 'required',
             'author' => 'required|max:80',
-            'text' => 'required|max:999',
+            'text' => 'required',
             'slug' => [
                 'required',
                 Rule::unique('posts')->ignore($this->post),
