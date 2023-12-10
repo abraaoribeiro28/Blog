@@ -95,7 +95,7 @@
         </div>
     </section>
 
-    @if($mostViewedPost && $posts)
+    @if ($mostViewedPost && $posts)
         <section class="section section-palestras">
             <div class="container">
                 <div class="row">
@@ -148,12 +148,12 @@
     @endif
 
 
-    @if(isset($instagramPosts) && $instagramPosts->count())
+    @if (isset($instagramPosts) && $instagramPosts->count())
         <section class="section bg-white">
             <div class="container">
                 <h4 class="mb-4">Estamos no instagram</h4>
                 <div class="row">
-                    @foreach($instagramPosts as $post)
+                    @foreach ($instagramPosts as $post)
                         <div class="col-sm-6 col-xl-3">
                             <x-portal.post-instagram :url="$post->url" />
                         </div>
@@ -163,11 +163,11 @@
         </section>
     @endif
 
-    @if(isset($ebooks) && $ebooks->count())
+    @if (isset($ebooks) && $ebooks->count())
         <section class="section section-ebook">
             <div class="container">
 
-                @foreach($ebooks as $ebook)
+                @foreach ($ebooks as $ebook)
                     <div class="row p-3 p-md-5 rounded flex-column-reverse flex-lg-row">
                         <div class="col-lg-6 px-0">
                             <h1 class="display-4 font-italic">{{ $ebook->title }}</h1>
@@ -177,8 +177,9 @@
                             <a href="#" download class="btn bg-dark-blue text-white">Baixar E-book</a>
                         </div>
                         <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
-                            <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}" class="card-img-right rounded mb-4 mb-lg-0"
-                                 alt="capa do e-book" style="max-height: 500px;">
+                            <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}"
+                                class="card-img-right rounded mb-4 mb-lg-0" alt="capa do e-book"
+                                style="max-height: 500px;">
                         </div>
                     </div>
                 @endforeach
