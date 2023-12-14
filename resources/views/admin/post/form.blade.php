@@ -21,34 +21,58 @@
             <x-admin.forms.alert/>
         </div>
 
-        <div class="card card-bordered">
+        <div class="card card-bordered card-preview">
             <div class="card-inner">
-                <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @isset($post)
-                        @method('PUT')
-                    @endisset
-                    <div class="row">
-                        <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
+                <ul class="nav nav-tabs mt-n3 border-0 justify-content-end" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active py-1" data-bs-toggle="tab" href="#tabItem1" aria-selected="true" role="tab">
+                            Postagem
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link py-1" data-bs-toggle="tab" href="#tabItem2" aria-selected="false" role="tab" tabindex="-1">
+                            Galeria
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-0">
+                    <div class="tab-pane active show" id="tabItem1" role="tabpanel">
+                        <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @isset($post)
+                                @method('PUT')
+                            @endisset
+                            <div class="row">
+                                <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
 
-                        <x-admin.forms.input id="slug" title="URL Amigável" :value="isset($post) ? $post->slug : null" :mandatory="true" type="slug"/>
+                                <x-admin.forms.input id="slug" title="URL Amigável" :value="isset($post) ? $post->slug : null" :mandatory="true" type="slug"/>
 
-                        <x-admin.forms.input id="author" title="Autor" :value="isset($post) ? $post->author : null" :mandatory="true"/>
+                                <x-admin.forms.input id="author" title="Autor" :value="isset($post) ? $post->author : null" :mandatory="true"/>
 
-                        <x-admin.forms.input id="category_posts_id" title="Categoria" type="select" cols="6" :data="$categories"
-                            :value="isset($post) ? $post->category_posts_id : null"  :mandatory="true"/>
+                                <x-admin.forms.input id="category_posts_id" title="Categoria" type="select" cols="6" :data="$categories"
+                                                     :value="isset($post) ? $post->category_posts_id : null"  :mandatory="true"/>
 
-                        <x-admin.forms.input id="publication_date" title="Data de publicação" type="date" cols="6"
-                            :value="isset($post) ? $post->publication_date : null" :mandatory="true"/>
+                                <x-admin.forms.input id="publication_date" title="Data de publicação" type="date" cols="6"
+                                                     :value="isset($post) ? $post->publication_date : null" :mandatory="true"/>
 
-                        <x-admin.forms.input id="highlight" title="Imagem de destaque" :value="isset($highlight) ? $highlight->path : null" type="highlight"/>
+                                <x-admin.forms.input id="highlight" title="Imagem de destaque" :value="isset($highlight) ? $highlight->path : null" type="highlight"/>
 
-                        <x-admin.forms.input id="text" title="Texto" :value="isset($post) ? $post->text : null" type="summernote" :mandatory="true"/>
+                                <x-admin.forms.input id="text" title="Texto" :value="isset($post) ? $post->text : null" type="summernote" :mandatory="true"/>
+
+                                <x-admin.forms.input id="gallery" switchLabel="Marque para ativar a galeria" :value="isset($post) ? $post->gallery : null" type="switch"/>
+
+                                <x-admin.forms.input id="status" switchLabel="Marque para ativar a postagem" :value="isset($post) ? $post->status : null" type="switch"/>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
+                    <div class="tab-pane pt-3" id="tabItem2" role="tabpanel">
+                        Galeria
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

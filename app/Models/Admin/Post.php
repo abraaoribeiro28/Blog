@@ -18,6 +18,7 @@ class Post extends Model
         'text',
         'author',
         'clicks',
+        'gallery',
         'publication_date',
         'category_posts_id',
     ];
