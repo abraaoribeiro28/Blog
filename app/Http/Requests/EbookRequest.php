@@ -23,10 +23,9 @@ class EbookRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'publication_date' => 'required',
             'author' => 'required|max:80',
+            'publication_date' => 'required|date_format:d/m/Y',
             'resume' => 'required|max:999',
-//            'ebook' => 'required'
         ];
     }
 
@@ -41,6 +40,7 @@ class EbookRequest extends FormRequest
             'title.required' => 'O campo Título é obrigatório.',
             'title.max' => 'O campo Título não pode ser superior a 255 caracteres.',
             'publication_date.required' => 'O campo Data de publicação é obrigatório.',
+            'publication_date.date_format' => 'O campo Data de publicação não corresponde ao formato d/m/Y.',
             'author.required' => 'O campo Autor é obrigatório.',
             'author.max' => 'O campo Autor não pode ser superior a 80 caracteres.',
             'resume.required' => 'O campo Texto é obrigatório.',

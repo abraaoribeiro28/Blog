@@ -16,12 +16,12 @@
         <div class="form-group">
             <div class="form-control-wrap d-flex">
                 @if (isset($haveColor) && $haveColor == true)
-                    <input type="color" class="me-1 p-0 rounded"
+                    <input type="color" class="me-1 p-0 rounded {{ $mask ?? ''}}"
                            id="id-{{ $id }}" value="{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}"
                            style="height: 36px; border: 1px solid #dbdfea;"
                            oninput="document.getElementById('{{ $id }}').value = this.value">
                 @endif
-                <input type="text" class="form-control @error($id) error @enderror"
+                <input type="text" class="form-control @error($id) error @enderror {{ $mask ?? ''}}"
                        id="{{ $id }}" name="{{ $id }}"
                        value="{{ old($id) ?? ($dataArray ? $dataArray['value'] : $value) }}">
             </div>

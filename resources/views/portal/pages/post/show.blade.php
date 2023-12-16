@@ -1,5 +1,5 @@
 <x-portal-layout>
-    <section class="section section-palestras">
+    <section class="section section-post show">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12 col-sm-12 mx-auto mb-4 text-center">
@@ -9,9 +9,7 @@
                              style="max-height: 500px;">
                     @endisset
                 </div>
-
             </div>
-
             <div>
                 {!! $post->text !!}
             </div>
