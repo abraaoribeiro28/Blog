@@ -166,6 +166,7 @@ iframe{
     max-width: 100%;
     vertical-align: middle;
     display: inline-block;
+    max-height: 500px;
 }
 
 .section-visao h2,
@@ -184,12 +185,13 @@ iframe{
 }
 
 
+
 /* --- Palestras --- */
-.section-palestras a{
+.section-post a{
     color: var(--dark-blue);
 }
 
-.section-palestras h3{
+.section-post h3{
     margin-top: 0px;
     margin-bottom: 20px;
     font-size: 26px;
@@ -197,7 +199,7 @@ iframe{
     font-weight: 800;
 }
 
-.section-palestras h4 {
+.section-post h4 {
     margin-bottom: 20px;
     font-size: 18px;
     line-height: 24px;
@@ -494,6 +496,6 @@ iframe{
 }
 
 
-.section-palestras.show{
+.section-post.show{
     min-height: calc(100% - 157.98px - 137.59px);
 }
