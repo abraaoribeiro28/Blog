@@ -12,26 +12,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = { email: emailInput.value };
                 const response = await myFetch('/ajax-subscribe', 'POST', data);
 
-                switch (response) {
-                    case 'Success':
-                        createToast('Você está inscrito para nossas mensagens semanais!')
-                        const toast = new bootstrap.Toast('.toast', {
-                            animation: true,
-                            delay: 5000
-                        });
-                        toast.show();
-                        emailInput.value = '';
-                        break;
-                    case 'Exists':
-                        simpleAlert('E-mail Já Registrado', 'Este e-mail já está inscrito para receber nossas mensagens semanais.', 'info');
-                        break;
-                    default:
-                        simpleAlert('Oops! Algo deu errado...', 'Por favor, tente novamente. Se o problema persistir, entre em contato com o suporte.');
-                        break;
+                if(response.success){
+                    createToast(response.success)
+                    const toast = new bootstrap.Toast('.toast', {
+                        animation: true,
+                        delay: 5000
+                    });
+                    toast.show();
+                    emailInput.value = '';
+                }else if (response.warning){
+                    simpleAlert(
+                        response.warning,
+                        'Este e-mail já está inscrito para receber nossas mensagens semanais.',
+                        'info'
+                    );
+                }else{
+                    simpleAlert(
+                        'Oops! Algo deu errado...',
+                        'Por favor, tente novamente. Se o problema persistir, entre em contato com o suporte.'
+                    );
                 }
             } catch (error) {
                 console.error('Erro ao enviar o email:', error);
-                simpleAlert('Oops! Algo deu errado...', 'Por favor, tente novamente. Se o problema persistir, entre em contato com o suporte.');
+                simpleAlert(
+                    'Oops! Algo deu errado...',
+                    'Por favor, tente novamente. Se o problema persistir, entre em contato com o suporte.'
+                );
             }
         }else{
             simpleAlert('E-mail inválido!', 'Digite um e-mail válido!');

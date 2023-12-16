@@ -11,7 +11,7 @@
                 </form>
             </div>
             <div class="col-6 d-none d-md-flex justify-content-center">
-                <img src="{{ asset('assets/images/stitch-sorvete.png') }}" alt="logo">
+{{--                <img src="{{ asset('assets/images/stitch-sorvete.png') }}" alt="logo">--}}
             </div>
         </div>
     </div>
@@ -19,5 +19,6 @@
 
 
 @section('script')
+    @parent
     @vite('resources/js/portal/subscriber.js')
 @endsection
