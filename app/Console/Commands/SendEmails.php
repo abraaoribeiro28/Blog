@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendEmailJob;
 use App\Models\Subscriber;
 use App\Notifications\PostNotification;
 use Illuminate\Console\Command;

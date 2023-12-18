@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Admin\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,7 +15,9 @@ class PostNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(
+        public Post $post
+    )
     {
         //
     }
@@ -36,7 +39,7 @@ class PostNotification extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', url('/posts/'.$this->post->slug))
                     ->line('Thank you for using our application!');
     }
 
