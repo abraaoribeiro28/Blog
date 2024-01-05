@@ -26,3 +26,8 @@ Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::post('ajax-subscribe', [SubscriberController::class, 'store'])->name('ajax.subscribe');
 
 require __DIR__.'/auth.php';
+
+//Route::get('/send', function () {
+//    $post = \App\Models\Admin\Post::first();
+//   \App\Jobs\SendEmailsJob::dispatch($post);
+//});
