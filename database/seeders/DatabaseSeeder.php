@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Admin\Post;
 use App\Models\Resource;
+use App\Models\Subscriber;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -57,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'status' => true
         ]);
 
-         Post::factory(10)->create();
+        Post::factory(10)->create();
 
         DB::table('instagram_posts')->insert([
             'title' => 'Post 1',
