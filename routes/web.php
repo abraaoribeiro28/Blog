@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\Portal\PostController;
+use App\Http\Controllers\Portal\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,12 @@ Route::get('/', HomeController::class)->name('portal.home');
 // Postagens
 Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 
+// Subscriber
+Route::post('ajax-subscribe', [SubscriberController::class, 'store'])->name('ajax.subscribe');
+
 require __DIR__.'/auth.php';
+
+//Route::get('/send', function () {
+//    $post = \App\Models\Admin\Post::first();
+//   \App\Jobs\SendEmailsJob::dispatch($post);
+//});

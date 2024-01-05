@@ -25,14 +25,14 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:180',
-            'category_posts_id' => new SelectRule,
-            'publication_date' => 'required',
-            'author' => 'required|max:80',
-            'text' => 'required',
             'slug' => [
                 'required',
                 Rule::unique('posts')->ignore($this->post),
-            ]
+            ],
+            'author' => 'required|max:80',
+            'category_posts_id' => new SelectRule,
+            'publication_date' => 'required|date_format:d/m/Y',
+            'text' => 'required'
         ];
     }
 
@@ -47,6 +47,7 @@ class PostRequest extends FormRequest
             'title.required' => 'O campo Título é obrigatório.',
             'title.max' => 'O campo Título não pode ser superior a 180 caracteres.',
             'publication_date.required' => 'O campo Data de publicação é obrigatório.',
+            'publication_date.date_format' => 'O campo Data de publicação não corresponde ao formato d/m/Y.',
             'author.required' => 'O campo Autor é obrigatório.',
             'author.max' => 'O campo Autor não pode ser superior a 80 caracteres.',
             'text.required' => 'O campo Texto é obrigatório.',

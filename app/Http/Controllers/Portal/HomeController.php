@@ -31,7 +31,7 @@ class HomeController extends Controller
                 ->where('id', '<>', $mostViewedPost->id)
                 ->orderByDesc('publication_date')
                 ->orderBy('id', 'desc')
-                ->limit(10)
+                ->limit(3)
                 ->get();
         });
 
@@ -40,10 +40,12 @@ class HomeController extends Controller
         });
 
         $ebooks = Cache::remember('ebooks', 3600, function () {
-            return Ebook::with('highlightArchive')
-                ->where('status', true)->orderByDesc('publication_date')->get();
+            return Ebook::with('archives', 'highlightArchive')
+                ->where('status', true)
+                ->orderByDesc('publication_date')
+                ->get();
         });
 
-        return view('portal.pages.home', compact('posts', 'mostViewedPost', 'instagramPosts', 'ebooks'));
+        return view('portal.home.index', compact('posts', 'mostViewedPost', 'instagramPosts', 'ebooks'));
     }
 }

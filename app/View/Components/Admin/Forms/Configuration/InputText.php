@@ -18,7 +18,8 @@ class InputText extends Component
         public $dataArray = null,
         public $value = null,
         public $mandatory = false,
-        public $haveColor = false
+        public $haveColor = false,
+        public $mask = '',
     ) {
     }
 

@@ -1,4 +1,8 @@
 /* --- Layout --- */
+html, body{
+    height: 100%;
+}
+
 .body {
     background-color: var(--white);
     font-family: Inter, sans-serif;
@@ -8,14 +12,6 @@
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
 }
-
-/* .container {*/
-/*    max-width: 1250px;*/
-/*    margin-right: auto;*/
-/*    margin-left: auto;*/
-/*    padding-right: 60px;*/
-/*    padding-left: 60px;*/
-/*}*/
 
 /* Header */
 .logo{
@@ -66,7 +62,7 @@ iframe{
 
 .main-section form {
     display: flex;
-    max-width: 400px;
+    max-width: 500px;
     margin-top: 30px;
     border-radius: 6px;
     box-shadow: 0 18px 40px -10px #3b207a;
@@ -94,6 +90,7 @@ iframe{
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .main-section button:hover,
@@ -102,16 +99,11 @@ iframe{
     color: #fff !important;
 }
 
-.section-ebook .btn:hover{
-
-}
-
 .main-section input:focus{
     outline: none;
     padding-left: 18px;
     border: none;
 }
-
 
 
 /* --- Nossa visão --- */
@@ -174,6 +166,7 @@ iframe{
     max-width: 100%;
     vertical-align: middle;
     display: inline-block;
+    max-height: 500px;
 }
 
 .section-visao h2,
@@ -193,17 +186,12 @@ iframe{
 
 
 
-
-
-
-
-
 /* --- Palestras --- */
-.section-palestras a{
+.section-post a{
     color: var(--dark-blue);
 }
 
-.section-palestras h3{
+.section-post h3{
     margin-top: 0px;
     margin-bottom: 20px;
     font-size: 26px;
@@ -211,7 +199,7 @@ iframe{
     font-weight: 800;
 }
 
-.section-palestras h4 {
+.section-post h4 {
     margin-bottom: 20px;
     font-size: 18px;
     line-height: 24px;
@@ -489,10 +477,6 @@ iframe{
         padding-left: 20px;
     }
 
-    /*.navbar-collapse {*/
-    /*    padding-left: 20px;*/
-    /*}*/
-
     .featured-post-small {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -509,4 +493,9 @@ iframe{
         margin-right: 20px;
         margin-left: 20px;
     }
+}
+
+
+.section-post.show{
+    min-height: calc(100% - 157.98px - 137.59px);
 }
