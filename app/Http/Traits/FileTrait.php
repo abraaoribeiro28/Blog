@@ -58,9 +58,9 @@ trait FileTrait
      * @param $fileOld
      * @return string
      */
-    public function saveUpload($file, $dir, $fileOld = null): string
+    public function saveUpload($file, $dir, $fileOld = null, $name = null): string
     {
-        $nameFile = $this->getFileName($file);
+        $nameFile = $name ?? $this->getFileName($file);
         if ($this->fileExistsInPath($nameFile, $dir)) {
             $this->deleteFile($nameFile, $dir);
         }
@@ -86,6 +86,23 @@ trait FileTrait
     {
         return date('YmdHis') . Str::random(10) . "." . strtolower($file->extension());
     }
+
+    /**
+     * Gera um nome de arquivo único.
+     * @param string $path
+     * @param string $extension
+     * @return string
+     */
+    function generateNameFile(string  $path, string $extension): string {
+        do {
+            $name = Str::lower(uniqid(time()) . Str::random(5));
+            $name .= '.' . $extension;
+            $pathComplete = $path . '/' . $name;
+        } while (file_exists($pathComplete));
+
+        return $name;
+    }
+
 
     private function fileExistsInPath($nameFile, $dir): bool
     {

@@ -6,17 +6,15 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                // CSS
                 "resources/css/app.css",
                 "resources/css/custom.css",
                 "resources/css/home.css",
                 "resources/css/tailwind.css",
-
-
-
+                // JS
                 "resources/js/app.js",
                 "resources/js/bootstrap.js",
                 "resources/js/custom-dropdown.js",
-
                 // Home
                 "resources/js/portal/subscriber.js",
             ],

@@ -27,7 +27,7 @@ class Post extends Model
     /**
      * Define o relacionamento com a categoria do post.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function category(): BelongsTo
     {
@@ -37,7 +37,7 @@ class Post extends Model
     /**
      * Define o relacionamento com os arquivos associados ao post.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function archives(): HasMany
     {
@@ -47,10 +47,21 @@ class Post extends Model
     /**
      * Define o relacionamento com o arquivo destacado do post.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function highlightArchive(): HasOne
     {
         return $this->hasOne(Archive::class)->where('highlight', true);
+    }
+
+    /**
+     * Define o relacionamento com os arquivos da galeria do post.
+     *
+     * @return hasMany
+     */
+    public function galleryArchives(): hasMany
+    {
+        return $this->hasMany(Archive::class)
+            ->where('gallery', true);
     }
 }

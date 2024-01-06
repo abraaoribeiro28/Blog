@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('text');
             $table->string('author');
             $table->date('publication_date');
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->nullable();
             $table->integer('clicks')->default(0);
             $table->boolean('gallery')->nullable();
             $table->foreignId('category_posts_id');

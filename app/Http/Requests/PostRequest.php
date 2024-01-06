@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\SwitchRule;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\SelectRule;
 use Illuminate\Validation\Rule;

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('extension');
             $table->boolean('highlight')->nullable();
+            $table->boolean('gallery')->nullable();
+            $table->integer('order')->nullable();
             $table->foreignId('post_id')->nullable();
             $table->foreignId('ebook_id')->nullable();
             $table->softDeletes();

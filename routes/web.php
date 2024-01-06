@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Portal\HomeController;
 use App\Http\Controllers\Portal\PostController;
 use App\Http\Controllers\Portal\SubscriberController;
@@ -24,6 +25,8 @@ Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 // Subscriber
 Route::post('ajax-subscribe', [SubscriberController::class, 'store'])->name('ajax.subscribe');
+
+Route::post('/images', [ArchiveController::class, 'imagesGallery']);
 
 require __DIR__.'/auth.php';
 
