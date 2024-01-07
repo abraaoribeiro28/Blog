@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('users/state', [UserController::class, 'toggleState']);
     Route::post('ebooks/state', [EbookController::class, 'toggleState']);
     Route::post('upload-gallery', [ArchiveController::class, 'postImages']);
+    Route::post('delete-archive-gallery', [ArchiveController::class, 'deleteArchiveGallery']);
 });
 
 require __DIR__.'/auth.php';

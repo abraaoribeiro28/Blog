@@ -19,6 +19,19 @@ class ArchiveController extends Controller
         $archive->delete();
     }
 
+
+    public function deleteArchiveGallery(Request $request){
+        try {
+            $archive = Archive::find($request->id);
+            Storage::delete($archive->path);
+            $archive->delete();
+            return true;
+        }catch (\Exception $e){
+            return false;
+        }
+    }
+
+
     public function postImages(Request $request)
     {
         DB::beginTransaction();

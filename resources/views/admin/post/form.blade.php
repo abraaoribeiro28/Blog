@@ -15,7 +15,6 @@
                     </div>
                 </div>
                 <div class="nk-block-head-content">
-
                 </div>
             </div>
             <x-admin.forms.alert/>
@@ -73,8 +72,7 @@
                         </form>
                     </div>
                     <div class="tab-pane pt-3" id="tabItem2" role="tabpanel">
-
-                        <div id="meuDropzone" class="upload-zone">
+                        <div class="upload-zone">
                             <div class="dz-message" data-dz-message>
                                 <span class="dz-message-text">Arraste e solte os arquivos</span>
                                 <span class="dz-message-or">Ou</span>
@@ -82,56 +80,42 @@
                             </div>
                         </div>
 
-                        <div>
-                            <h5>Arquivos enviados</h5>
+                        <div class="mt-4">
+                            <h6>Arquivos enviados</h6>
 
                             <div class="d-flex flex-wrap" id="imageBox">
                                 @foreach($post->galleryArchives as $archive)
-                                    <div draggable="true" class="text-center gallery-item" id="5312">
+                                    <div draggable="true" class="text-center gallery-item gallery-item-{{ $archive->id }}">
 
                                         <div class="image-container-box">
-                                            <img class="img-thumbnail" src="https://homolog-prefeitura.maxima.inf.br/storage/content/noticias/7518/galeria/20-27112023132444_min.jpg">
+                                            <img class="img-thumbnail" src="/{{ $archive->path }}">
                                         </div>
 
                                         <div class="image-title-box">
-                                            <div>20-27112023132444.jpg</div>
+                                            <div>{{ $archive->name }}</div>
                                         </div>
 
-                                        <div class="option-container-box">
-                                            <button id="link5312" value="storage/content/noticias/7518/galeria/20-27112023132444.jpg" type="button" class="btn btn-info copialink mt-1" onclick="copiarLink(5312)" data-toggle="tooltips" data-placement="top" data-original-title="" title=""><i class="fa fa-clone"></i>
+                                        <div class="option-container-box mt-1">
+                                            <button value="{{ $archive->path }}" type="button" class="btn btn-info copy-path" onclick="copiarTexto('{{ $archive->path }}', this)" data-bs-toggle="tooltip" title="Copiar endereço">
+                                                <i class="icon bi bi-copy"></i>
                                             </button>
 
-                                            <a href="/storage/content/noticias/7518/galeria/20-27112023132444.jpg" target="_blank" class="btn btn-success ml-1 mt-1" data-toggle="tooltip" download="" data-placement="top" title="" data-original-title="Baixar"><i class="fa fa-download"></i></a>
+                                            <a href="/{{ $archive->path }}" target="_blank" class="btn btn-success ms-1" download data-bs-toggle="tooltip" title="Baixar">
+                                                <i class="icon bi bi-download"></i>
+                                            </a>
 
-                                            <a href="/storage/content/noticias/7518/galeria/20-27112023132444.jpg" target="_blank" class="btn btn-flat btn-warning ml-1 mt-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Visualizar"><i class="fa fa-eye"></i></a>
+                                            <a href="/{{ $archive->path }}" target="_blank" class="btn btn-flat btn-warning ms-1" data-bs-toggle="tooltip" title="Visualizar">
+                                                <i class="icon bi bi-eye"></i>
+                                            </a>
 
-                                            <button class="btn btn-primary edit-image ml-1 mt-1" data-toggle="tooltip" title="" onclick="getImage({&quot;id&quot;:5312,&quot;title&quot;:null,&quot;description&quot;:null,&quot;type&quot;:&quot;image\/jpeg&quot;,&quot;hash&quot;:null,&quot;path&quot;:&quot;storage\/content\/noticias\/7518\/galeria\/20-27112023132444.jpg&quot;,&quot;name&quot;:&quot;20-27112023132444.jpg&quot;,&quot;extension&quot;:&quot;jpg&quot;,&quot;status_create&quot;:null,&quot;highlight&quot;:null,&quot;deleted_at&quot;:null,&quot;created_at&quot;:&quot;2023-11-27 13:24:44&quot;,&quot;updated_at&quot;:&quot;2023-12-08 20:19:03&quot;,&quot;contents_id&quot;:7518,&quot;static_pages_id&quot;:null,&quot;biddings_id&quot;:null,&quot;calendar_events_id&quot;:null,&quot;order&quot;:2,&quot;view_pdf&quot;:null,&quot;reference_id&quot;:null,&quot;type_size_id&quot;:null,&quot;width&quot;:null,&quot;height&quot;:null,&quot;requerimento_id&quot;:null,&quot;content&quot;:{&quot;id&quot;:7518,&quot;title&quot;:&quot;Teste do teste que testa o teste&quot;,&quot;text&quot;:&quot;<p>texto teste<\/p>&quot;,&quot;clicks&quot;:18,&quot;highlights&quot;:true,&quot;galery&quot;:true,&quot;status&quot;:true,&quot;source&quot;:&quot;Vozes da minha mente&quot;,&quot;author&quot;:&quot;Eu&quot;,&quot;icon&quot;:null,&quot;slug&quot;:&quot;titulo-teste-7518&quot;,&quot;publication_date&quot;:&quot;2023-11-13 09:05:00&quot;,&quot;order&quot;:null,&quot;category_contents_id&quot;:74,&quot;created_at&quot;:&quot;2023-08-31 15:59:42&quot;,&quot;updated_at&quot;:&quot;2023-12-12 14:09:24&quot;,&quot;deleted_at&quot;:null,&quot;secretaria&quot;:&quot;0&quot;,&quot;carousel&quot;:false,&quot;orgaos_id&quot;:null,&quot;position_id&quot;:null}})" data-original-title="Corte de Imagem"><i class="fa fa-cut"></i>
-                                            </button>
-
-                                            <button id="btn-del-5312" type="button" class=" btn btn-danger ml-1 mt-1" onclick="deleteArchive(5312)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"><i class="fa fa-trash"></i>
+                                            <button id="{{ $archive->id }}" type="button" class="btn btn-danger ms-1 delete-archive-gallery" data-toggle="tooltip" data-bs-toggle="tooltip" title="Excluir">
+                                                <i class="icon bi bi-trash3"></i>
                                             </button>
                                         </div>
                                     </div>
-
-
-                                    <img src="/{{ $archive->path }}" alt="{{ $archive->name }}">
                                 @endforeach
                             </div>
                         </div>
-
-                        <style>
-                            #imageBox .gallery-item {
-                                cursor: move;
-                                margin: 10px;
-                            }
-
-                            #imageBox div .image-container-box, #imageBox div .image-title-box, #imageBox div .option-container-box {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                padding: 5px;
-                            }
-                        </style>
                     </div>
                 </div>
             </div>
@@ -149,24 +133,46 @@
         <script src="{{ url('theme/src/assets/js/editors.js') }}"></script>
 
         <script defer>
-
             const post = @json($post ?? null);
 
-            var meuDropzone = new Dropzone("#meuDropzone", {
-                url: "/admin/upload-gallery",
-                acceptedFiles: "image/*",
-                maxFilesize: 4,
-                sending: function(file, xhr, formData) {
-                    formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
-                    formData.append("post_id", post['id']);
-                }
+            // Upload de imagens da galeria
+            NioApp.Dropzone.init = function () {
+                NioApp.Dropzone('.upload-zone', {
+                    url: "/admin/upload-gallery",
+                    acceptedFiles: "image/*",
+                    maxFilesize: 4,
+                    sending: function(file, xhr, formData) {
+                        formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
+                        formData.append("post_id", post['id']);
+                    }
+                });
+            };
+
+            const buttonsDeleteArchiveGallery = document.querySelectorAll('.delete-archive-gallery');
+
+            buttonsDeleteArchiveGallery.forEach(element => {
+                element.onclick = async () => {
+                    const id = element.id;
+                    let resultado = await myFetch('/admin/delete-archive-gallery', 'POST', {
+                        "id": id,
+                    });
+
+                    if(resultado){
+                        document.querySelector('.gallery-item-'+id).remove()
+                    }
+                };
             });
 
+            // Summernote
             $(document).ready(function() {
                 $('#summernote').summernote({
                     height: 450
                 });
             });
+
+            function copiarTexto(texto, element) {
+                navigator.clipboard.writeText(texto);
+            }
 
             // Url amigável (slug)
             const title = document.querySelector('#title');
