@@ -135,3 +135,21 @@
     margin: 0 !important;
     line-height: normal;
 }
+
+/* Gallery */
+#imageBox .gallery-item {
+    cursor: move;
+    margin: 10px;
+}
+
+#imageBox .image-container-box,
+#imageBox .image-title-box,
+#imageBox .option-container-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+#imageBox .image-container-box img {
+    max-height: 95px;
+}

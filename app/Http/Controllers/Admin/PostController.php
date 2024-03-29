@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Traits\PermissionTrait;
+use App\Models\Admin\Archive;
 use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use App\Repositories\Eloquent\Post\PostRepository;
@@ -86,7 +87,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = CategoryPost::all();
-        $highlight = $post->archives->where('highlight')[0] ?? null;
+        $highlight = $post->highlightArchive;
+
+        $post->load('galleryArchives');
+
         return view('admin.post.form', compact('post', 'categories', 'highlight'));
     }
 
