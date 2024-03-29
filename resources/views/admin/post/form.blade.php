@@ -141,27 +141,71 @@
                     url: "/admin/upload-gallery",
                     acceptedFiles: "image/*",
                     maxFilesize: 4,
+                    autoProcessQueue: true,
                     sending: function(file, xhr, formData) {
                         formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
                         formData.append("post_id", post['id']);
+                    },
+                    success: function(file, response) {
+                        if(response){
+                            const result = JSON.parse(response)
+
+                            let html = `
+                                <div draggable="true" class="text-center gallery-item gallery-item-${result.id}">
+                                    <div class="image-container-box">
+                                        <img class="img-thumbnail" src="/${result.path}">
+                                    </div>
+
+                                    <div class="image-title-box">
+                                        <div>${result.name}</div>
+                                    </div>
+
+                                    <div class="option-container-box mt-1">
+                                        <button value="${result.path}" type="button" class="btn btn-info copy-path" onclick="copiarTexto('${result.path}', this)" data-bs-toggle="tooltip" title="Copiar endereço">
+                                            <i class="icon bi bi-copy"></i>
+                                        </button>
+
+                                        <a href="/${result.path}" target="_blank" class="btn btn-success ms-1" download data-bs-toggle="tooltip" title="Baixar">
+                                            <i class="icon bi bi-download"></i>
+                                        </a>
+
+                                        <a href="/${result.path}" target="_blank" class="btn btn-flat btn-warning ms-1" data-bs-toggle="tooltip" title="Visualizar">
+                                            <i class="icon bi bi-eye"></i>
+                                        </a>
+
+                                        <button id="${result.id}" type="button" class="btn btn-danger ms-1 delete-archive-gallery" data-toggle="tooltip" data-bs-toggle="tooltip" title="Excluir">
+                                            <i class="icon bi bi-trash3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+
+                            document.getElementById('imageBox').innerHTML += html;
+
+                            setButtonsDeleteArchive();
+                        }
                     }
                 });
             };
 
-            const buttonsDeleteArchiveGallery = document.querySelectorAll('.delete-archive-gallery');
+            function setButtonsDeleteArchive() {
+                const buttonsDeleteArchiveGallery = document.querySelectorAll('.delete-archive-gallery');
 
-            buttonsDeleteArchiveGallery.forEach(element => {
-                element.onclick = async () => {
-                    const id = element.id;
-                    let resultado = await myFetch('/admin/delete-archive-gallery', 'POST', {
-                        "id": id,
-                    });
+                buttonsDeleteArchiveGallery.forEach(element => {
+                    element.onclick = async () => {
+                        const id = element.id;
+                        let resultado = await myFetch('/admin/delete-archive-gallery', 'POST', {
+                            "id": id,
+                        });
 
-                    if(resultado){
-                        document.querySelector('.gallery-item-'+id).remove()
-                    }
-                };
-            });
+                        if(resultado){
+                            document.querySelector('.gallery-item-'+id).remove()
+                        }
+                    };
+                });
+            }
+
+            setButtonsDeleteArchive();
 
             // Summernote
             $(document).ready(function() {

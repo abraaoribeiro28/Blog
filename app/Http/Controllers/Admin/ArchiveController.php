@@ -51,9 +51,9 @@ class ArchiveController extends Controller
                     'post_id' => $request->post_id
                 ]);
 
-                $this->saveUpload($file, $path, null, $name);
+                $image = $this->saveUpload($file, $path, null, $name);
                 DB::commit();
-                return true;
+                return json_encode($archive, JSON_THROW_ON_ERROR);
             }
             throw new \Exception();
         } catch (\Exception $e){
