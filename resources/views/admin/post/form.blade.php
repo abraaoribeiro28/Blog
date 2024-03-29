@@ -24,25 +24,26 @@
             <div class="card-inner">
                 <ul class="nav nav-tabs mt-n3 border-0 justify-content-end" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active py-1" data-bs-toggle="tab" href="#tabItem1" aria-selected="true" role="tab">
+                        <a class="nav-link @if(!$activedGallery) active @endif py-1" data-bs-toggle="tab" href="#tabItem1" aria-selected="{{!$activedGallery}}" role="tab">
                             Postagem
                         </a>
                     </li>
                     @if(isset($post) && $post->gallery)
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link py-1" data-bs-toggle="tab" href="#tabItem2" aria-selected="false" role="tab" tabindex="-1">
+                            <a class="nav-link py-1 @if($activedGallery) active @endif" data-bs-toggle="tab" href="#tabItem2" aria-selected="{{$activedGallery}}" role="tab" tabindex="-1">
                                 Galeria
                             </a>
                         </li>
                     @endif
                 </ul>
                 <div class="tab-content mt-0">
-                    <div class="tab-pane active show" id="tabItem1" role="tabpanel">
+                    <div class="tab-pane @if(!$activedGallery) active @endif show" id="tabItem1" role="tabpanel">
                         <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @isset($post)
                                 @method('PUT')
                             @endisset
+                            <input type="hidden" id="redirect_gallery" name="redirect_gallery" value="{{ old('redirect_gallery') ?? 0 }}">
 
                             <div class="row">
                                 <x-admin.forms.input id="title" title="Título" :value="isset($post) ? $post->title : null" :mandatory="true"/>
@@ -67,11 +68,11 @@
                             </div>
 
                             <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-lg btn-primary">Salvar</button>
+                                <button type="submit" id="salvar" class="btn btn-lg btn-primary">Salvar</button>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane pt-3" id="tabItem2" role="tabpanel">
+                    <div class="tab-pane @if($activedGallery) active @endif pt-3" id="tabItem2" role="tabpanel">
                         <div class="upload-zone">
                             <div class="dz-message" data-dz-message>
                                 <span class="dz-message-text">Arraste e solte os arquivos</span>
@@ -84,36 +85,38 @@
                             <h6>Arquivos enviados</h6>
 
                             <div class="d-flex flex-wrap" id="imageBox">
-                                @foreach($post->galleryArchives as $archive)
-                                    <div draggable="true" class="text-center gallery-item gallery-item-{{ $archive->id }}">
+                                @isset($post)
+                                    @foreach($post->galleryArchives as $archive)
+                                        <div draggable="true" class="text-center gallery-item gallery-item-{{ $archive->id }}">
 
-                                        <div class="image-container-box">
-                                            <img class="img-thumbnail" src="/{{ $archive->path }}">
+                                            <div class="image-container-box">
+                                                <img class="img-thumbnail" src="/{{ $archive->path }}">
+                                            </div>
+
+                                            <div class="image-title-box">
+                                                <div>{{ $archive->name }}</div>
+                                            </div>
+
+                                            <div class="option-container-box mt-1">
+                                                <button value="{{ $archive->path }}" type="button" class="btn btn-info copy-path" onclick="copiarTexto('{{ $archive->path }}', this)" data-bs-toggle="tooltip" title="Copiar endereço">
+                                                    <i class="icon bi bi-copy"></i>
+                                                </button>
+
+                                                <a href="/{{ $archive->path }}" target="_blank" class="btn btn-success ms-1" download data-bs-toggle="tooltip" title="Baixar">
+                                                    <i class="icon bi bi-download"></i>
+                                                </a>
+
+                                                <a href="/{{ $archive->path }}" target="_blank" class="btn btn-flat btn-warning ms-1" data-bs-toggle="tooltip" title="Visualizar">
+                                                    <i class="icon bi bi-eye"></i>
+                                                </a>
+
+                                                <button id="{{ $archive->id }}" type="button" class="btn btn-danger ms-1 delete-archive-gallery" data-toggle="tooltip" data-bs-toggle="tooltip" title="Excluir">
+                                                    <i class="icon bi bi-trash3"></i>
+                                                </button>
+                                            </div>
                                         </div>
-
-                                        <div class="image-title-box">
-                                            <div>{{ $archive->name }}</div>
-                                        </div>
-
-                                        <div class="option-container-box mt-1">
-                                            <button value="{{ $archive->path }}" type="button" class="btn btn-info copy-path" onclick="copiarTexto('{{ $archive->path }}', this)" data-bs-toggle="tooltip" title="Copiar endereço">
-                                                <i class="icon bi bi-copy"></i>
-                                            </button>
-
-                                            <a href="/{{ $archive->path }}" target="_blank" class="btn btn-success ms-1" download data-bs-toggle="tooltip" title="Baixar">
-                                                <i class="icon bi bi-download"></i>
-                                            </a>
-
-                                            <a href="/{{ $archive->path }}" target="_blank" class="btn btn-flat btn-warning ms-1" data-bs-toggle="tooltip" title="Visualizar">
-                                                <i class="icon bi bi-eye"></i>
-                                            </a>
-
-                                            <button id="{{ $archive->id }}" type="button" class="btn btn-danger ms-1 delete-archive-gallery" data-toggle="tooltip" data-bs-toggle="tooltip" title="Excluir">
-                                                <i class="icon bi bi-trash3"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @endisset
                             </div>
                         </div>
                     </div>
@@ -217,6 +220,20 @@
             function copiarTexto(texto, element) {
                 navigator.clipboard.writeText(texto);
             }
+
+            const buttonSalvar = document.querySelector('#salvar');
+            const buttonGallery = document.querySelector('#gallery');
+            const redirectGallery = document.querySelector('#redirect_gallery');
+
+            buttonGallery.addEventListener('change', () => {
+                if (buttonGallery.checked) {
+                    redirectGallery.value = 1;
+                    buttonSalvar.innerText = 'Salvar e ir para galeria'
+                }else{
+                    redirectGallery.value = 0;
+                    buttonSalvar.innerText = 'Salvar'
+                }
+            });
 
             // Url amigável (slug)
             const title = document.querySelector('#title');

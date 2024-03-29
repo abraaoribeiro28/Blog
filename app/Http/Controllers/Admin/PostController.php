@@ -48,7 +48,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = CategoryPost::where('status', true)->get();
-        return view('admin.post.form', compact('categories'));
+        $activedGallery = false;
+
+        return view('admin.post.form', compact('categories', 'activedGallery'));
     }
 
     /**
@@ -62,6 +64,12 @@ class PostController extends Controller
                 $this->uploadHighlightArchive($result, $request);
                 Cache::pull('posts');
                 DB::commit();
+
+                if ($request->redirect_gallery) {
+                    return redirect("/admin/posts/$result->id/edit?gallery=1")
+                        ->with('success', 'Os dados foram salvos com sucesso!');
+                }
+
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
@@ -88,10 +96,11 @@ class PostController extends Controller
     {
         $categories = CategoryPost::all();
         $highlight = $post->highlightArchive;
+        $activedGallery = request()->gallery;
 
         $post->load('galleryArchives');
 
-        return view('admin.post.form', compact('post', 'categories', 'highlight'));
+        return view('admin.post.form', compact('post', 'categories', 'highlight', 'activedGallery'));
     }
 
     /**
@@ -105,6 +114,12 @@ class PostController extends Controller
                 $this->uploadHighlightArchive($result, $request, $post->id);
                 Cache::pull('posts');
                 DB::commit();
+
+                if ($request->redirect_gallery) {
+                    return redirect("/admin/posts/$post->id/edit?gallery=1")
+                        ->with('success', 'Os dados foram salvos com sucesso!');
+                }
+
                 return redirect()
                     ->route('posts.index')
                     ->with('success', 'Os dados foram salvos com sucesso!');
