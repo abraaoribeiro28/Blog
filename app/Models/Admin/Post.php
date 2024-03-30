@@ -45,6 +45,16 @@ class Post extends Model
     }
 
     /**
+     * Busca apenas os arquivos da galeria do post
+     *
+     * @return HasMany
+     */
+    public function archivesGallery(): HasMany
+    {
+        return $this->archives()->where('gallery', true);
+    }
+
+    /**
      * Define o relacionamento com o arquivo destacado do post.
      *
      * @return HasOne

@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function show(string $slug)
     {
-        $post = Post::with('category', 'highlightArchive')
+        $post = Post::with('category', 'highlightArchive', 'archivesGallery')
             ->where('slug', $slug)
             ->firstOrFail();
 
