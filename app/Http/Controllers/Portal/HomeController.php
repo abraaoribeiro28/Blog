@@ -28,7 +28,7 @@ class HomeController extends Controller
         $posts = Cache::remember('posts', 3600, function () use($mostViewedPost) {
             return Post::with('category', 'highlightArchive')
                 ->where('status', true)
-                ->where('id', '<>', $mostViewedPost->id)
+                ->where('id', '<>', $mostViewedPost->id ?? null)
                 ->orderByDesc('publication_date')
                 ->orderBy('id', 'desc')
                 ->limit(3)

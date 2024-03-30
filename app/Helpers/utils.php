@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 /**
  * Converte uma data no formato brasileiro (d/m/Y) para o formato de banco de dados (Y-m-d)
  * @param string $date A data no formato brasileiro (d/m/Y).
@@ -83,4 +85,9 @@ function getProfileInitials(string $name): string
     return count($names) > 1
         ? strtoupper($names[0][0]) . strtoupper($names[1][0])
         : strtoupper($names[0][0]);
+}
+
+function addStoragePath(string $path): string
+{
+    return "storage/$path";
 }

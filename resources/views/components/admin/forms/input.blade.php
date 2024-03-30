@@ -56,6 +56,7 @@
 
                 @case('switch')
                     <div class="custom-control custom-switch">
+                        <input type="hidden" value="0" name="{{ $id }}">
                         <input type="checkbox" class="custom-control-input switch" id="{{ $id }}" 
                             name="{{ $id }}" value="1" {{ (old($id) == 1 || $value == 1) ? 'checked' : '' }}>
                         <label class="custom-control-label" for="{{ $id }}">{{ $switchLabel ?? null }}</label>
