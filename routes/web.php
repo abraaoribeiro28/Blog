@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('portal.home');
 
 // Postagens
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('posts', [PostController::class, 'index'])->name('portal.posts.index');
+Route::get('posts/{categry}', [PostController::class, 'index'])->name('portal.posts.category');
+Route::get('post/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 // Subscriber
 Route::post('ajax-subscribe', [SubscriberController::class, 'store'])->name('ajax.subscribe');

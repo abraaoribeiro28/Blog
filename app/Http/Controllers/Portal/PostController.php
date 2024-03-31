@@ -3,45 +3,34 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\CategoryPost;
 use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index($slug = null)
     {
-
-        $posts = Post::with('category', 'highlightArchive', 'archivesGallery')
+        $categories = CategoryPost::where('status', true)->get();
+        $categoriesIds = $categories->pluck('id');
+    
+        $query = Post::with('category', 'highlightArchive')
             ->where('status', true)
             ->where('publication_date', '<=', date('Y-m-d H:i'))
-            ->orderByDesc('publication_date')
-            ->paginate();
+            ->orderByDesc('publication_date');
 
-        return view('portal.pages.post.index', compact('posts'));
+        if($slug){
+            $category =  CategoryPost::where('slug', $slug)->first();
+            $posts = $query->where('category_posts_id', $category->id)->paginate();
+        }else{
+            $category = false;
+            $posts = $query->whereIn('category_posts_id', $categoriesIds)->paginate();
+        }
+
+        return view('portal.pages.post.index', compact('posts', 'categories', 'category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $slug)
     {
         $post = Post::with('category', 'highlightArchive', 'archivesGallery')
@@ -71,29 +60,5 @@ class PostController extends Controller
         $post->increment('clicks');
 
         return view('portal.pages.post.show', compact('post', 'recentPosts', 'popularPosts', 'sideContent'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

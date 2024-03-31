@@ -1,8 +1,16 @@
 <x-portal-layout>
-    <section class="section-post show py-5">
+    <section class="section-post show pt-4 pb-5">
         <div class="container">
+            <div class="d-flex justify-content-center mb-4">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ route('portal.posts.index') }}" class="btn bg-cor-botoes text-dinamic-cor-botoes @if(!$category) selected @endif">Todas</a>
+                    @foreach($categories as $categryItem)
+                        <a href="{{ route('portal.posts.category', $categryItem->slug) }}" class="btn bg-cor-botoes text-dinamic-cor-botoes @if(isset($category->id) && $category->id == $categryItem->id) selected @endif">{{ $categryItem->name }}</a>
+                    @endforeach
+                </div>
+            </div>
             <div class="row">
-                @foreach($posts as $post)
+                @forelse($posts as $post)
                     <div class="col-md-4 col-sm-6">
                     <div class="blog-index w-dyn-list">
                         <a href="{{ route('posts.show', $post->slug) }}" class="post-recente d-grid align-items-start">
@@ -21,7 +29,9 @@
                     </div>
                     <div class="line-spacer"></div>
                     </div>
-                @endforeach
+                @empty
+                    <h4 class="text-center">Nenhuma postagem encontrada.</h4>
+                @endforelse
             </div>
             {{ $posts->links() }}
         </div>
@@ -36,6 +46,25 @@
 
             .imagem-palestra-recentes {
                 height: 117px;
+            }
+
+            .btn-group .btn {
+                border-left: 0.5px solid rgb(255 255 255 / 25%);
+            }
+
+            .btn-group .btn:first-child {
+                border-left: 0;
+            }
+
+            .btn.selected{
+                opacity: 0.85;
+            }
+
+            .btn-group>.btn:hover,
+            .btn-group>.btn:active{
+                z-index: inherit;
+                opacity: 0.7;
+                border-color: transparent;
             }
 
             @media screen and (min-width: 992px){
