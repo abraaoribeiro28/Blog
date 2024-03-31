@@ -17,6 +17,9 @@ export default defineConfig({
                 "resources/js/custom-dropdown.js",
                 // Home
                 "resources/js/portal/subscriber.js",
+
+                // LightGallery
+                "resources/js/portal/light-gallery/app.js"
             ],
             refresh: true,
         }),

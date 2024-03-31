@@ -325,7 +325,7 @@ trait FileTrait
                 'column' => 'ebook_id',
             ],
             'posts' => [
-                'directory' => 'posts/'.$result->category->slug.'/'.$result->id,
+                'directory' => 'posts/'.$result->category->slug.'/'.$result->id.'/destaque',
                 'column' => 'post_id',
             ],
             default => false,
