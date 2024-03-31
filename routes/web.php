@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('portal.home');
 
 // Postagens
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 // Subscriber

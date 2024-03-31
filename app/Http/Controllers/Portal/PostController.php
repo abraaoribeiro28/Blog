@@ -13,7 +13,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+
+        $posts = Post::with('category', 'highlightArchive', 'archivesGallery')
+            ->where('status', true)
+            ->where('publication_date', '<=', date('Y-m-d H:i'))
+            ->orderByDesc('publication_date')
+            ->paginate();
+
+        return view('portal.pages.post.index', compact('posts'));
     }
 
     /**
