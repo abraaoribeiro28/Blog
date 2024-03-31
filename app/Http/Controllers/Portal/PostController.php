@@ -41,9 +41,29 @@ class PostController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
+        $recentPosts = Post::with('category', 'highlightArchive')
+            ->where('status', true)
+            ->whereNot('id', $post->id)
+            ->where('publication_date', '<=', date('Y-m-d H:i'))
+            ->orderByDesc('publication_date')
+            ->limit(3)
+            ->get();
+
+        $recentPostIds = $recentPosts->pluck('id');
+
+        $popularPosts = Post::with('category', 'highlightArchive')
+            ->where('status', true)
+            ->whereNot('id', $post->id)
+            ->whereNotIn('id', $recentPostIds)
+            ->orderByDesc('clicks')
+            ->limit(3)
+            ->get();
+
+        $sideContent = count($recentPosts) + count($popularPosts) > 0;
+
         $post->increment('clicks');
 
-        return view('portal.pages.post.show', compact('post'));
+        return view('portal.pages.post.show', compact('post', 'recentPosts', 'popularPosts', 'sideContent'));
     }
 
     /**
