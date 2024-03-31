@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('post-notifications', fn() => Limit::perMinute(10));
+
+        Paginator::defaultView('vendor.pagination.bootstrap-5');
     }
 }
