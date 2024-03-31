@@ -14,7 +14,7 @@
                 <ul class="nk-quick-nav">
                     <li>
                         <a href="{{ route('portal.home') }}" target="_blank" class="nk-menu-link px-0 bg-transparent" style="color: #526484;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            <i class="icon bi bi-box-arrow-up-right" style="font-size: 18px;"></i>
                             <span class="d-none d-md-inline">Acessar portal</span>
                         </a>
                     </li>
@@ -25,7 +25,7 @@
                                 <div class="user-avatar sm">
                                     <em class="icon ni ni-user-alt"></em>
                                 </div>
-                                <div class="user-info d-none d-xl-block">
+                                <div class="user-info d-none d-md-block">
                                     @php
                                         $user = auth()->user();
                                     @endphp

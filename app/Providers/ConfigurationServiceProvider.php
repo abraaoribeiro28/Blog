@@ -29,6 +29,7 @@ class ConfigurationServiceProvider extends ServiceProvider
                 'components.portal.layout.header',
                 'components.portal.layout.footer',
                 'components.portal.includes.styles',
+                'components.admin.layout.sidebar',
                 'components.admin.includes.styles'
             ], function ($view) use ($configurations) {
                 foreach ($configurations as $key => $value) {
