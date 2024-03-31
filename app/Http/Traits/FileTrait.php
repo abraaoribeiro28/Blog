@@ -254,11 +254,28 @@ trait FileTrait
 
         foreach ($configurations as $key => $value) {
             $selector = str_replace('_', '-', $key);
-            $css .= ".bg-$selector{background-color:{$value};}\n";
-            $css .= ".$selector{color:{$value};}\n";
+            $css .= ".bg-$selector{background-color:{$value} !important;}\n";
+            $css .= ".$selector{color:{$value} !important;}\n";
+            $css .= ".text-dinamic-$selector{color:{$this->chooseTextColor($value)} !important;}\n";
         }
 
         return $this->createfile($path, $css);
+    }
+
+    public function calculateLuminance($hexColor)
+    {
+        $hexColor = str_replace('#', '', $hexColor);
+        $r = hexdec(substr($hexColor, 0, 2)) / 255;
+        $g = hexdec(substr($hexColor, 2, 2)) / 255;
+        $b = hexdec(substr($hexColor, 4, 2)) / 255;
+
+        return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+    }
+
+    public function chooseTextColor($backgroundColor)
+    {
+        $luminance = $this->calculateLuminance($backgroundColor);
+        return $luminance > 0.5 ? '#000000' : '#FFFFFF';
     }
 
 
