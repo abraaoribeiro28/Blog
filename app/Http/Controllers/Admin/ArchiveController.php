@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\FileTrait;
 use App\Models\Admin\Archive;
+use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -37,9 +38,10 @@ class ArchiveController extends Controller
         DB::beginTransaction();
         try {
             if ($request->hasFile('file') && $request->file('file')->isValid()){
+                $post = Post::with('category')->find($request->post_id);
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
-                $path = "posts/$request->post_id/gallery";
+                $path = 'posts/'.$post->category->slug.'/'.$request->post_id.'/galeria';
                 $name = $this->generateNameFile($path, $extension);
 
                 $archive = Archive::create([
