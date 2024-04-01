@@ -160,6 +160,15 @@
     max-height: 95px;
 }
 
+/* Datatables */
+.datatable-wrap{
+    overflow-x: auto;
+}
+
+.datatable-init{
+    min-width: 500px;
+}
+
 /* Galeria */
 #lightgallery {
     display: flex;
