@@ -8,7 +8,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul id="menu-header" class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
+                <ul id="menu-header" class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0 gap-2">
                     {{--  @includ('components.portal.menu-list', ['menus' => $menus, 'level' => 0])--}}
                 </ul>
             </div>
@@ -20,25 +20,25 @@
     function generateMenu(menus, level = 0, dropend = false) {
         let html = '';
 
-        menus.forEach(menu => {
+        menus.forEach((menu, dropend) => {
             if (menu.all_children && menu.all_children.length) {
                 if (dropend) {
                     html += `<li class="dropdown-submenu">`;
-                    html += `<a class="dropdown-item dropdown-toggle" href="#">${menu.name}</a>`;
+                    html += `<a class="dropdown-item dropdown-toggle text-dinamic-cor-principal" href="#">${menu.name}</a>`;
                     html += `<ul class="dropdown-menu">`;
                     html += generateMenu(menu.all_children, level + 1, true);
                     html += `</ul>`;
                     html += `</li>`;
                 } else {
                     html += `<div class="dropdown">`;
-                    html += `<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-${menu.id}" data-bs-toggle="dropdown">${menu.name}</button>`;
-                    html += `<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-${menu.id}">`;
+                    html += `<a class="btn btn-secondary dropdown-toggle text-dinamic-cor-principal" type="button" id="dropdownMenuButton-${menu.id}" data-bs-toggle="dropdown">${menu.name}</a>`;
+                    html += `<ul class="dropdown-menu submenu" aria-labelledby="dropdownMenuButton-${menu.id}">`;
                     html += generateMenu(menu.all_children, level + 1, true);
                     html += `</ul>`;
                     html += `</div>`;
                 }
             } else {
-                html += `<li class="nav-item"><a class="nav-link active" href="${menu.url}">${menu.name}</a></li>`;
+                html += `<li class="nav-item"><a class="nav-link text-dinamic-cor-principal" href="${menu.url}">${menu.name}</a></li>`;
             }
         });
 

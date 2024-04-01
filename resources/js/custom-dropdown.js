@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     submenus.forEach(function (toggle) {
         toggle.addEventListener("click", function (e) {
-            console.log('aa')
             e.stopPropagation();
+            toggle.classList.toggle('active');
             var submenu = this.nextElementSibling;
             if (submenu) {
                 if (
