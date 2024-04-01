@@ -2,8 +2,6 @@
     <div class="nk-content-wrap">
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head nk-block-head-sm">
-                
-                
                 <div class="nk-block-between align-items-start align-items-md-center flex-column flex-md-row">
                     <div class="nk-block-head-content">
                         <h3 class="nk-block-title page-title">Categorias de Postagens</h3>
@@ -30,7 +28,6 @@
                 </div>
                 <x-admin.forms.alert/>
             </div>
-
 
             <div class="card card-bordered card-preview">
                 <div class="card-inner">
