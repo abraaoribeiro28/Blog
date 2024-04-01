@@ -8,7 +8,7 @@
                             <i class="icon bi bi-list" style="font-size: 20px"></i>
                         </span>
                     @endcan
-                    <span class="tb-lead ms-1">{{ $menu->name }}</span>
+                    <span class="tb-lead ms-1 line-1">{{ $menu->name }}</span>
                 </div>
                 <div class="ms-auto me-2 d-flex align-items-center">
                     @if($menu->status)

@@ -2,19 +2,19 @@
     <div class="nk-content-wrap">
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head nk-block-head-sm">
-                <div class="nk-block-between">
+                <div class="nk-block-between align-items-start align-items-md-center flex-column flex-md-row">
                     <div class="nk-block-head-content">
                         <h3 class="nk-block-title page-title">Menus do site</h3>
                         <div class="nk-block-des text-soft">
                             <p>Listagem dos registros de menus do site.</p>
                         </div>
                     </div>
-                    <div class="nk-block-head-content">
+                    <div class="nk-block-head-content mt-2 mt-md-0">
                         <div class="toggle-wrap nk-block-tools-toggle">
                             @can('menus.create')
                                 <a href="{{ route('menus.create') }}" class="btn btn-primary">
                                     <i class="icon bi bi-plus me-1"></i>
-                                    Novo Menu
+                                    Cadastrar
                                 </a>
                             @endcan
                         </div>
