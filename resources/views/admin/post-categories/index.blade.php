@@ -2,7 +2,9 @@
     <div class="nk-content-wrap">
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head nk-block-head-sm">
-                <div class="nk-block-between">
+                
+                
+                <div class="nk-block-between align-items-start align-items-md-center flex-column flex-md-row">
                     <div class="nk-block-head-content">
                         <h3 class="nk-block-title page-title">Categorias de Postagens</h3>
                         <div class="nk-block-des text-soft">
@@ -10,14 +12,19 @@
                         </div>
                     </div>
                     <div class="nk-block-head-content">
-                        <div class="toggle-wrap nk-block-tools-toggle">
-                            <a href="{{ route('posts.index') }}" class="btn btn-info">
-                                Postagens
-                            </a>
-                            <a href="{{ route('categories.create') }}" class="btn btn-primary">
-                                <i class="icon bi bi-plus me-1"></i>
-                                Nova Categoria
-                            </a>
+                        <div class="nk-block-head-content mt-2 mt-md-0">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                @can('postagens.create')
+                                    <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                                        <i class="icon bi bi-plus me-1"></i>
+                                       Cadastrar
+                                    </a>
+                                    <a href="{{ route('posts.index') }}" class="btn btn-secondary">
+                                        <i class="icon bi bi-postcard me-1"></i>
+                                        Postagens
+                                    </a>
+                                @endcan
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,30 +37,18 @@
                     <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
                         <thead>
                         <tr class="nk-tb-item nk-tb-head">
-                            <th class="nk-tb-col nk-tb-col-check">
-                                <div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="uid">
-                                    <label class="custom-control-label" for="uid"></label>
-                                </div>
-                            </th>
-                            <th class="nk-tb-col tb-col-mb"><span class="sub-text">Nome</span></th>
-                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
-                            <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                            <th class="nk-tb-col"><span class="sub-text">Nome</span></th>
+                            <th class="nk-tb-col"><span class="sub-text">Status</span></th>
+                            <th class="nk-tb-col text-center">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($categories as $category)
                             <tr class="nk-tb-item" id="item-{{$category->id}}">
-                                <td class="nk-tb-col nk-tb-col-check">
-                                    <div class="custom-control custom-control-sm custom-checkbox notext">
-                                        <input type="checkbox" class="custom-control-input" id="{{ $category->id }}">
-                                        <label class="custom-control-label" for="{{ $category->id }}"></label>
-                                    </div>
-                                </td>
-                                <td class="nk-tb-col tb-col-mb">
+                                <td class="nk-tb-col">
                                     <span class="tb-lead">{{ $category->name }}</span>
                                 </td>
-                                <td class="nk-tb-col tb-col-md">
+                                <td class="nk-tb-col">
                                     <span class="tb-status">
                                         @if($category->status)
                                             <em class="icon ni ni-check-circle text-success"></em>
@@ -64,7 +59,7 @@
                                         @endif
                                     </span>
                                 </td>
-                                <td class="nk-tb-col tb-col-md text-center">
+                                <td class="nk-tb-col text-center">
 
                                     <div class="dropdown">
                                         <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
