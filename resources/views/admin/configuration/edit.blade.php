@@ -1,41 +1,41 @@
 <x-app-layout>
     <div class="nk-content-wrap">
         <div class="nk-block-head nk-block-head-sm">
-            <div class="nk-block-between">
+            <div class="nk-block-between align-items-start align-items-lg-center flex-column flex-lg-row">
                 <div class="nk-block-head-content">
                     <h3 class="nk-block-title page-title">Configurações do site</h3>
                     <div class="nk-block-des text-soft">
                         <p>Preencha os campos do formulário com as informações.</p>
                     </div>
                 </div>
-                <div class="nk-block-head-content">
+                <div class="nk-block-head-content mt-2 mt-lg-0">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link @if(old('tab') == 'tab-info' || empty(old('tab'))) active @endif"
                                data-bs-toggle="tab" href="#tab-info">
                                 <i class="icon bi bi-info-circle"></i>
-                                <span>Informações</span>
+                                <span class="d-none d-sm-inline">Informações</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(old('tab') == 'tab-incorp') active @endif"
                                data-bs-toggle="tab" href="#tab-incorp">
                                 <i class="icon bi bi-code-slash"></i>
-                                <span>Incorporação</span>
+                                <span class="d-none d-sm-inline">Incorporação</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(old('tab') == 'tab-img') active @endif"
                                data-bs-toggle="tab" href="#tab-img">
                                 <i class="icon bi bi-images"></i>
-                                <span>Imagens</span>
+                                <span class="d-none d-sm-inline">Imagens</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(old('tab') == 'tab-option') active @endif"
                                data-bs-toggle="tab" href="#tab-option">
                                 <i class="icon bi bi-gear"></i>
-                                <span>Opções</span>
+                                <span class="d-none d-sm-inline">Opções</span>
                             </a>
                         </li>
                     </ul>
