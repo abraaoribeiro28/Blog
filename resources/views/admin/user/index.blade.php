@@ -2,19 +2,19 @@
     <div class="nk-content-wrap">
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head nk-block-head-sm">
-                <div class="nk-block-between">
+                <div class="nk-block-between align-items-start align-items-md-center flex-column flex-md-row">
                     <div class="nk-block-head-content">
                         <h3 class="nk-block-title page-title">Usuários</h3>
                         <div class="nk-block-des text-soft">
                             <p>Listagem dos registros de usuários.</p>
                         </div>
                     </div>
-                    <div class="nk-block-head-content">
+                    <div class="nk-block-head-content mt-2 mt-md-0">
                         <div class="toggle-wrap nk-block-tools-toggle">
                             @can('usuarios.create')
                                 <a href="{{ route('users.create') }}" class="btn btn-primary">
                                     <i class="icon bi bi-plus me-1"></i>
-                                   Novo usuário
+                                   Cadastrar
                                 </a>
                             @endcan
                         </div>
@@ -29,30 +29,18 @@
                     <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
                         <thead>
                             <tr class="nk-tb-item nk-tb-head">
-                                <th class="nk-tb-col nk-tb-col-check">
-                                    <div class="custom-control custom-control-sm custom-checkbox notext">
-                                        <input type="checkbox" class="custom-control-input" id="uid">
-                                        <label class="custom-control-label" for="uid"></label>
-                                    </div>
-                                </th>
                                 <th class="nk-tb-col"><span class="sub-text">Usuário</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Perfis</span></th>
-                                <th class="nk-tb-col tb-col-mb"><span class="sub-text">Último login</span></th>
-                                <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Último login</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Status</span></th>
                                 @canany(['usuarios.edit', 'usuarios.destroy'])
-                                    <th class="nk-tb-col tb-col-md nk-tb-col-tools text-center">Ações</th>
+                                    <th class="nk-tb-col text-center">Ações</th>
                                 @endcanany
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr class="nk-tb-item" id="item-{{$user->id}}">
-                                    <td class="nk-tb-col nk-tb-col-check">
-                                        <div class="custom-control custom-control-sm custom-checkbox notext">
-                                            <input type="checkbox" class="custom-control-input" id="{{ $user->id }}">
-                                            <label class="custom-control-label" for="{{ $user->id }}"></label>
-                                        </div>
-                                    </td>
                                     <td class="nk-tb-col">
                                         <div class="user-card">
                                             <div class="user-avatar bg-primary">
@@ -67,13 +55,13 @@
                                         </div>
                                     </td>
 
-                                    <td class="nk-tb-col tb-col-mb">
+                                    <td class="nk-tb-col">
                                         @foreach($user->getRoleNames() as $role)
                                             <span class="badge bg-secondary">{{ $role }}</span>
                                         @endforeach
                                     </td>
 
-                                    <td class="nk-tb-col tb-col-mb">
+                                    <td class="nk-tb-col">
                                         @if($user->last_login)
                                             <span>{{ date('d/m/Y', strtotime($user->last_login)) }}</span>
                                         @else
@@ -81,7 +69,7 @@
                                         @endif
                                     </td>
 
-                                    <td class="nk-tb-col tb-col-md">
+                                    <td class="nk-tb-col">
                                         <span class="tb-status">
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input switch" id="status-{{$user->id}}"
@@ -95,7 +83,7 @@
                                     </td>
 
                                     @canany(['usuarios.edit', 'usuarios.destroy'])
-                                        <td class="nk-tb-col tb-col-md text-center">
+                                        <td class="nk-tb-col text-center">
                                             <div class="dropdown">
                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0" aria-expanded="false">
                                                     <em class="icon ni ni-more-h"></em>
