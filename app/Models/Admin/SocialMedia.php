@@ -13,6 +13,7 @@ class SocialMedia extends Model
         'title',
         'icon',
         'url',
+        'label_status',
         'status'
     ];
 }

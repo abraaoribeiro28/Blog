@@ -1,13 +1,12 @@
 import Iconpicker from 'codethereal-iconpicker'
 
 document.addEventListener('DOMContentLoaded', function() {
-    // new Iconpicker(document.querySelector(".iconpicker"));
-    // new Iconpicker(document.querySelector(".iconpicker"), options);
-    // document.querySelectorAll('.iconpicker').forEach(picker => new Iconpicker(picker))
-
     (async () => {
         const response = await fetch('https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconsets/bootstrap5.json')
         const result = await response.json()
+        let value  = document.querySelector(".iconpicker").value;
+
+        if (value == '') value = 'bi-alarm';
 
         const iconpicker = new Iconpicker(document.querySelector(".iconpicker"), {
             icons: result,
@@ -15,14 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
             searchable: true,
             selectedClass: "selected",
             containerClass: "my-picker",
-            hideOnSelect: true,
+            hideOnSelect: false,
             fade: true,
-            defaultValue: 'bi-alarm',
-            valueFormat: val => `bi ${val}`
+            defaultValue: value
         });
-
-        iconpicker.set() // Set as empty
-        iconpicker.set('bi-alarm') // Reset with a value
     })()
-
 });

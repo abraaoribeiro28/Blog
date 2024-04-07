@@ -43,6 +43,7 @@
                             </div>
                         </div>
                         <x-admin.forms.input id="url" title="URL" :value="isset($socialMedia) ? $socialMedia->url : null" :mandatory="true" cols="6"/>
+                        <x-admin.forms.input id="label_status" switchLabel="Marque exibir o título" :value="isset($socialMedia) ? $socialMedia->label_status : null" type="switch"/>
                         <x-admin.forms.input id="status" switchLabel="Marque para ativar" :value="isset($socialMedia) ? $socialMedia->status : null" type="switch"/>
                     </div>
                     <div class="form-group mt-3">

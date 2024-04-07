@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('icon');
             $table->text('url');
+            $table->boolean('label_status')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });
