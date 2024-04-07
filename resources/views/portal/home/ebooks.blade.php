@@ -8,7 +8,7 @@
                         <p class="lead my-3">
                             {{ strip_tags($ebook->resume) }}
                         </p>
-                        <a href="#" download class="btn bg-dark-blue text-white">Baixar E-book</a>
+                        <a href="#" download class="btn bg-cor-botoes text-dinamic-cor-botoes">Baixar E-book</a>
                     </div>
                     <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
                         <img src="{{ getPathStorage($ebook->highlightArchive->path ?? '#') }}"

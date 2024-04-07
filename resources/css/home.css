@@ -95,8 +95,7 @@ iframe{
 
 .main-section button:hover,
 .section-ebook .btn:hover{
-    background-color: #1b3664 !important;
-    color: #fff !important;
+    opacity: 0.9;
 }
 
 .main-section input:focus{

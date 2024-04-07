@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\ConfigurationController;
@@ -9,8 +8,9 @@ use App\Http\Controllers\Admin\InstagramPostController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\UserController;
-
+use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -25,11 +25,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('instagram', InstagramPostController::class);
     Route::resource('ebooks', EbookController::class);
     Route::resource('menus', MenuController::class);
+    Route::resource('social-media', SocialMediaController::class);
     Route::resource('users', UserController::class);
     Route::resource('profiles', RoleController::class);
 
     // ajax
     Route::post('posts/delete', [PostController::class, 'destroy']);
+    Route::post('social-media/delete', [SocialMediaController::class, 'destroy']);
     Route::post('delete-highlight', [ArchiveController::class, 'deleteHighlight']);
     Route::post('posts/categories/delete', [CategoryPostController::class, 'destroy']);
     Route::post('menu-order', [MenuController::class, 'order']);
