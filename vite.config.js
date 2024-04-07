@@ -19,7 +19,9 @@ export default defineConfig({
                 "resources/js/portal/subscriber.js",
 
                 // LightGallery
-                "resources/js/portal/light-gallery/app.js"
+                "resources/js/portal/light-gallery/app.js",
+                // IconPicker bootstrap
+                "resources/js/admin/codethereal-iconpicker/app.js"
             ],
             refresh: true,
         }),

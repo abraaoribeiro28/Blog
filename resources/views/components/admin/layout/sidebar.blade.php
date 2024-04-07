@@ -90,6 +90,15 @@
                         </li>
                     @endcan
 
+                    @can('redes-sociais.index')
+                        <li class="nk-menu-item">
+                            <a href="{{ route('social-media.index') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><i class="icon bi bi-facebook"></i></span>
+                                <span class="nk-menu-text">Redes sociais</span>
+                            </a>
+                        </li>
+                    @endcan
+
                     @canany(['usuarios.index', 'perfis.index'])
                         <li class="nk-menu-item has-sub">
                             <a href="#" class="nk-menu-link nk-menu-toggle">

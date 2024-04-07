@@ -67,6 +67,11 @@ return new class extends Migration
                 'slug' => 'perfis',
                 'description' => 'Funcionalidade de para definir perfis de usuários e suas permissões'
             ],
+            [
+                'name' => 'Redes sociais',
+                'slug' => 'redes-sociais',
+                'description' => 'Funcionalidade para cadastro de redes sociais'
+            ],
         ]);
 
     }
