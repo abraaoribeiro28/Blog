@@ -3,6 +3,7 @@
 namespace App\View\Components\Portal\Layout;
 
 use Closure;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 use App\Models\Admin\SocialMedia;
 use Illuminate\Contracts\View\View;
@@ -24,7 +25,12 @@ class Footer extends Component
      */
     public function render(): View|Closure|string
     {
-        $socialMedia = $this->table->where('status', true)->get();
+
+
+        $socialMedia = Cache::rememberForever('social-media', function () {
+            return $this->table->where('status', true)->get();
+        });
+
         return view('components.portal.layout.footer', compact('socialMedia'));
     }
 }
