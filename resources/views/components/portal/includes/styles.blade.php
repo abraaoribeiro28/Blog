@@ -10,9 +10,6 @@
 
 <link rel="stylesheet" href="{{ asset($cssColorPath) }}">
 
-@vite([
-    'resources/css/app.css',
-    'resources/css/home.css',
-])
+@vite(['resources/css/portal/app.css'])
 
 @yield('style')

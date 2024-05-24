@@ -21,6 +21,10 @@
         "bootstrap-icons": "^1.11.1",
         "codethereal-iconpicker": "^1.2.1",
         "dropzone": "^6.0.0-beta.2",
-        "lightgallery": "^2.7.2"
+        "glightbox": "^3.3.0",
+        "imagesloaded": "^5.0.0",
+        "isotope-layout": "^3.0.6",
+        "lightgallery": "^2.7.2",
+        "wowjs": "^1.1.3"
     }
 }
