@@ -6,7 +6,7 @@
 </head>
 <body class="body">
     <x-portal.layout.header/>
-{{--    {{ $slot }}--}}
+    {{ $slot }}
 {{--    <x-portal.layout.footer/>--}}
     <x-portal.includes.scripts />
 </body>
