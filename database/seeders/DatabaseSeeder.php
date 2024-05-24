@@ -51,53 +51,26 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-
         DB::table('category_posts')->insert([
            'name' => 'Geral',
            'slug' => 'geral',
             'status' => true
         ]);
 
-//        Post::factory(10)->create();
+        Post::factory(10)->create();
 
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 1',
-            'url' => 'https://www.instagram.com/p/Cydh2Fiu_9r/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
+//        DB::table('instagram_posts')->insert([
+//            'title' => 'Post 1',
+//            'url' => '',
+//            'status' => true
+//        ]);
 
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 2',
-            'url' => 'https://www.instagram.com/p/Cx8ybmhu_NS/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 3',
-            'url' => 'https://www.instagram.com/p/CvUr9sBgDes/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('instagram_posts')->insert([
-            'title' => 'Post 4',
-            'url' => 'https://www.instagram.com/p/CvKXbezAMbZ/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
-            'status' => true
-        ]);
-
-        DB::table('ebooks')->insert([
-            'title' => 'Como falar sobre suicídio?',
-            'author' => 'Raquel França',
-            'publication_date' => '2023-10-01',
-            'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
-            'status' => true,
-        ]);
-
-        DB::table('ebooks')->insert([
-            'title' => 'Um relacionamento saudável com minha ansiedade',
-            'author' => 'Raquel França',
-            'publication_date' => '2023-10-01',
-            'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
-            'status' => true,
-        ]);
+//        DB::table('ebooks')->insert([
+//            'title' => 'Título do E-book',
+//            'author' => 'Nome do autor',
+//            'publication_date' => '2024-05-25',
+//            'resume' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut comodo diam libero vitae erat. Nunc ut sem vitae risus tristique posuere.',
+//            'status' => true,
+//        ]);
     }
 }

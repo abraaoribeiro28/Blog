@@ -11,7 +11,9 @@
                 </form>
             </div>
             <div class="col-6 d-none d-md-flex justify-content-center">
-{{--                <img src="{{ asset('assets/images/stitch-sorvete.png') }}" alt="logo">--}}
+{{--                <div class="hero" style="width: 330px; border-radius: 80px 10px 10px 10px; overflow: hidden;">--}}
+{{--                    <img class="img-fluid" src="#" alt="logo">--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

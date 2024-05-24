@@ -1,8 +1,12 @@
 <header class="bg-cor-principal">
-    <nav class="navbar navbar-expand-lg navbar-dark py-md-4">
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img class="logo" src="{{ url($configuration['logo']) }}" loading="lazy" alt="logo" />
+                @if($configuration['logo'] != "")
+                    <img class="logo" src="{{ url($configuration['logo']) }}" loading="lazy" alt="logo" />
+                @else
+                    <h5 class="m-0">Company Name</h5>
+                @endif
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
