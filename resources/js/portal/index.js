@@ -3,15 +3,15 @@ import '~glightbox/css/glightbox.min.css';
 import imagesLoaded from 'imagesloaded';
 import Isotope from 'isotope-layout';
 import GLightbox from 'glightbox';
-import '~wowjs/wow.min.js';
-
-window.wow = new WOW.WOW({
-    live: false,
-});
-
-window.wow.init({
-    offset: 50,
-});
+// import '~wowjs/wow.min.js';
+//
+// window.wow = new WOW({
+//     live: false,
+// });
+//
+// window.wow.init({
+//     offset: 50,
+// });
 
 // ========= glightbox
 const myGallery = GLightbox({
