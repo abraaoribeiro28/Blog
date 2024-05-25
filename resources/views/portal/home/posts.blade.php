@@ -1,12 +1,15 @@
 @if ($mostViewedPost && $posts)
     <section class="section section-post">
         <div class="container">
-            <div class="row">
+            <div class="flex flex-wrap">
                 @include('portal.home.posts.featured-post', ['post' => $mostViewedPost])
-
-                <div class="col-lg-6 ps-md-4 mt-5 pt-5 pt-lg-0 mt-lg-0">
-                    <h4>Últimas palestras</h4>
-                    @each('portal.home.posts.recent-post', $posts, 'post')
+                <div class="w-full lg:w-6/12 mt-5 pt-5 lg:pt-0 lg:mt-0 lg:pl-12">
+                    <div class="flex flex-col">
+                        <h4 class="font-semibold text-xl mb-5">Últimas postagens</h4>
+                        <div class="mt-auto">
+                            @each('portal.home.posts.recent-post', $posts, 'post')
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

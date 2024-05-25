@@ -22,7 +22,8 @@ export default {
             dark: '#1D2144',
             primary: '#4A6CF7',
             yellow: '#FBB040',
-            'body-color': '#959CB1',
+            'body-color': '#848b9d',
+            ...require('tailwindcss/colors')
         },
         screens: {
             sm: '540px',
@@ -39,6 +40,8 @@ export default {
 
             '2xl': '1320px',
             // => @media (min-width: 1400px) { ... }
+
+            '3xl': '1400px',
         },
         extend: {
             fontFamily: {

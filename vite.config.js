@@ -12,7 +12,8 @@ export default defineConfig({
 
                 // --- Portal ----
                 "resources/css/portal/app.css",
-                // "resources/css/portal/home.css",
+                "resources/css/portal/home/custom.css",
+                "resources/css/portal/home/responsive.css",
                 "resources/js/portal/app.js",
                 "resources/js/portal/subscriber.js",
                 "resources/js/portal/light-gallery/app.js",
