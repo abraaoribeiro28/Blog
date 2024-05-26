@@ -20,6 +20,7 @@ export default defineConfig({
 
                 // --- All ---
                 "resources/css/custom.css",
+                "resources/css/tailwind.css",
                 "resources/js/app.js",
                 "resources/js/bootstrap.js",
             ],
