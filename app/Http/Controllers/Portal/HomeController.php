@@ -36,7 +36,10 @@ class HomeController extends Controller
         });
 
         $instagramPosts = Cache::remember('instagramPosts', 3600, function () {
-            return InstagramPost::where('status', true)->get();
+            return InstagramPost::where('status', true)
+                ->orderBy('id', 'desc')
+                ->limit(3)
+                ->get();
         });
 
         $ebooks = Cache::remember('ebooks', 3600, function () {
