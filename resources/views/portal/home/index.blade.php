@@ -3,7 +3,7 @@
 {{--    @include('portal.home.vision')--}}
     @include('portal.home.posts')
     @include('portal.home.instagram')
-{{--    @include('portal.home.ebooks')--}}
+    @include('portal.home.ebooks')
 
      @section('style')
         @parent
