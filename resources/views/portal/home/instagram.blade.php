@@ -1,5 +1,5 @@
 @if (isset($instagramPosts) && $instagramPosts->count())
-    <section id="services" class="bg-cor-principal pt-20 lg:pt-[120px] pb-12 lg:pb-[90px] mt-[110px]">
+    <section id="services" class="bg-cor-principal pt-20 lg:pt-[120px] pb-12 lg:pb-[90px]">
         <div class="container">
             <div class="flex flex-wrap items-end -mx-4 mb-10 lg:mb-[60px]">
                 <div class="w-full lg:w-8/12 px-4">

@@ -1,41 +1,41 @@
 @media screen and (min-width: 1400px) {
-    .featured-post-image{ height: 492px; }
-    .recent-post-image{ height: 196px; }
+    .featured-post-image{ height: 500px; }
+    .recent-post-image{ height: 232px; }
     .resume-ebook{ -webkit-line-clamp: 8; }
 }
 
 @media screen and (max-width: 1399px) {
-    .featured-post-image{ height: 492px; }
-    .recent-post-image{ height: 196px; }
+    .featured-post-image{ height: 500px; }
+    .recent-post-image{ height: 232px; }
     .resume-ebook{ -webkit-line-clamp: 8; }
 }
 
 @media screen and (max-width: 1319px) {
-    .featured-post-image{ height: 418px; }
-    .recent-post-image{ height: 166px; }
+    .featured-post-image{ height: 510px; }
+    .recent-post-image{ height: 236px; }
     .resume-ebook{ -webkit-line-clamp: 7; }
 }
 
 @media screen and (max-width: 1139px) {
     .featured-post-image{ height: 478px; }
-    .recent-post-image{ height: 188px; }
+    .recent-post-image{ height: 224px; }
     .resume-ebook{ -webkit-line-clamp: 6; }
 }
 @media screen and (max-width: 959px) {
     .featured-post-image{ height: 426px; }
-    .recent-post-image{ height: 202px; }
+    .recent-post-image{ height: 236px; }
     .resume-ebook{ -webkit-line-clamp: 8; }
 }
 
 @media screen and (max-width: 719px) {
     .featured-post-image { height: 352px; }
-    .recent-post-image{ height: 178px; }
+    .recent-post-image{ height: 236px; }
 }
 
 @media screen and (max-width: 539px) {
     .recent-post-image{
         height: auto;
-        max-height: 264px;
+        max-height: 352px;
     }
 }
 
