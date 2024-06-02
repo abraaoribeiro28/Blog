@@ -1,100 +1,66 @@
 <x-portal-layout>
-    <section class="section-post show py-5">
+    <section class="pt-[150px]">
         <div class="container">
-            <div>
-                <span class="category mb-2">{{ $post->category->name }}</span>
-                <h3 class="mt-0 mb-5">{{ $post->title }}</h3>
-            </div>
-
-            <div class="row">
-                <div class="{{ $sideContent ? 'col-xl-9 col-lg-8' : 'col-12' }}">
-                    <div class="mb-5">
-                        <h4>Escrito por {{ $post->author }}. Data de Publicação: {{ convertDateToBR($post->publication_date) }}</h4>
-                        @isset($post->highlightArchive->path)
-                            <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}" alt="Imagem destaque" class="img-destaque">
-                        @endisset
-                    </div>
-
-                    {!! $post->text !!}
-
-                    @if($post->gallery && count($post->archivesGallery))
-                        <div class="border rounded p-3 my-5">
-                            <h6 class="mb-3">Galeria de imagens</h6>    
-                            <div id="lightgallery">
-                                @foreach($post->archivesGallery as $archive)
-                                    <a href="{{ url($archive->path) }}">
-                                        <img src="{{ url($archive->path) }}" />
-                                    </a>
-                                @endforeach
+            <div> <!-- pb-[120px] border-b border-[#E9ECF8] -->
+                <div class="flex flex-wrap justify-center mx-[-16px]">
+                    <div class="w-full lg:w-8/12 px-4">
+                        <div>
+                            <div class="w-full rounded overflow-hidden mb-10">
+                                <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}" alt="image" class="w-full h-full object-cover object-center" />
+                            </div>
+                            <h2 class="font-bold text-black text-3xl sm:text-4xl leading-tight sm:leading-tight mb-8">
+                                {{ $post->title }}
+                            </h2>
+                            <div class="flex flex-wrap items-center justify-between pb-4 mb-10 border-b border-[#E9ECF8]">
+                                <div class="flex flex-wrap items-center">
+                                    <div class="flex items-center mr-10 mb-5">
+                                        <div class="w-full">
+                                            <h4 class="text-base font-medium text-body-color mb-1">
+                                                Por
+                                                <span class="text-primary"> {{ $post->author }} </span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center mb-5">
+                                        <p class="flex items-center text-base text-body-color font-medium mr-5">
+                                            <i class="bi bi-calendar4-event mr-3"></i>
+                                            {{ formatDateWithMonth($post->publication_date) }}
+                                        </p>
+                                        <p class="flex items-center text-base text-body-color font-medium">
+                                            <i class="bi bi-eye mr-3"></i>
+                                            {{ $post->clicks }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mb-5">
+                                    <span class="bg-primary rounded-full inline-flex items-center justify-center py-2 px-4 font-semibold text-sm text-white">
+                                        {{ $post->category->name }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-10">
+                                    {!! $post->text !!}
+                                </div>
+                                @if($post->gallery && $countGallery = count($post->archivesGallery))
+                                    @php
+                                        $cols = $countGallery >= 8 ? 'md:grid-cols-8' : 'md:grid-cols-'.$countGallery;
+                                    @endphp
+                                    <div class="grid grid-cols-3 {{$cols}} gap-4 border rounded-lg p-5 bg-gray-100" id="lightgallery">
+                                        @foreach($post->archivesGallery as $archive)
+                                            <a href="{{ url($archive->path) }}" class="flex items-center">
+                                                <img class="h-auto max-w-full rounded-lg" src="{{ url($archive->path) }}">
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    @endif
-                </div>
-                
-                @if(count($recentPosts) + count($popularPosts) > 0)
-                    <div class="col-xl-3 col-lg-4">
-                        @if(count($recentPosts))
-                            <h4>Postagens mais recentes</h4>
-                            @foreach($recentPosts as $post)
-                                <div class="blog-index w-dyn-list">
-                                    <a href="{{ route('posts.show', $post->slug) }}" class="post-recente d-block d-sm-grid">
-                                        <div>
-                                            <div class="category">{{ $post->category->name }}</div>
-                                            <h4 class="line-4 mb-0">{{ $post->title }}</h4>
-                                            <div class="post-details d-lg-none">
-                                                <div>{{ $post->author }}</div>
-                                                <div class="spacer-dot">•</div>
-                                                <div>{{ formatDateWithMonth($post->publication_date) }}</div>
-                                            </div>
-                                        </div>
-                                        <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}" class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
-                                    </a>
-                                </div>
-                                <div class="line-spacer"></div>
-                            @endforeach
-                        @endif
-                        
-                        @if(count($popularPosts))
-                            <h4 class="mt-5">Postagens mais visualizadas</h4>
-                            @foreach($popularPosts as $post)
-                                <div class="blog-index w-dyn-list">
-                                    <a href="{{ route('posts.show', $post->slug) }}" class="post-recente d-block d-sm-grid">
-                                        <div>
-                                            <div class="category">{{ $post->category->name }}</div>
-                                            <h4 class="line-4 mb-0">{{ $post->title }}</h4>
-                                        </div>
-                                        <img src="{{ getPathStorage($post->highlightArchive->path ?? '#') }}" class="imagem-palestra-recentes" alt="imagem de palestra" loading="lazy" />
-                                    </a>
-                                </div>
-                                <div class="line-spacer"></div>
-                            @endforeach
-                        @endif
                     </div>
-                @endif
+                </div>
             </div>
         </div>
     </section>
-
-    @section('style')
-        @parent
-        <style>
-            .post-recente {grid-column-gap: 5px;}
-
-            @media screen and (min-width: 992px){
-                .imagem-palestra-recentes {
-                    height: 122px;
-                }
-            }
-
-            .img-destaque{
-                width: 100%;
-                max-height: 700px;
-                object-fit: cover;
-                object-position: center;
-                border-radius: 2px;
-            }
-        </style>
-    @endsection
 
     @section('script')
         @parent

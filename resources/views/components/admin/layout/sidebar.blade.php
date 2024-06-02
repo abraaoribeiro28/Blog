@@ -3,9 +3,14 @@
     <div class="nk-sidebar-element nk-sidebar-head">
         <div class="nk-sidebar-brand">
             <a href="{{ route('dashboard') }}" class="logo-link nk-sidebar-logo">
-                <img class="logo-light logo-img" src="{{ url($configuration['logo']) }}" alt="logo">
-                <img class="logo-dark logo-img" src="{{ url($configuration['logo']) }}" alt="logo-dark">
-                <img class="logo-small logo-img logo-img-small" src="{{ asset('theme/src/images/logo-small.png') }}" alt="logo-small">
+                @if($configuration['logo'] != "")
+                    <img class="logo-light logo-img" src="{{ url($configuration['logo']) }}" alt="logo">
+                    <img class="logo-dark logo-img" src="{{ url($configuration['logo']) }}" alt="logo-dark">
+                    <img class="logo-small logo-img logo-img-small" src="{{ asset('theme/src/images/logo-small.png') }}" alt="logo-small">
+                @else
+                    <h5 class="m-0 logo-img">Company Name</h5>
+                    <h5 class="m-0 logo-img logo-img-small">CN</h5>
+                @endif
             </a>
         </div>
         <div class="nk-menu-trigger me-n2">
