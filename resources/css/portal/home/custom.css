@@ -1,0 +1,28 @@
+
+.line-1, .line-2, .line-3, .line-4, .line-5,
+.line-6, .resume-ebook{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.line-1 { -webkit-line-clamp: 1; }
+.line-2 { -webkit-line-clamp: 2; }
+.line-3 { -webkit-line-clamp: 3; }
+.line-4 { -webkit-line-clamp: 4; }
+.line-5 { -webkit-line-clamp: 5; }
+.line-6 { -webkit-line-clamp: 6; }
+
+.divider:last-child { display: none; }
+
+/* Instagram Home */
+.instagram-box::-webkit-scrollbar { width: 4px; }
+.instagram-box::-webkit-scrollbar-track { background: transparent; }
+.instagram-box::-webkit-scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 20px;
+}
+.instagram-media.instagram-media-rendered {
+    width: 100%;
+    margin: 0 !important;
+    min-width: auto !important;
+}

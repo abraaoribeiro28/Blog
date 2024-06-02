@@ -37,8 +37,22 @@ return new class extends Migration
         // ID - 2
         DB::table('menus')->insert([
             'name' => 'Postagens',
-            'url' => '/postagens',
+            'url' => '/posts',
             'order' => 2,
+            'status' => 1
+        ]);
+        // ID - 3
+        DB::table('menus')->insert([
+            'name' => 'Contato',
+            'url' => '#',
+            'order' => 3,
+            'status' => 1
+        ]);
+        // ID - 4
+        DB::table('menus')->insert([
+            'name' => 'Sobre',
+            'url' => '#',
+            'order' => 4,
             'status' => 1
         ]);
     }

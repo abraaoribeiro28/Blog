@@ -4,4 +4,12 @@
     @include('portal.home.posts')
     @include('portal.home.instagram')
     @include('portal.home.ebooks')
+
+     @section('style')
+        @parent
+        @vite([
+            'resources/css/portal/home/custom.css',
+            'resources/css/portal/home/responsive.css'
+        ])
+    @endsection
 </x-portal-layout>
