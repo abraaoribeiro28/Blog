@@ -75,21 +75,21 @@ return new class extends Migration
             'key' => 'logo',
             'title' => 'Logo',
             'description' => 'Tamanho ideal: 130x40.',
-            'value' => ''
+            'value' => 'assets/images/logo.svg'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'favicon',
             'title' => 'Favicon',
             'description' => 'Tamanho ideal: Tamanho ideal: 128x128.',
-            'value' => ''
+            'value' => 'assets/images/favicon.ico'
         ]);
 
         DB::table('configurations')->insert([
             'key' => 'logo_radape',
             'title' => 'Logo Rodapé',
             'description' => 'Tamanho ideal: 130x40.',
-            'value' => ''
+            'value' => 'assets/images/logo.svg'
         ]);
 
         // Opções
