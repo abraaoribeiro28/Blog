@@ -1,144 +1,104 @@
-
-<div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
-    <div class="nk-sidebar-element nk-sidebar-head">
-        <div class="nk-sidebar-brand">
-            <a href="{{ route('dashboard') }}" class="logo-link nk-sidebar-logo">
-                @if($configuration['logo'] != "")
-                    <img class="logo-light logo-img" src="{{ url($configuration['logo']) }}" alt="logo">
-                    <img class="logo-dark logo-img" src="{{ url($configuration['logo']) }}" alt="logo-dark">
-                    <img class="logo-small logo-img logo-img-small" src="{{ asset('theme/src/images/logo-small.png') }}" alt="logo-small">
-                @else
-                    <h5 class="m-0 logo-img">Company Name</h5>
-                    <h5 class="m-0 logo-img logo-img-small">CN</h5>
-                @endif
-            </a>
-        </div>
-        <div class="nk-menu-trigger me-n2">
-            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
-            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
-        </div>
+<aside mini="false" class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto transition-all duration-200 -translate-x-full bg-white border-0 shadow-none xl:ml-4 dark:bg-gray-950 ease-soft-in-out z-990 max-w-64 rounded-2xl xl:translate-x-0 xl:bg-transparent" id="sidenav-main">
+    <div class="h-20">
+        <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 dark:text-white xl:hidden" aria-hidden="true" sidenav-close-btn></i>
+        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700 dark:text-white" href="{{ route('dashboard') }}" target="_blank">
+            <img src="{{ url($configuration['logo']) }}" class="inline-block h-full max-w-full transition-all duration-200 ease-soft-in-out max-h-8 dark:hidden" alt="logo" />
+            <img src="{{ url($configuration['logo']) }}" class="hidden h-full max-w-full transition-all duration-200 ease-soft-in-out max-h-8 dark:inline-block" alt="logo" />
+        </a>
     </div>
-    <div class="nk-sidebar-element">
-        <div class="nk-sidebar-content">
-            <div class="nk-sidebar-menu" data-simplebar>
-                <ul class="nk-menu">
-                    <li class="nk-menu-heading">
-                        <h6 class="overline-title text-primary-alt">Dashboards</h6>
-                    </li>
 
-                    <li class="nk-menu-item">
-                        <a href="{{ route('dashboard') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="icon bi bi-graph-up"></i></span>
-                            <span class="nk-menu-text">Dashboard</span>
-                        </a>
-                    </li>
+    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent">
 
-                    @can('postagens.index')
-                        <li class="nk-menu-item">
-                            <a href="{{ route('posts.index') }}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-postcard"></i></span>
-                                <span class="nk-menu-text">Postagens</span>
-                            </a>
-                        </li>
-                    @endcan
+    <div class="items-center block w-full h-auto grow basis-full" id="sidenav-collapse-main">
+        <ul class="flex flex-col pl-0 mb-0 list-none">
+            <x-admin.layout.side-item title="Dashboard" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <x-slot name="icon">
+                    <i class="bi bi-pie-chart-fill"></i>
+                </x-slot>
+            </x-admin.layout.side-item>
 
-                    @can('solicitacoes.index')
-                        <li class="nk-menu-item">
-                            <a href="#" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-chat-left-dots"></i></span>
-                                <span class="nk-menu-text">Solicitações
-                                 <span class="ms-2 badge bg-info">2</span></span>
-                            </a>
-                        </li>
-                    @endcan
+            @can('postagens.index')
+                <x-admin.layout.side-item title="Postagens" href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
+                    <x-slot name="icon">
+                        <i class="bi bi-postcard-fill"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
 
-                    @can('galeria.index')
-                        <li class="nk-menu-item">
-                            <a href="#" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-images"></i></span>
-                                <span class="nk-menu-text">Galeria de imagens</span>
-                            </a>
-                        </li>
-                    @endcan
+            @can('solicitacoes.index')
+                <x-admin.layout.side-item title="Solicitações" href="#">
+                    <x-slot name="icon">
+                        <i class="bi bi-chat-left-dots-fill"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
 
-                    @canany(['instagram.index', 'ebooks.index'])
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><i class="icon bi bi-stack"></i></span>
-                                <span class="nk-menu-text">Seções do site</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                @can('instagram.index')
-                                    <li class="nk-menu-item">
-                                        <a href="{{ route('instagram.index') }}" class="nk-menu-link">
-                                            <span class="nk-menu-text">Instagram</span>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('ebooks.index')
-                                    <li class="nk-menu-item">
-                                        <a href="{{ route('ebooks.index') }}" class="nk-menu-link">
-                                            <span class="nk-menu-text">E-book</span>
-                                        </a>
-                                    </li>
-                                @endcan
-                            </ul>
-                        </li>
-                    @endcanany
+            @can('galeria.index')
+                <x-admin.layout.side-item title="Galeria de imagens" href="#">
+                    <x-slot name="icon">
+                        <i class="bi bi-images"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
 
-                    @can('menus.index')
-                        <li class="nk-menu-item">
-                            <a href="{{ route('menus.index') }}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-list"></i></span>
-                                <span class="nk-menu-text">Menus do site</span>
-                            </a>
-                        </li>
-                    @endcan
 
-                    @can('redes-sociais.index')
-                        <li class="nk-menu-item">
-                            <a href="{{ route('social-media.index') }}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-facebook"></i></span>
-                                <span class="nk-menu-text">Redes sociais</span>
-                            </a>
-                        </li>
-                    @endcan
+            @canany(['instagram.index', 'ebooks.index'])
+                <x-admin.layout.side-item title="Seções do site">
+                    <x-slot name="icon">
+                        <i class="bi bi-layers-fill"></i>
+                    </x-slot>
 
-                    @canany(['usuarios.index', 'perfis.index'])
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                <span class="nk-menu-text">Usuários</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                @can('usuarios.index')
-                                    <li class="nk-menu-item">
-                                        <a href="{{ route('users.index') }}" class="nk-menu-link">
-                                            <span class="nk-menu-text">Lista de usuários</span>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('perfis.index')
-                                    <li class="nk-menu-item">
-                                        <a href="{{ route('profiles.index') }}" class="nk-menu-link">
-                                            <span class="nk-menu-text">Perfis e permissões</span>
-                                        </a>
-                                    </li>
-                                @endcan
-                            </ul>
-                        </li>
-                    @endcanany
+                    <x-slot name="subitems">
+                        @can('instagram.index')
+                            <x-admin.layout.side-subitem title="Instagram" href="{{ route('instagram.index') }}" :active="request()->routeIs('instagram.index')"/>
+                        @endcan
+                        @can('ebooks.index')
+                            <x-admin.layout.side-subitem title=">E-book" href="{{ route('ebooks.index') }}" :active="request()->routeIs('ebooks.index')"/>
+                        @endcan
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcanany
 
-                    @can('configuracoes.edit')
-                        <li class="nk-menu-item">
-                            <a href="{{ route('configurations.edit', 1) }}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><i class="icon bi bi-sliders"></i></span>
-                                <span class="nk-menu-text">Configurações</span>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        </div>
+            @can('menus.index')
+                <x-admin.layout.side-item title="Menus do site" href="{{ route('menus.index') }}" :active="request()->routeIs('menus.index')">
+                    <x-slot name="icon">
+                        <i class="bi bi-list-nested"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
+
+            @can('redes-sociais.index')
+                <x-admin.layout.side-item title="Redes sociais" href="{{ route('social-media.index') }}" :active="request()->routeIs('social-media.index')">
+                    <x-slot name="icon">
+                        <i class="icon bi bi-facebook"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
+
+            @canany(['usuarios.index', 'perfis.index'])
+                <x-admin.layout.side-item title="Usuários">
+                    <x-slot name="icon">
+                        <i class="bi bi-people-fill"></i>
+                    </x-slot>
+
+                    <x-slot name="subitems">
+                        @can('usuarios.index')
+                            <x-admin.layout.side-subitem title="Lista de usuários" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')"/>
+                        @endcan
+                        @can('perfis.index')
+                            <x-admin.layout.side-subitem title=">Perfis e permissões" href="{{ route('profiles.index') }}" :active="request()->routeIs('profiles.index')"/>
+                        @endcan
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcanany
+
+            @can('configuracoes.edit')
+                <x-admin.layout.side-item title="Configurações" href="{{ route('configurations.edit', 1) }}" :active="request()->routeIs('configurations.edit')">
+                    <x-slot name="icon">
+                        <i class="bi bi-gear-fill"></i>
+                    </x-slot>
+                </x-admin.layout.side-item>
+            @endcan
+        </ul>
     </div>
-</div>
+</aside>
