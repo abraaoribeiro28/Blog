@@ -53,7 +53,7 @@
                             <x-admin.layout.side-subitem title="Instagram" href="{{ route('instagram.index') }}" :active="request()->routeIs('instagram.index')"/>
                         @endcan
                         @can('ebooks.index')
-                            <x-admin.layout.side-subitem title=">E-book" href="{{ route('ebooks.index') }}" :active="request()->routeIs('ebooks.index')"/>
+                            <x-admin.layout.side-subitem title="E-book" href="{{ route('ebooks.index') }}" :active="request()->routeIs('ebooks.index')"/>
                         @endcan
                     </x-slot>
                 </x-admin.layout.side-item>

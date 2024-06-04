@@ -9,19 +9,17 @@
 
     <x-admin.layout.sidebar />
 
-{{--            <div class="nk-wrap ">--}}
-{{--                <x-admin.layout.header />--}}
-{{--                <div class="nk-content ">--}}
-{{--                    <div class="container-fluid">--}}
-{{--                        <div class="nk-content-inner">--}}
-{{--                            <div class="nk-content-body">--}}
-{{--                                {{ $slot }}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <x-admin.layout.footer />--}}
-{{--            </div>--}}
+    <main class="relative h-full max-h-screen min-h-screen transition-all duration-200 ease-soft-in-out xl:ml-68 rounded-xl">
+        <x-admin.layout.navigation :title="$title ?? ''" />
+
+        <div class="content-panel p-9">
+        {{--{{ $slot }}--}}
+        </div>
+
+        {{--<x-layout.footer />--}}
+    </main>
+
+    <x-admin.layout.side-configurator-theme />
 
     <x-admin.includes.scripts />
 </body>
