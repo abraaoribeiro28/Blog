@@ -231,17 +231,17 @@ select {
 2. Remove default button styles.
 */
 
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-    -webkit-appearance: button;
-    /* 1 */
-    background-color: transparent;
-    /* 2 */
-    background-image: none;
-    /* 2 */
-}
+/*button,*/
+/*[type='button'],*/
+/*[type='reset'],*/
+/*[type='submit'] {*/
+/*    -webkit-appearance: button;*/
+/*    !* 1 *!*/
+/*    background-color: transparent;*/
+/*    !* 2 *!*/
+/*    background-image: none;*/
+/*    !* 2 *!*/
+/*}*/
 
 /*
 Use the modern Firefox focus style for all focusable elements.
@@ -2793,6 +2793,10 @@ h6 {
 
 .to-gray-100 {
     --tw-gradient-to: #ebeff4;
+}
+
+.to-red-400 {
+    --tw-gradient-to: rgb(248 113 113);
 }
 
 .bg-cover {

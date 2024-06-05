@@ -37,7 +37,7 @@ class PostController extends Controller
             ->with('category')
             ->orderBy('publication_date', 'desc')
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate();
 
         return view('admin.post.index', compact('posts'));
     }

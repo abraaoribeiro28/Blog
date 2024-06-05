@@ -13,7 +13,7 @@
         <x-admin.layout.navigation :title="$title ?? ''" />
 
         <div class="content-panel p-9">
-        {{--{{ $slot }}--}}
+            {{ $slot }}
         </div>
 
         {{--<x-layout.footer />--}}
