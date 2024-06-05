@@ -8,6 +8,7 @@ export default defineConfig({
             input: [
                 // --- Admin ---
                 "resources/css/admin/app.css",
+                "resources/css/admin/pagination.css",
                 "resources/js/admin/codethereal-iconpicker/app.js",
 
                 // --- Portal ----

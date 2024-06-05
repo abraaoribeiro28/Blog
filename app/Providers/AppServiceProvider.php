@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         RateLimiter::for('post-notifications', fn() => Limit::perMinute(10));
 
-        Paginator::defaultView('vendor.pagination.tailwind');
+        Paginator::defaultView('vendor.pagination.portal');
     }
 }
