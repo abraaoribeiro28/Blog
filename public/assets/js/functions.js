@@ -9,7 +9,7 @@ async function myFetch(url, type = 'GET', data = null) {
                     "Content-type": "application/json",
                     "Accept": "application/json, text-plain, */*",
                     "X-Requested-With": "XMLHttpRequest",
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
                 method: type,
                 body: data ? JSON.stringify(data) : '',
