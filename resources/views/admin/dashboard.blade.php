@@ -1,473 +1,187 @@
 <x-app-layout>
-    <div class="nk-block-head nk-block-head-sm">
-        <div class="nk-block-between">
-            <div class="nk-block-head-content">
-                <h3 class="nk-block-title page-title">Dashboard</h3>
+    <x-slot name="title">
+        Dashboard
+    </x-slot>
+
+    <div class="w-full p-6 mx-auto">
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full max-w-full px-3 flex-0 lg:w-6/12">
+                {{-- Cards --}}
+                <div class="flex flex-wrap -mx-3">
+                    <div class="w-full max-w-full px-3 flex-0 md:w-6/12">
+                        <div class="dark:bg-gray-950 dark:shadow-soft-dark-xl shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 bg-white bg-[url('../../assets/img/curved-images/white-curved.jpg')] bg-clip-border">
+                            <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 rounded-2xl opacity-90"> </span>
+                            <div class="relative flex-auto p-4">
+                                <div class="flex flex-wrap -mx-3">
+                                    <div class="w-8/12 max-w-full px-3 text-left flex-0">
+                                        <div class="inline-block w-12 h-12 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none shadow-soft-2xl">
+                                            <i class="bi bi-file-post ni leading-none ni-circle-08 bg-gradient-to-tl from-gray-900 to-slate-800 text-lg relative top-3.5 z-10 bg-clip-text text-transparent"></i>
+                                        </div>
+                                        <h5 class="mt-4 mb-0 font-bold text-white">{{ $activePostsCount }}</h5>
+                                        <span class="leading-normal text-white text-sm">Postagens ativas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full max-w-full px-3 mt-6 flex-0 md:mt-0 md:w-6/12">
+                        <div class="dark:bg-gray-950 dark:shadow-soft-dark-xl shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 bg-white bg-[url('../../assets/img/curved-images/white-curved.jpg')] bg-clip-border">
+                            <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 rounded-2xl opacity-90"> </span>
+                            <div class="relative flex-auto p-4">
+                                <div class="flex flex-wrap -mx-3">
+                                    <div class="w-8/12 max-w-full px-3 text-left flex-0">
+                                        <div class="inline-block w-12 h-12 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none shadow-soft-2xl">
+                                            <i class="bi bi-hand-index-thumb-fill ni leading-none ni-active-40 bg-gradient-to-tl from-gray-900 to-slate-800 text-lg relative top-3.5 z-10 bg-clip-text text-transparent"></i>
+                                        </div>
+                                        <h5 class="mt-4 mb-0 font-bold text-white"> {{ $clicksPostsCount }}</h5>
+                                        <span class="leading-normal text-white text-sm">Cliques nas postagens</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap mt-6 -mx-3">
+                    <div class="w-full max-w-full px-3 flex-0 md:w-6/12">
+                        <div class="dark:bg-gray-950 dark:shadow-soft-dark-xl shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 bg-white bg-[url('../../assets/img/curved-images/white-curved.jpg')] bg-clip-border">
+                            <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 rounded-2xl opacity-90"> </span>
+                            <div class="relative flex-auto p-4">
+                                <div class="flex flex-wrap -mx-3">
+                                    <div class="w-8/12 max-w-full px-3 text-left flex-0">
+                                        <div class="inline-block w-12 h-12 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none shadow-soft-2xl">
+                                            <i class="bi bi-people-fill ni leading-none ni-cart bg-gradient-to-tl from-gray-900 to-slate-800 text-lg relative top-3.5 z-10 bg-clip-text text-transparent"></i>
+                                        </div>
+                                        <h5 class="mt-4 mb-0 font-bold text-white">{{ $subscribersCount }}</h5>
+                                        <span class="leading-normal text-white text-sm">Inscritos nas notificações</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="nk-block-head-content">
-                <div class="toggle-wrap nk-block-tools-toggle">
-                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                    <div class="toggle-expand-content" data-content="pageMenu">
-                        <ul class="nk-block-tools g-3">
-                            <li>
-                                <div class="drodown">
-                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <ul class="link-list-opt no-bdr">
-                                            <li><a href="#"><span>Last 30 Days</span></a></li>
-                                            <li><a href="#"><span>Last 6 Months</span></a></li>
-                                            <li><a href="#"><span>Last 1 Years</span></a></li>
-                                        </ul>
+            <div class="w-full max-w-full px-3 flex-0 lg:w-6/12">
+                <div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 dark:bg-gray-950 dark:shadow-soft-dark-xl shadow-soft-xl rounded-2xl bg-clip-border">
+                    <div class="p-4 pb-0 mb-0 rounded-t-2xl">
+                        <h6 class="mb-0 dark:text-white">Reviews</h6>
+                    </div>
+                    <div class="flex-auto p-4 pb-0">
+                        <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                            <li class="relative flex items-center px-0 py-2 mb-0 border-0 rounded-t-inherit text-inherit">
+                                <div class="w-full">
+                                    <div class="flex mb-2">
+                                        <span class="mr-2 font-semibold leading-normal capitalize text-sm">Positive Reviews</span>
+                                        <span class="ml-auto font-semibold leading-normal text-sm">80%</span>
+                                    </div>
+                                    <div>
+                                        <div class="h-0.75 text-xs flex overflow-visible rounded-lg bg-gray-200">
+                                            <div class="bg-gradient-to-tl from-blue-600 to-cyan-400 w-80/100 transition-width duration-600 ease-soft rounded-1 -mt-0.4 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap text-center text-white"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                            <li class="relative flex items-center px-0 py-2 mb-2 border-0 text-inherit">
+                                <div class="w-full">
+                                    <div class="flex mb-2">
+                                        <span class="mr-2 font-semibold leading-normal capitalize text-sm">Neutral Reviews</span>
+                                        <span class="ml-auto font-semibold leading-normal text-sm">17%</span>
+                                    </div>
+                                    <div>
+                                        <div class="h-0.75 text-xs flex overflow-visible rounded-lg bg-gray-200">
+                                            <div class="dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 w-17/100 transition-width duration-600 ease-soft rounded-1 -mt-0.4 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap text-center text-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="relative flex items-center px-0 py-2 mb-2 border-0 rounded-b-inherit text-inherit">
+                                <div class="w-full">
+                                    <div class="flex mb-2">
+                                        <span class="mr-2 font-semibold leading-normal capitalize text-sm">Negative Reviews</span>
+                                        <span class="ml-auto font-semibold leading-normal text-sm">3%</span>
+                                    </div>
+                                    <div>
+                                        <div class="h-0.75 text-xs flex overflow-visible rounded-lg bg-gray-200">
+                                            <div class="bg-gradient-to-tl from-red-600 to-rose-400 w-3/100 transition-width duration-600 ease-soft rounded-1 -mt-0.4 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap text-center text-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="flex items-center p-4 pt-0 rounded-b-2xl">
+                        <div class="w-3/5">
+                            <p class="leading-normal text-sm dark:text-white/60">
+                                More than
+                                <b>1,500,000</b>
+                                developers used Creative Tim's products and over
+                                <b>700,000</b>
+                                projects were created.
+                            </p>
+                        </div>
+                        <div class="w-2/5 text-right">
+                            <a href="javascript:;" class="inline-block px-6 py-3 mb-0 font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">View all reviews</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="nk-block">
-        <div class="row g-gs">
-            <div class="col-xxl-3 col-sm-6">
-                <div class="card">
-                    <div class="nk-ecwg nk-ecwg6">
-                        <div class="card-inner">
-                            <div class="card-title-group">
-                                <div class="card-title">
-                                    <h6 class="title">Today Orders</h6>
-                                </div>
-                            </div>
-                            <div class="data">
-                                <div class="data-group">
-                                    <div class="amount">1,945</div>
-                                    <div class="nk-ecwg6-ck">
-                                        <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
-                                    </div>
-                                </div>
-                                <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6">
-                <div class="card">
-                    <div class="nk-ecwg nk-ecwg6">
-                        <div class="card-inner">
-                            <div class="card-title-group">
-                                <div class="card-title">
-                                    <h6 class="title">Today Revenue</h6>
-                                </div>
-                            </div>
-                            <div class="data">
-                                <div class="data-group">
-                                    <div class="amount">$2,338</div>
-                                    <div class="nk-ecwg6-ck">
-                                        <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
-                                    </div>
-                                </div>
-                                <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6">
-                <div class="card">
-                    <div class="nk-ecwg nk-ecwg6">
-                        <div class="card-inner">
-                            <div class="card-title-group">
-                                <div class="card-title">
-                                    <h6 class="title">Today Customers</h6>
-                                </div>
-                            </div>
-                            <div class="data">
-                                <div class="data-group">
-                                    <div class="amount">847</div>
-                                    <div class="nk-ecwg6-ck">
-                                        <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
-                                    </div>
-                                </div>
-                                <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-sm-6">
-                <div class="card">
-                    <div class="nk-ecwg nk-ecwg6">
-                        <div class="card-inner">
-                            <div class="card-title-group">
-                                <div class="card-title">
-                                    <h6 class="title">Today Visitors</h6>
-                                </div>
-                            </div>
-                            <div class="data">
-                                <div class="data-group">
-                                    <div class="amount">23,485</div>
-                                    <div class="nk-ecwg6-ck">
-                                        <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
-                                    </div>
-                                </div>
-                                <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-6">
-                <div class="card card-full">
-                    <div class="nk-ecwg nk-ecwg8 h-100">
-                        <div class="card-inner">
-                            <div class="card-title-group mb-3">
-                                <div class="card-title">
-                                    <h6 class="title">Sales Statistics</h6>
-                                </div>
-                                <div class="card-tools">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-bs-toggle="dropdown">Weekly</a>
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><span>Daily</span></a></li>
-                                                <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                                <li><a href="#"><span>Monthly</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="nk-ecwg8-legends">
-                                <li>
-                                    <div class="title">
-                                        <span class="dot dot-lg sq" data-bg="#6576ff"></span>
-                                        <span>Total Order</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <span class="dot dot-lg sq" data-bg="#eb6459"></span>
-                                        <span>Cancelled Order</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="nk-ecwg8-ck">
-                                <canvas class="ecommerce-line-chart-s4" id="salesStatistics"></canvas>
-                            </div>
-                            <div class="chart-label-group ps-5">
-                                <div class="chart-label">01 Jul, 2020</div>
-                                <div class="chart-label">30 Jul, 2020</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-md-6">
-                <div class="card card-full overflow-hidden">
-                    <div class="nk-ecwg nk-ecwg7 h-100">
-                        <div class="card-inner flex-grow-1">
-                            <div class="card-title-group mb-4">
-                                <div class="card-title">
-                                    <h6 class="title">Order Statistics</h6>
-                                </div>
-                            </div>
-                            <div class="nk-ecwg7-ck">
-                                <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
-                            </div>
-                            <ul class="nk-ecwg7-legends">
-                                <li>
-                                    <div class="title">
-                                        <span class="dot dot-lg sq" data-bg="#816bff"></span>
-                                        <span>Completed</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <span class="dot dot-lg sq" data-bg="#13c9f2"></span>
-                                        <span>Processing</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <span class="dot dot-lg sq" data-bg="#ff82b7"></span>
-                                        <span>Cancelled</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-md-6">
-                <div class="card h-100">
-                    <div class="card-inner">
-                        <div class="card-title-group mb-2">
-                            <div class="card-title">
-                                <h6 class="title">Store Statistics</h6>
-                            </div>
-                        </div>
-                        <ul class="nk-store-statistics">
-                            <li class="item">
-                                <div class="info">
-                                    <div class="title">Orders</div>
-                                    <div class="count">1,795</div>
-                                </div>
-                                <em class="icon bg-primary-dim ni ni-bag"></em>
-                            </li>
-                            <li class="item">
-                                <div class="info">
-                                    <div class="title">Customers</div>
-                                    <div class="count">2,327</div>
-                                </div>
-                                <em class="icon bg-info-dim ni ni-users"></em>
-                            </li>
-                            <li class="item">
-                                <div class="info">
-                                    <div class="title">Products</div>
-                                    <div class="count">674</div>
-                                </div>
-                                <em class="icon bg-pink-dim ni ni-box"></em>
-                            </li>
-                            <li class="item">
-                                <div class="info">
-                                    <div class="title">Categories</div>
-                                    <div class="count">68</div>
-                                </div>
-                                <em class="icon bg-purple-dim ni ni-server"></em>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-8">
-                <div class="card card-full">
-                    <div class="card-inner">
-                        <div class="card-title-group">
-                            <div class="card-title">
-                                <h6 class="title">Recent Orders</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nk-tb-list mt-n2">
-                        <div class="nk-tb-item nk-tb-head">
-                            <div class="nk-tb-col"><span>Order No.</span></div>
-                            <div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
-                            <div class="nk-tb-col tb-col-md"><span>Date</span></div>
-                            <div class="nk-tb-col"><span>Amount</span></div>
-                            <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
-                        </div>
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col">
-                                <span class="tb-lead"><a href="#">#95954</a></span>
-                            </div>
-                            <div class="nk-tb-col tb-col-sm">
-                                <div class="user-card">
-                                    <div class="user-avatar sm bg-purple-dim">
-                                        <span>AB</span>
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">Abu Bin Ishtiyak</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="tb-sub">02/11/2020</span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="tb-sub tb-amount">4,596.75 <span>USD</span></span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="badge badge-dot badge-dot-xs bg-success">Paid</span>
-                            </div>
-                        </div>
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col">
-                                <span class="tb-lead"><a href="#">#95850</a></span>
-                            </div>
-                            <div class="nk-tb-col tb-col-sm">
-                                <div class="user-card">
-                                    <div class="user-avatar sm bg-azure-dim">
-                                        <span>DE</span>
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">Desiree Edwards</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="tb-sub">02/02/2020</span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="tb-sub tb-amount">596.75 <span>USD</span></span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="badge badge-dot badge-dot-xs bg-danger">Cancelled</span>
-                            </div>
-                        </div>
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col">
-                                <span class="tb-lead"><a href="#">#95812</a></span>
-                            </div>
-                            <div class="nk-tb-col tb-col-sm">
-                                <div class="user-card">
-                                    <div class="user-avatar sm bg-warning-dim">
-                                        <img src="./images/avatar/b-sm.jpg" alt="">
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">Blanca Schultz</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="tb-sub">02/01/2020</span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="tb-sub tb-amount">199.99 <span>USD</span></span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="badge badge-dot badge-dot-xs bg-success">Paid</span>
-                            </div>
-                        </div>
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col">
-                                <span class="tb-lead"><a href="#">#95256</a></span>
-                            </div>
-                            <div class="nk-tb-col tb-col-sm">
-                                <div class="user-card">
-                                    <div class="user-avatar sm bg-purple-dim">
-                                        <span>NL</span>
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">Naomi Lawrence</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="tb-sub">01/29/2020</span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="tb-sub tb-amount">1099.99 <span>USD</span></span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="badge badge-dot badge-dot-xs bg-success">Paid</span>
-                            </div>
-                        </div>
-                        <div class="nk-tb-item">
-                            <div class="nk-tb-col">
-                                <span class="tb-lead"><a href="#">#95135</a></span>
-                            </div>
-                            <div class="nk-tb-col tb-col-sm">
-                                <div class="user-card">
-                                    <div class="user-avatar sm bg-success-dim">
-                                        <span>CH</span>
-                                    </div>
-                                    <div class="user-name">
-                                        <span class="tb-lead">Cassandra Hogan</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nk-tb-col tb-col-md">
-                                <span class="tb-sub">01/29/2020</span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="tb-sub tb-amount">1099.99 <span>USD</span></span>
-                            </div>
-                            <div class="nk-tb-col">
-                                <span class="badge badge-dot badge-dot-xs bg-warning">Due</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-md-8 col-lg-6">
-                <div class="card h-100">
-                    <div class="card-inner">
-                        <div class="card-title-group mb-2">
-                            <div class="card-title">
-                                <h6 class="title">Top products</h6>
-                            </div>
-                            <div class="card-tools">
-                                <div class="dropdown">
-                                    <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-bs-toggle="dropdown">Weekly</a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                        <ul class="link-list-opt no-bdr">
-                                            <li><a href="#"><span>Daily</span></a></li>
-                                            <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                            <li><a href="#"><span>Monthly</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="nk-top-products">
-                            <li class="item">
-                                <div class="thumb">
-                                    <img src="./images/product/a.png" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="title">Pink Fitness Tracker</div>
-                                    <div class="price">$99.00</div>
-                                </div>
-                                <div class="total">
-                                    <div class="amount">$990.00</div>
-                                    <div class="count">10 Sold</div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="thumb">
-                                    <img src="./images/product/b.png" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="title">Purple Smartwatch</div>
-                                    <div class="price">$99.00</div>
-                                </div>
-                                <div class="total">
-                                    <div class="amount">$990.00</div>
-                                    <div class="count">10 Sold</div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="thumb">
-                                    <img src="./images/product/c.png" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="title">Black Smartwatch</div>
-                                    <div class="price">$99.00</div>
-                                </div>
-                                <div class="total">
-                                    <div class="amount">$990.00</div>
-                                    <div class="count">10 Sold</div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="thumb">
-                                    <img src="./images/product/d.png" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="title">Black Headphones</div>
-                                    <div class="price">$99.00</div>
-                                </div>
-                                <div class="total">
-                                    <div class="amount">$990.00</div>
-                                    <div class="count">10 Sold</div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="thumb">
-                                    <img src="./images/product/e.png" alt="">
-                                </div>
-                                <div class="info">
-                                    <div class="title">iPhone 7 Headphones</div>
-                                    <div class="price">$99.00</div>
-                                </div>
-                                <div class="total">
-                                    <div class="amount">$990.00</div>
-                                    <div class="count">10 Sold</div>
-                                </div>
-                            </li>
-                        </ul>
+        <div class="flex flex-wrap my-6 -mx-3">
+            <div class="w-full max-w-full px-3 flex-0">
+                <div class="relative flex flex-col min-w-0 break-words bg-white border-0 dark:bg-gray-950 dark:shadow-soft-dark-xl shadow-soft-xl rounded-2xl bg-clip-border">
+                    <div class="overflow-x-auto ps">
+                        <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500 dark:border-white/40">
+                            <thead class="align-bottom">
+                            <tr>
+                                <th class="px-6 py-3 font-bold uppercase align-middle bg-transparent border-b border-gray-200 border-solid shadow-none text-xxs tracking-none whitespace-nowrap text-slate-400 opacity-70 dark:border-white/40 dark:text-white dark:opacity-80">
+                                    Título
+                                </th>
+                                <th class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 border-solid shadow-none text-xxs tracking-none whitespace-nowrap text-slate-400 opacity-70 dark:border-white/40 dark:text-white dark:opacity-80">
+                                    Categoria
+                                </th>
+                                <th class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 border-solid shadow-none text-xxs tracking-none whitespace-nowrap text-slate-400 opacity-70 dark:border-white/40 dark:text-white dark:opacity-80">
+                                    Data de publicação
+                                </th>
+                                <th class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 border-solid shadow-none text-xxs tracking-none whitespace-nowrap text-slate-400 opacity-70 dark:border-white/40 dark:text-white dark:opacity-80">
+                                    Visualizações
+                                </th>
+                                <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 border-solid shadow-none text-xxs tracking-none whitespace-nowrap text-slate-400 opacity-70 dark:border-white/40 dark:text-white dark:opacity-80">
+                                    ID
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="border-t-2 border-current border-solid dark:border-white/40">
+                                @foreach($mostViewedPosts as $post)
+                                    <tr>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap dark:border-white/40">
+                                            <h6 class="mb-0 leading-normal text-sm dark:text-white">
+                                                {{ Str::limit($post->title, 60, '...') }}
+                                            </h6>
+                                        </td>
+                                        <td class="p-2 align-middle text-center bg-transparent border-b whitespace-nowrap dark:border-white/40">
+                                            <span class="leading-normal text-sm text-slate-400 dark:text-white/80">
+                                                {{ $post->category->name }}
+                                            </span>
+                                        </td>
+                                        <td class="p-2 leading-normal text-center align-middle bg-transparent border-b text-sm whitespace-nowrap dark:border-white/40">
+                                            <span class="leading-normal text-sm text-slate-400 dark:text-white/80">
+                                                {{ convertDateToBR($post->publication_date) }}
+                                            </span>
+                                        </td>
+                                        <td class="p-2 align-middle text-center bg-transparent border-b whitespace-nowrap dark:border-white/40">
+                                            <span class="leading-normal text-sm text-slate-400 dark:text-white/80">
+                                                {{ $post->clicks }}
+                                            </span>
+                                        </td>
+                                        <td class="p-2 align-middle text-center bg-transparent border-b whitespace-nowrap dark:border-white/40">
+                                            <span class="leading-normal text-sm text-slate-400 dark:text-white/80">
+                                                {{ $post->id }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

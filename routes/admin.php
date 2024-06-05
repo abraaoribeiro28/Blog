@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EbookController;
 use App\Http\Controllers\Admin\InstagramPostController;
 use App\Http\Controllers\Admin\MenuController;
@@ -16,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
     Route::redirect('/', '/admin/dashboard');
-    Route::get('dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
+
     Route::resource('configurations', ConfigurationController::class)->only(['edit', 'update']);
     Route::resource('posts/categories', CategoryPostController::class);
     Route::resource('posts', PostController::class);
