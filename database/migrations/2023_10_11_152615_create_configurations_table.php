@@ -86,7 +86,7 @@ return new class extends Migration
         ]);
 
         DB::table('configurations')->insert([
-            'key' => 'logo_radape',
+            'key' => 'logo_rodape',
             'title' => 'Logo Rodapé',
             'description' => 'Tamanho ideal: 130x40.',
             'value' => 'assets/images/logo.svg'
