@@ -1,24 +1,19 @@
 @if($errors->any())
-    <div class="alert alert-icon alert-danger mt-3 px-3" role="alert">
+    <div alert class="relative w-full p-4 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400">
         @foreach($errors->all() as $error)
-            <i class="ni ni-alert-circle" style="font-size: 1rem;"></i>
             <strong>{{ $error }}</strong> <br>
         @endforeach
     </div>
 @endif
 
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible alert-icon mt-3">
-        <em class="icon ni ni-check-circle"></em>
-        <strong>{{ session('success') }}</strong>
-        <button class="close" data-bs-dismiss="alert"></button>
+    <div alert class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-green-600 to-lime-400 border-lime-300">
+        {{ session('success') }}
     </div>
 @endif
 
 @if (session('error'))
-    <div class="alert alert-danger alert-dismissible alert-icon mt-3">
-        <em class="icon ni ni-cross-circle"></em>
-        <strong>{{ session('error') }}</strong>
-        <button class="close" data-bs-dismiss="alert"></button>
+    <div alert class="relative w-full p-4 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400">
+        {{ session('error') }}
     </div>
 @endif
