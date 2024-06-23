@@ -28,7 +28,7 @@
 
 /* Menu listing order - admin */
 .dd-item {
-    display: block;
+    /*display: block;*/
     margin: 5px 0;
     border: 1px solid #ccc;
     background: #fafafa;

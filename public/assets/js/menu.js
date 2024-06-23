@@ -12,13 +12,13 @@ tables.forEach(element => {
                 data.push(element.id.replace('item-', ''));
             });
 
-            const loader = document.querySelector('.preloader');
-            loader.classList.remove('d-none')
+            const loader = document.querySelector('.loader');
+            loader.classList.remove('hidden')
 
             resultado = await myFetch('/admin/menu-order', 'POST', data);
 
             if (resultado){
-                loader.classList.add('d-none')
+                loader.classList.add('hidden')
             }
         }
     });

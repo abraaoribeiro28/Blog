@@ -86,7 +86,7 @@
                             <x-admin.layout.side-subitem title="Lista de usuários" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')"/>
                         @endcan
                         @can('perfis.index')
-                            <x-admin.layout.side-subitem title=">Perfis e permissões" href="{{ route('profiles.index') }}" :active="request()->routeIs('profiles.index')"/>
+                            <x-admin.layout.side-subitem title="Perfis e permissões" href="{{ route('profiles.index') }}" :active="request()->routeIs('profiles.index')"/>
                         @endcan
                     </x-slot>
                 </x-admin.layout.side-item>
