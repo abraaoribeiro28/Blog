@@ -10,6 +10,8 @@ export default defineConfig({
                 "resources/css/admin/app.css",
                 "resources/css/admin/pagination.css",
                 "resources/js/admin/codethereal-iconpicker/app.js",
+                "resources/css/admin/choice.css",
+                "resources/js/admin/choice/app.js",
 
                 // --- Portal ----
                 "resources/css/portal/app.css",
